@@ -84,17 +84,58 @@ the array keeps the dropdown A→Z. Owners sort by displayed name, not slug
 
 ## Deploying
 
-Same GoDaddy box and FTP account as Athena — see `athena/frontend/deploy-*.sh`
-for the pattern. **Use `lftp`, not `curl`**: GoDaddy's FTPS returns spurious
-451s with curl.
+> **`ascend.help` is NOT on the same box as Athena.** This cost real time, so
+> it is worth stating plainly:
+>
+> | Host | IP | Provider |
+> |---|---|---|
+> | `ascend.help` | 198.54.114.219 (`server72-1.web-hosting.com`) | **Namecheap** |
+> | `interplay.bot`, `sandbox.ascend.help`, `athena.ascend.fo` | 198.12.239.79 | GoDaddy |
+>
+> The Athena FTP account (`~/.athena-ftp-creds`, `ftp.interplay.bot`) reaches
+> the **GoDaddy** box. That account also has a `protocols/` directory — but it
+> serves `interplay.bot/protocols/`, a different live product ("Interplay ·
+> Protocol Dashboard"). Deploying there succeeds and silently overwrites the
+> wrong site. Verified by uploading a probe file: it returned 200 from
+> `interplay.bot` and 404 from `ascend.help`.
 
-Deploy `dist/index.html` → `public_html/ascend.help/protocols/index.html`
-and `dist/task.html` → `public_html/ascend.help/protocols/task.html`.
+Credentials: `~/.ascend-help-ftp-creds` (`ftp.ascend.help`, port 21, explicit
+FTPS). cPanel user is `ascernhh`; document root is `/home/ascernhh/public_html`.
+An FTP account's Directory field must be set to `public_html` — left at the
+cPanel default it is jailed to `/home/<user>/<login>`, an empty folder, where
+the login succeeds but nothing is visible.
+
+**Use `lftp`, not `curl`** (curl gets spurious 451s from these hosts).
+
+```bash
+bash scripts/build.sh
+. ~/.ascend-help-ftp-creds
+lftp -u "$FTP_USER,$FTP_PASS" "$FTP_HOST" <<'EOF'
+set ftp:ssl-force true
+set ssl:verify-certificate no
+put dist/index.html -o protocols/index.html
+put dist/task.html  -o protocols/task.html
+EOF
+```
+
+`/protocols/` serves **`index.html`** — this `.htaccess` has no
+`DirectoryIndex` directive, so Apache's default order applies. There is also a
+stale `index.php` (76 KB, unused); leave it alone. Confirm which file is live by
+hashing it against the URL rather than assuming.
+
+Always back up server-side first, matching the existing convention:
+`mv protocols/index.html protocols/index.html.backup-$(date +%Y%m%d-%H%M%S)`.
 
 Leave `/protocols/taskmanager/` in place — it still hosts the PHP fallback
 endpoints, `tasks.json`, `favicon.svg`, `headshots/` and `protocol.html`, all
-referenced by absolute path. Its `index.html` should become a redirect to
-`/protocols/` so the duplicate UI is gone without breaking bookmarks.
+referenced by absolute path. Its `index.html` is now a redirect to
+`/protocols/?tab=tasks` so the duplicate UI is gone without breaking bookmarks.
+
+### Before trusting any deploy target
+
+Upload a uniquely-named probe file and fetch it over HTTPS from the domain you
+expect. If it does not come back, you are on the wrong server — no matter how
+plausible the directory listing looks. Delete the probe afterwards.
 
 ## Background
 
