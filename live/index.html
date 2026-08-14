@@ -21,7 +21,14 @@
     --red: #EA3323;
     --green: #10B981;
     --amber: #F59E0B;
-    --slate: #94A3B8;
+    /* --slate was #94A3B8: chosen for the dark ground, but it measures 2.56:1
+       on white and was failing on the Filter label, the legend and the strip
+       counts. Light gets a darker step; dark keeps the original. */
+    --slate: #667085;
+    /* Amber measures 1.99:1 on a light card, so text uses a darker step. */
+    --amber-text: #A85B06;
+    /* White on #EA3323 is 4.2:1 — under 4.5 for small text on an active pill. */
+    --red-strong: #C41E10;
 
     /* Eisenhower quadrant legend (Andrew, 2026-08-14).
        --q-*        the legend swatch and the row's left edge
@@ -60,6 +67,8 @@
     --green: #10B981;
     --amber: #F59E0B;
     --slate: #94A3B8;
+    --amber-text: #FBBF24;
+    --red-strong: #d32f2f;
     background: #000000;
   }
   [data-theme="dark"] body { background: #000000; }
@@ -869,6 +878,109 @@
      work was visible. The tiles are the top of the page — they carry the same
      orientation (what's open, what's slipping) and are actionable. The
      Protocols tab keeps its hero. */
+
+  /* Top bar: the three controls were three sizes at three heights separated by
+     a stray middot, on no shared baseline. One size, one height, real spacing. */
+  .topbar .meta { display: flex; align-items: center; gap: 14px; opacity: 1; }
+  .topbar .meta .identity-pill,
+  .topbar .meta .theme-toggle {
+    height: 30px; padding: 0 14px; font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; border-radius: 999px;
+    display: inline-flex; align-items: center;
+  }
+  .topbar .meta .meta-stamp {
+    font-size: 10.5px; letter-spacing: 0.08em; color: var(--slate);
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .topbar .brand-title { font-size: 12px; letter-spacing: 0.08em; }
+  .topbar .tab-link { font-size: 11px; }
+
+  /* ── People strip ──────────────────────────────────────────────────────────
+     Was two stacked centred bands (team circles, then faces) of near-identical
+     weight — the main source of the clutter. Now one row: the three scope
+     buttons read as segmented text, the faces follow, separated by a rule
+     rather than by a line break. */
+  #tasks-view .filter-strip {
+    justify-content: flex-start; gap: 0; align-items: center;
+    border: 1px solid var(--grey); border-radius: 12px;
+    padding: 10px 14px; background: var(--grey-2);
+  }
+  [data-theme="dark"] #tasks-view .filter-strip { background: #121212; border-color: #262626; }
+  #tasks-view .tasks-strip-groups {
+    margin-bottom: 0; gap: 6px; padding-right: 14px; margin-right: 14px;
+    border-right: 1px solid var(--grey); flex: none;
+  }
+  [data-theme="dark"] #tasks-view .tasks-strip-groups { border-right-color: #2c2c2c; }
+  #tasks-view .tasks-strip-persons { justify-content: flex-start; gap: 2px; width: auto; flex: 1; }
+
+  /* Scope buttons lose the empty grey circle — it carried no information. */
+  #tasks-view .tasks-strip-groups .avatar-btn { flex-direction: row; padding: 0 12px; height: 34px; border-radius: 999px; gap: 7px; }
+  #tasks-view .tasks-strip-groups .avatar-btn .avatar { display: none; }
+  #tasks-view .tasks-strip-groups .avatar-btn .name { font-size: 11px; font-weight: 700; }
+  #tasks-view .tasks-strip-groups .avatar-btn .count { font-size: 10px; opacity: 0.75; }
+  #tasks-view .tasks-strip-groups .avatar-btn.active { background: var(--red-strong); border-color: var(--red-strong); }
+  #tasks-view .tasks-strip-groups .avatar-btn.active .name,
+  #tasks-view .tasks-strip-groups .avatar-btn.active .count { color: #fff; }
+
+  /* Faces: smaller, tighter, count on hover only — 13 of them stacked with
+     names AND counts was three lines of text per person. */
+  #tasks-view .tasks-strip-persons .avatar { width: 34px; height: 34px; }
+  #tasks-view .tasks-strip-persons .avatar-btn { padding: 4px 5px; gap: 3px; }
+  #tasks-view .tasks-strip-persons .avatar-btn .name { font-size: 9.5px; letter-spacing: 0.04em; }
+  #tasks-view .tasks-strip-persons .avatar-btn .count { display: none; }
+  #tasks-view .tasks-strip-persons .avatar-btn.active .avatar { box-shadow: 0 0 0 2px var(--red); }
+
+  /* Table toolbar — search is the primary control here, so it is the widest. */
+  .table-toolbar {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    padding: 12px 14px;
+    border: 1px solid var(--grey); border-bottom: 0;
+    border-radius: 12px 12px 0 0; background: var(--grey-2);
+  }
+  [data-theme="dark"] .table-toolbar { background: #121212; border-color: #262626; }
+  .table-toolbar .cf-search { flex: 1 1 340px; max-width: 520px; }
+  .table-toolbar .cf-search input { width: 100%; min-height: 40px; font-size: 14px; }
+  .toolbar-count {
+    margin-left: auto; font-size: 12px; color: var(--slate);
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .toolbar-add { min-height: 40px; padding: 0 18px; }
+  /* The table joins the toolbar as one object. */
+  .tasks-table-scroll {
+    border: 1px solid var(--grey); border-radius: 0 0 12px 12px; overflow: hidden auto;
+  }
+  [data-theme="dark"] .tasks-table-scroll { border-color: #262626; }
+  .tasks-table-scroll { overflow-x: auto; }
+
+  /* Sortable headers are real buttons — a bare th[onclick] cannot be reached,
+     activated, or announced. */
+  table.tasks thead th.sortable { padding: 0; }
+  table.tasks thead th .th-btn {
+    display: flex; align-items: center; gap: 5px; width: 100%;
+    min-height: 40px; padding: 0 8px;
+    background: none; border: 0; color: inherit; font: inherit;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; text-align: left; cursor: pointer;
+  }
+  table.tasks thead th .th-btn:hover { color: var(--red); }
+  table.tasks thead th .th-btn:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
+  table.tasks thead th.sort-asc  .th-btn::after { content: '↑'; color: var(--red); }
+  table.tasks thead th.sort-desc .th-btn::after { content: '↓'; color: var(--red); }
+  /* The old ::after on the th itself would now double up. */
+  table.tasks thead th.sort-asc::after, table.tasks thead th.sort-desc::after { content: none; }
+
+  /* Title is the row's trigger — a real button, so it is focusable, activates
+     on Enter/Space, and does not swallow the nine controls beside it. */
+  .task-title-btn {
+    display: block; width: 100%; text-align: left;
+    background: none; border: 0; padding: 2px 0; cursor: pointer;
+    font: inherit; font-weight: 600; color: var(--black);
+    letter-spacing: -0.01em; line-height: 1.35;
+  }
+  .task-title-btn:hover { color: var(--red); }
+  .task-title-btn:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+  /* Medium finding: this button was 25px. */
+  .add-task-btn { min-height: 36px; }
   #tasks-view .hero { display: none; }
   #tasks-view .tasks-stats-row { padding: 18px 0 4px; gap: 14px; }
   #tasks-view .tile-breakdown { padding: 4px 0 10px; }
@@ -924,7 +1036,7 @@
   .tasks-stat-block.tile.active::after {
     transform: translateX(-50%) rotate(180deg); opacity: 1; border-top-color: var(--red);
   }
-  .tasks-stat-block.tile.tile-warn .tasks-stat-num { color: var(--amber); }
+  .tasks-stat-block.tile.tile-warn .tasks-stat-num { color: var(--amber-text); }
   .tasks-stat-block.tile.tile-warn.active .tasks-stat-num { color: var(--red); }
 
   /* Priority breakdown revealed by the active tile */
@@ -955,7 +1067,7 @@
   .tile-seg.p-high .tile-seg-n { color: var(--red); }
   .tile-seg.p-med  .tile-seg-n { color: var(--amber); }
   .tile-seg.p-low  .tile-seg-n { color: var(--green); }
-  .tile-seg.active { background: var(--red); border-color: var(--red); color: #fff; }
+  .tile-seg.active { background: var(--red-strong); border-color: var(--red-strong); color: #fff; }
   .tile-seg.active .tile-seg-n { color: #fff; }
   .tile-seg.clear { color: var(--slate); border-style: dashed; }
   [data-theme="dark"] .tile-seg { background: #1a1a1a; border-color: #333; color: #ddd; }
@@ -978,7 +1090,7 @@
     transition: border-color 140ms, background 140ms;
   }
   .pg-num:hover:not(.active), .pg-step:hover:not(:disabled) { border-color: var(--slate); }
-  .pg-num.active { background: var(--red); border-color: var(--red); color: #fff; }
+  .pg-num.active { background: var(--red-strong); border-color: var(--red-strong); color: #fff; }
   .pg-step:disabled { opacity: 0.35; cursor: not-allowed; }
   .pg-num:focus-visible, .pg-step:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
   .pg-gap { padding: 0 4px; color: var(--slate); }
@@ -991,7 +1103,7 @@
   [data-theme="dark"] .pg-num, [data-theme="dark"] .pg-step, [data-theme="dark"] .pg-right select {
     background: #1a1a1a; border-color: #333; color: #ddd;
   }
-  [data-theme="dark"] .pg-num.active { background: var(--red); border-color: var(--red); color: #fff; }
+  [data-theme="dark"] .pg-num.active { background: var(--red-strong); border-color: var(--red-strong); color: #fff; }
 
   /* Quick filter chips */
   .quick-chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 0 10px; }
@@ -1005,7 +1117,7 @@
     cursor: pointer; transition: border-color 140ms, color 140ms, background 140ms;
   }
   .qchip:hover { border-color: var(--slate); }
-  .qchip.active { background: var(--red); border-color: var(--red); color: #fff; }
+  .qchip.active { background: var(--red-strong); border-color: var(--red-strong); color: #fff; }
   .qchip-n {
     font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 999px;
     background: var(--grey-2); color: var(--carbon); min-width: 18px; text-align: center;
@@ -1268,7 +1380,7 @@
     padding: 5px 14px;
     border-radius: 999px;
     border: 1px solid var(--red);
-    background: var(--red);
+    background: var(--red-strong);
     color: #fff;
     font-family: inherit;
     font-size: 10.5px;
@@ -1280,7 +1392,7 @@
     margin-left: auto;
   }
   .add-task-btn:hover { background: #c42a1c; border-color: #c42a1c; }
-  [data-theme="dark"] .add-task-btn { background: var(--red); border-color: var(--red); }
+  [data-theme="dark"] .add-task-btn { background: var(--red-strong); border-color: var(--red-strong); }
 
   /* Add Task modal */
   .add-task-overlay {
@@ -1587,9 +1699,8 @@
     </nav>
   </div>
   <div class="meta">
-    <button class="identity-pill anon" id="identityPill" onclick="openIdentityModal()">👤 Set identity</button>
-    &nbsp;
-    <span id="generated_at">Loading…</span> &middot;
+    <button class="identity-pill anon" id="identityPill" onclick="openIdentityModal()">Set identity</button>
+    <span id="generated_at" class="meta-stamp">Loading…</span>
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">Light mode</button>
   </div>
 </header>
@@ -1673,6 +1784,11 @@
 </section>
 
 <div class="hero-bar">
+  <!-- Who first, then their numbers. The strip scopes the board to a person or
+       team; the tiles below always count within that scope, so reading them
+       top-to-bottom answers "whose work, and how much of it is slipping". -->
+  <div class="filter-strip" id="tasks-filter-strip"></div>
+
   <!-- Status tiles. Each tile filters the board on click and expands a
        priority breakdown; each breakdown segment filters further. The old
        tiles counted task *types* (Investment/Ops/Long Term), which duplicated
@@ -1697,27 +1813,14 @@
     </button>
   </div>
   <div class="tile-breakdown" id="tile-breakdown" hidden></div>
-  <div class="filter-strip" id="tasks-filter-strip"></div>
 </div>
 
 <div class="body-wrap" id="tasks-body-wrap">
   <!-- Column filter bar -->
   <div class="col-filter-bar" id="col-filter-bar">
-   <div class="cf-row cf-row-1">
-    <div class="cf-search">
-      <svg class="cf-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <label for="cf-search" class="sr-only">Search tasks</label>
-      <input type="search" id="cf-search" placeholder="Search tasks…" autocomplete="off" oninput="onSearchInput()">
-      <button type="button" class="cf-search-clear" id="cf-search-clear" aria-label="Clear search" onclick="clearSearch()" style="display:none">×</button>
-    </div>
-    <label class="cf-toggle" for="cf-showdone">
-      <input type="checkbox" id="cf-showdone" onchange="applyColFilters()"> Show completed
-    </label>
-    <button class="col-filter-clear" id="col-filter-clear" onclick="clearColFilters()" style="display:none">✕ Clear all</button>
-   </div>
    <div class="cf-row cf-row-2">
     <span class="col-filter-label">Filter</span>
-    <select id="cf-quadrant" onchange="applyColFilters()">
+    <label for="cf-quadrant" class="sr-only">Filter by importance and urgency</label><select id="cf-quadrant" onchange="applyColFilters()">
       <option value="">Imp/Urg</option>
       <option value="__blank__">— Blank</option>
       <option value="iu">Important &amp; urgent</option>
@@ -1725,7 +1828,7 @@
       <option value="uni">Urgent, not important</option>
       <option value="nn">Neither</option>
     </select>
-    <select id="cf-priority" onchange="applyColFilters()">
+    <label for="cf-priority" class="sr-only">Filter by priority</label><select id="cf-priority" onchange="applyColFilters()">
       <option value="">Priority</option>
       <option value="high">High</option>
       <option value="medium">Medium</option>
@@ -1733,7 +1836,7 @@
       <option value="completed">Completed</option>
       <option value="archived">Archived</option>
     </select>
-    <select id="cf-status" onchange="applyColFilters()">
+    <label for="cf-status" class="sr-only">Filter by status</label><select id="cf-status" onchange="applyColFilters()">
       <option value="">Status</option>
       <option value="open">Open</option>
       <option value="in_progress">In Progress</option>
@@ -1743,11 +1846,11 @@
       <option value="archived">Archived</option>
       <option value="__blank__">— Blank</option>
     </select>
-    <select id="cf-family" onchange="applyColFilters()">
+    <label for="cf-family" class="sr-only">Filter by client or family</label><select id="cf-family" onchange="applyColFilters()">
       <option value="">Family</option>
       <option value="__blank__">— Blank</option>
     </select>
-    <select id="cf-type" onchange="applyColFilters()">
+    <label for="cf-type" class="sr-only">Filter by type</label><select id="cf-type" onchange="applyColFilters()">
       <option value="">Type</option>
       <option value="Investment">Investment</option>
       <option value="Operations">Operations</option>
@@ -1755,11 +1858,11 @@
       <option value="Long Term">Long Term</option>
       <option value="__blank__">— Blank</option>
     </select>
-    <select id="cf-owner" onchange="applyColFilters()">
+    <label for="cf-owner" class="sr-only">Filter by owner</label><select id="cf-owner" onchange="applyColFilters()">
       <option value="">Owner</option>
       <option value="__blank__">— Blank</option>
     </select>
-    <select id="cf-due" onchange="applyColFilters()">
+    <label for="cf-due" class="sr-only">Filter by due date</label><select id="cf-due" onchange="applyColFilters()">
       <option value="">Due Date</option>
       <option value="overdue">Overdue</option>
       <option value="week">Due this week</option>
@@ -1767,13 +1870,17 @@
       <option value="set">Has due date</option>
       <option value="none">No due date</option>
     </select>
-    <select id="cf-date" onchange="applyColFilters()">
+    <label for="cf-date" class="sr-only">Filter by date added</label><select id="cf-date" onchange="applyColFilters()">
       <option value="">Date Added</option>
       <option value="today">Today</option>
       <option value="week">This week</option>
       <option value="month">This month</option>
       <option value="older">Older than 30 days</option>
     </select>
+    <label class="cf-toggle" for="cf-showdone">
+      <input type="checkbox" id="cf-showdone" onchange="applyColFilters()"> Show completed
+    </label>
+    <button class="col-filter-clear" id="col-filter-clear" onclick="clearColFilters()" style="display:none">✕ Clear all</button>
    </div>
   </div>
   <!-- Quick filters. Borrowed from Asana's "My Tasks" and Jira's quick filters:
@@ -1791,11 +1898,23 @@
     <span class="lg"><span class="dot" style="background:var(--q-uni)"></span>Urgent, not important</span>
     <span class="lg"><span class="dot" style="background:var(--q-nn)"></span>Neither</span>
     <span class="lg" id="hidden-done-note" style="margin-left:auto;color:var(--slate)"></span>
-    <button class="add-task-btn" onclick="openAddTaskModal()">＋ New Task</button>
   </div>
   <div class="tasks-filter-stats" id="tasks-filter-stats"></div>
+  <!-- Search belongs to the table, not to the filter block: it acts on these
+       rows, so it sits on the table's own toolbar, directly above the header. -->
+  <div class="table-toolbar" id="table-toolbar">
+    <div class="cf-search">
+      <svg class="cf-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <label for="cf-search" class="sr-only">Search tasks</label>
+      <input type="search" id="cf-search" placeholder="Search tasks by title, owner, family…" autocomplete="off" oninput="onSearchInput()">
+      <button type="button" class="cf-search-clear" id="cf-search-clear" aria-label="Clear search" onclick="clearSearch()" style="display:none">×</button>
+    </div>
+    <span class="toolbar-count" id="toolbar-count" aria-live="polite"></span>
+    <button class="add-task-btn toolbar-add" onclick="openAddTaskModal()">+ New task</button>
+  </div>
   <div class="tasks-table-scroll">
   <table class="tasks" id="tasks-table" style="display:none">
+    <caption class="sr-only" id="tasks-caption">Team tasks. Use the column header buttons to sort.</caption>
     <colgroup>
       <col class="col-title">
       <col class="col-nextstep">
@@ -1809,15 +1928,15 @@
     </colgroup>
     <thead>
       <tr>
-        <th class="sortable" id="th-title" onclick="toggleSort('title')">Title</th>
-        <th class="sortable" id="th-next_step" onclick="toggleSort('next_step')">Next Step</th>
-        <th class="sortable" id="th-quadrant" onclick="toggleSort('quadrant')">Imp/Urg</th>
-        <th class="sortable" id="th-priority" onclick="toggleSort('priority')">Priority</th>
-        <th class="sortable" id="th-family" onclick="toggleSort('family')">Family</th>
-        <th class="sortable" id="th-function" onclick="toggleSort('function')">Type</th>
-        <th class="sortable" id="th-due_date" onclick="toggleSort('due_date')">Due Date</th>
-        <th class="sortable" id="th-assigned_to" onclick="toggleSort('assigned_to')">Owner</th>
-        <th class="sortable" id="th-status" onclick="toggleSort('status')">Status</th>
+        <th class="sortable" id="th-title" scope="col"><button type="button" class="th-btn" onclick="toggleSort('title')">Title</button></th>
+        <th class="sortable" id="th-next_step" scope="col"><button type="button" class="th-btn" onclick="toggleSort('next_step')">Next Step</button></th>
+        <th class="sortable" id="th-quadrant" scope="col"><button type="button" class="th-btn" onclick="toggleSort('quadrant')">Imp/Urg</button></th>
+        <th class="sortable" id="th-priority" scope="col"><button type="button" class="th-btn" onclick="toggleSort('priority')">Priority</button></th>
+        <th class="sortable" id="th-family" scope="col"><button type="button" class="th-btn" onclick="toggleSort('family')">Family</button></th>
+        <th class="sortable" id="th-function" scope="col"><button type="button" class="th-btn" onclick="toggleSort('function')">Type</button></th>
+        <th class="sortable" id="th-due_date" scope="col"><button type="button" class="th-btn" onclick="toggleSort('due_date')">Due Date</button></th>
+        <th class="sortable" id="th-assigned_to" scope="col"><button type="button" class="th-btn" onclick="toggleSort('assigned_to')">Owner</button></th>
+        <th class="sortable" id="th-status" scope="col"><button type="button" class="th-btn" onclick="toggleSort('status')">Status</button></th>
       </tr>
     </thead>
     <tbody id="task-rows"></tbody>
@@ -2826,6 +2945,8 @@ function renderPager(total, page, pages, start, shown) {
 
   const from = total ? start + 1 : 0;
   const to = start + shown;
+  const tc = document.getElementById('toolbar-count');
+  if (tc) tc.textContent = total ? `${from}–${to} of ${total}` : 'No matching tasks';
   el.innerHTML = `
     <div class="pg-left">Showing <strong>${from}–${to}</strong> of <strong>${total}</strong></div>
     <div class="pg-mid">
@@ -3114,7 +3235,7 @@ function dueDateInputHTML(t) {
       else if (diff <= 7) cls = 'soon';
     }
   }
-  return `<input type="date" class="due-input${cls ? ' ' + cls : ''}" id="due-input-${esc(t.id)}" data-task-id="${esc(t.id)}" value="${esc(due)}" onchange="updateDueDate(this)">`;
+  return `<input type="date" aria-label="Due date" class="due-input${cls ? ' ' + cls : ''}" id="due-input-${esc(t.id)}" data-task-id="${esc(t.id)}" value="${esc(due)}" onchange="updateDueDate(this)">`;
 }
 
 async function updateDueDate(input) {
@@ -3436,14 +3557,14 @@ function renderTaskCards(tasks) {
   tbody.innerHTML = pageRows.map(t => {
     const pri = t.priority || 'medium';
     const desc = (t.overview || '').slice(0, 120) + ((t.overview || '').length > 120 ? '…' : '');
-    return `<tr class="${t.quadrant ? 'row-q-' + esc(t.quadrant) : ''}" tabindex="0" role="button" aria-label="Open ${esc(t.title)}" onclick="openTaskDrawer('${esc(t.id)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openTaskDrawer('${esc(t.id)}')}">
+    return `<tr class="${t.quadrant ? 'row-q-' + esc(t.quadrant) : ''}">
       <td class="task-title-cell">
-        <div class="task-title-text">${esc(t.title)}</div>
+        <button type="button" class="task-title-btn" onclick="openTaskDrawer('${esc(t.id)}')">${esc(t.title)}</button>
       </td>
       <td class="task-nextstep-cell">${esc((t.next_step || '').slice(0, 90) + ((t.next_step || '').length > 90 ? '\u2026' : ''))}</td>
       <td onclick="event.stopPropagation()">${quadrantCellHTML(t)}</td>
       <td class="priority-cell" onclick="event.stopPropagation()">
-        <select class="priority-select" id="pri-pill-${esc(t.id)}" data-task-id="${esc(t.id)}" onchange="updatePriority(this)">${priOptions.map(p=>`<option value="${p}" ${p===pri?'selected':''}>${p.charAt(0).toUpperCase()+p.slice(1)}</option>`).join('')}</select>
+        <select class="priority-select" id="pri-pill-${esc(t.id)}" aria-label="Priority — ${esc(t.title)}" data-task-id="${esc(t.id)}" onchange="updatePriority(this)">${priOptions.map(p=>`<option value="${p}" ${p===pri?'selected':''}>${p.charAt(0).toUpperCase()+p.slice(1)}</option>`).join('')}</select>
       </td>
       <td onclick="event.stopPropagation()">${familyCellHTML(t)}</td>
       <td onclick="event.stopPropagation()">${typeCellHTML(t)}</td>
@@ -3550,7 +3671,7 @@ function statusCellHTML(t) {
   const opts = STATUS_OPT.map(v =>
     `<option value="${esc(v)}" ${v === cur ? 'selected' : ''}>${STATUS_LBL[v] || v}</option>`
   ).join('');
-  return `<select class="priority-select" id="status-sel-${esc(t.id)}" data-task-id="${esc(t.id)}" data-field="status" onchange="updateTaskField(this)">${opts}</select>`;
+  return `<select class="priority-select" id="status-sel-${esc(t.id)}" aria-label="Status — ${esc(t.title)}" data-task-id="${esc(t.id)}" data-field="status" onchange="updateTaskField(this)">${opts}</select>`;
 }
 
 // Eisenhower quadrant. The <select> carries a q-* class so the row picks up
@@ -3660,7 +3781,7 @@ function quadrantCellHTML(t) {
   const opts = [{ v: '', short: '—' }].concat(QUADRANTS).map(q =>
     `<option value="${esc(q.v)}" ${q.v === cur ? 'selected' : ''}>${esc(q.short)}</option>`
   ).join('');
-  return `<select class="priority-select quad-select ${cur ? 'q-' + cur : ''}" id="quad-sel-${esc(t.id)}" data-task-id="${esc(t.id)}" data-field="quadrant" onchange="updateTaskField(this); refreshQuadClass(this);">${opts}</select>`;
+  return `<select class="priority-select quad-select ${cur ? 'q-' + cur : ''}" id="quad-sel-${esc(t.id)}" aria-label="Importance and urgency — ${esc(t.title)}" data-task-id="${esc(t.id)}" data-field="quadrant" onchange="updateTaskField(this); refreshQuadClass(this);">${opts}</select>`;
 }
 
 function recurrenceCellHTML(t) {
@@ -3668,7 +3789,7 @@ function recurrenceCellHTML(t) {
   const opts = RECURRENCES.map(r =>
     `<option value="${esc(r.v)}" ${r.v === cur ? 'selected' : ''}>${esc(r.v === 'none' ? '—' : r.label)}</option>`
   ).join('');
-  return `<select class="priority-select" id="recur-sel-${esc(t.id)}" data-task-id="${esc(t.id)}" data-field="recurrence" onchange="updateTaskField(this)">${opts}</select>`;
+  return `<select class="priority-select" id="recur-sel-${esc(t.id)}" aria-label="Repeats — ${esc(t.title)}" data-task-id="${esc(t.id)}" data-field="recurrence" onchange="updateTaskField(this)">${opts}</select>`;
 }
 
 // Co-owner / helper — same roster as Owner, so either person can be filtered on.
@@ -3677,7 +3798,7 @@ function coOwnerCellHTML(t) {
   const opts = sortOwnerSlugs(OWNER_SLUGS).map(v =>
     `<option value="${esc(v)}" ${v === cur ? 'selected' : ''}>${v ? esc(OWNER_SLUG_TO_NAME[v] || v) : '—'}</option>`
   ).join('');
-  return `<select class="priority-select" id="coowner-sel-${esc(t.id)}" data-task-id="${esc(t.id)}" data-field="co_owner" onchange="updateTaskField(this)">${opts}</select>`;
+  return `<select class="priority-select" id="coowner-sel-${esc(t.id)}" aria-label="Co-owner — ${esc(t.title)}" data-task-id="${esc(t.id)}" data-field="co_owner" onchange="updateTaskField(this)">${opts}</select>`;
 }
 
 function refreshQuadClass(sel) {
@@ -3694,7 +3815,7 @@ function familyCellHTML(t) {
   const opts = sortOptions(FAMILY_OPTIONS).map(v =>
     `<option value="${esc(v)}" ${v === cur ? 'selected' : ''}>${v || '—'}</option>`
   ).join('');
-  return `<select class="priority-select" id="family-sel-${esc(t.id)}" data-task-id="${esc(t.id)}" data-field="family" onchange="updateTaskField(this)">${opts}</select>`;
+  return `<select class="priority-select" id="family-sel-${esc(t.id)}" aria-label="Client or family — ${esc(t.title)}" data-task-id="${esc(t.id)}" data-field="family" onchange="updateTaskField(this)">${opts}</select>`;
 }
 
 function typeCellHTML(t) {
@@ -3702,7 +3823,7 @@ function typeCellHTML(t) {
   const opts = sortOptions(TYPE_OPTIONS).map(v =>
     `<option value="${esc(v)}" ${v === cur ? 'selected' : ''}>${v || '—'}</option>`
   ).join('');
-  return `<select class="priority-select" id="type-sel-${esc(t.id)}" data-task-id="${esc(t.id)}" data-field="function" onchange="updateTaskField(this)">${opts}</select>`;
+  return `<select class="priority-select" id="type-sel-${esc(t.id)}" aria-label="Type — ${esc(t.title)}" data-task-id="${esc(t.id)}" data-field="function" onchange="updateTaskField(this)">${opts}</select>`;
 }
 
 function ownerCellHTML2(t) {
@@ -3712,7 +3833,7 @@ function ownerCellHTML2(t) {
   const opts = sortOwnerSlugs(OWNER_SLUGS).map(v =>
     `<option value="${esc(v)}" ${v === cur ? 'selected' : ''}>${v ? (OWNER_SLUG_TO_NAME[v] || v) : '—'}</option>`
   ).join('');
-  return `<select class="priority-select" id="owner-sel-${esc(t.id)}" data-task-id="${esc(t.id)}" data-field="assigned_to" onchange="updateTaskField(this)">${opts}</select>`;
+  return `<select class="priority-select" id="owner-sel-${esc(t.id)}" aria-label="Owner — ${esc(t.title)}" data-task-id="${esc(t.id)}" data-field="assigned_to" onchange="updateTaskField(this)">${opts}</select>`;
 }
 
 
