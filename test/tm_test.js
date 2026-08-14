@@ -100,14 +100,39 @@ ok(/id="atm-coowner"/.test(files.index),        'index: Add Task has a co-owner 
 ok(/id="atm-recurrence"/.test(files.index),     'index: Add Task has a repeats field');
 ok(/id="atm-quadrant"/.test(files.index),       'index: Add Task has an importance/urgency field');
 
-console.log('\n── (h) every column is sortable ──');
+console.log('\n── (h) every GRID column is sortable ──');
+// The grid was trimmed to nine columns so it fits a laptop without sideways
+// scrolling; description, co-owner, repeats and created-at moved to the task
+// drawer. Sorting covers every column that is actually on screen.
 const sortable = arrayLiteral(files.index, 'SORTABLE_FIELDS') || [];
-['title','overview','next_step','priority','quadrant','family','function',
- 'due_date','recurrence','assigned_to','co_owner','status','created_at']
+['title','next_step','quadrant','priority','family','function',
+ 'due_date','assigned_to','status']
   .forEach(f => ok(sortable.includes(f), 'sortable: ' + f));
 // Each sortable field needs a matching <th id="th-…"> or clicking does nothing.
 sortable.forEach(f => ok(new RegExp('id="th-' + f + '"').test(files.index),
   'header exists for sortable field ' + f));
+// ...and no sort key may point at a column that no longer has a header.
+const orphan = sortable.filter(f => !new RegExp('id="th-' + f + '"').test(files.index));
+ok(orphan.length === 0, 'no sort key without a header (' + orphan.join(',') + ')');
+
+console.log('\n── fields moved to the drawer are still reachable ──');
+['co_owner','recurrence'].forEach(f =>
+  ok(new RegExp('data-field="' + f + '"').test(files.index),
+     'drawer still exposes ' + f + ' as editable'));
+ok(/function openTaskDrawer/.test(files.index), 'task drawer exists');
+ok(/Open full detail/.test(files.index), 'drawer links through to the full detail page');
+ok(/tdrawer-note/.test(files.index), 'drawer shows the note history');
+
+console.log('\n── filtering surfaces ──');
+ok(/id="cf-search"/.test(files.index), 'search box exists');
+ok(/function taskMatchesSearch/.test(files.index), 'search is wired into filtering');
+ok(/id="tasks-tiles"/.test(files.index), 'status tiles exist');
+['open','closed','overdue','total'].forEach(t =>
+  ok(new RegExp('data-tile="' + t + '"').test(files.index), 'tile: ' + t));
+ok(/function toggleTile/.test(files.index), 'tiles filter on click');
+ok(/function renderTileBreakdown/.test(files.index), 'tiles expand a priority breakdown');
+ok(/function syncUrlState/.test(files.index) && /function restoreUrlState/.test(files.index),
+   'view state is shareable via the URL');
 
 console.log('\n── default view hides completed work ──');
 ok(/id="cf-showdone"/.test(files.index), 'a "Show completed" toggle exists');

@@ -817,24 +817,159 @@
   /* 13 columns no longer fit a laptop viewport, so the table gets a min-width
      and its wrapper scrolls horizontally rather than letting cells collide.
      Percentages are of that min-width, not of the screen. */
-  table.tasks col.col-title     { width: 11%; }
-  table.tasks col.col-desc      { width: 10%; }
-  table.tasks col.col-nextstep  { width: 10%; }
-  table.tasks col.col-pri       { width: 7%; }
-  table.tasks col.col-quad      { width: 9%; }
-  table.tasks col.col-family    { width: 8%; }
-  table.tasks col.col-type      { width: 8%; }
-  table.tasks col.col-due       { width: 9%; }
-  table.tasks col.col-recur     { width: 8%; }
-  table.tasks col.col-owner     { width: 7%; }
-  table.tasks col.col-coowner   { width: 7%; }
-  table.tasks col.col-status    { width: 9%; }
-  table.tasks col.col-createdat { width: 5%; }
+  /* Nine columns, sized to fit a laptop viewport with no horizontal scroll.
+     Everything else (description, co-owner, repeats, created by/at, notes)
+     moved into the task drawer — a wide grid that scrolls sideways hides the
+     fields at the far right, which is how Status went missing. */
+  table.tasks col.col-title     { width: 16%; }
+  table.tasks col.col-nextstep  { width: 16%; }
+  table.tasks col.col-quad      { width: 10%; }
+  table.tasks col.col-pri       { width: 8%; }
+  table.tasks col.col-family    { width: 10%; }
+  table.tasks col.col-type      { width: 10%; }
+  /* Due needs room for a full date input; owner/status for their longest label. */
+  table.tasks col.col-due       { width: 11%; }
+  table.tasks col.col-owner     { width: 9%; }
+  table.tasks col.col-status    { width: 10%; }
   .tasks-table-scroll { overflow-x: auto; }
-  table.tasks { min-width: 1800px; }
-  /* Inline selects were sized for a roomier table; without this they clip
-     their own text ("IMPORTAN…") once the columns tighten. */
-  table.tasks select.priority-select { max-width: 100%; width: 100%; }
+  table.tasks { min-width: 1120px; }
+
+  /* Touch targets. The 44px guideline would show ~6 rows per screen on an
+     operational grid, so controls sit at 30px with full-width hit areas and
+     8px row padding — a deliberate density trade-off, not an oversight. */
+  table.tasks select.priority-select,
+  table.tasks input[type="date"] {
+    max-width: 100%; width: 100%;
+    min-height: 30px;
+    font-size: 11px;
+  }
+  table.tasks td { vertical-align: middle; padding: 8px; }
+  table.tasks tbody tr { cursor: pointer; }
+  table.tasks tbody tr:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
+  td.task-title-cell .task-title-text { font-weight: 600; color: var(--black); }
+
+  /* Sticky header — 108 rows means the column meaning is lost within one
+     scroll otherwise. The filter bar sticks with it so filtering stays
+     reachable from anywhere in the list. */
+  .col-filter-bar { position: sticky; top: 0; z-index: 12; background: var(--white); }
+  [data-theme="dark"] .col-filter-bar { background: #000; }
+  table.tasks thead th { position: sticky; top: var(--filter-h, 56px); z-index: 10; }
+
+
+  /* Tasks tab is a working list, not a landing page: the hero, tiles and
+     avatar strip were pushing the first row of data below the fold. These
+     overrides are scoped to #tasks-view so the Protocols tab keeps its
+     original presentation. */
+  #tasks-view .hero { padding: 20px 28px 10px; }
+  #tasks-view .hero h1 { font-size: clamp(20px, 2.2vw, 28px); }
+  #tasks-view .hero .sub { font-size: 12px; margin-top: 4px; }
+  #tasks-view .tasks-stats-row { padding: 6px 0 2px; }
+  #tasks-view .tasks-stat-block.tile { padding: 6px 18px; }
+  #tasks-view .tasks-stat-num { font-size: clamp(26px, 3vw, 38px); }
+  #tasks-view .tile-breakdown { padding: 2px 0 8px; }
+  #tasks-view .avatar { width: 40px; height: 40px; }
+  #tasks-view .filter-strip { padding: 0 0 6px; margin-top: 0; }
+  #tasks-view .hero-overview { margin-bottom: 0; }
+  #tasks-view .tasks-strip-groups { margin-bottom: 4px; }
+  #tasks-view .avatar-btn { padding: 4px 6px; }
+  #tasks-view .avatar-btn .name { font-size: 10px; }
+  #tasks-view .avatar-btn .count { font-size: 9px; }
+  #tasks-view .hero-bar { padding-bottom: 6px; }
+  #tasks-view .quad-legend { padding: 4px 0; }
+  #tasks-view .quick-chips { padding: 2px 0 8px; }
+
+  /* Status tiles — now buttons, so they need affordance and focus states. */
+  .tasks-stat-block.tile {
+    background: none; border: 1px solid transparent; border-radius: 12px;
+    font-family: inherit; cursor: pointer; padding: 10px 22px;
+    transition: border-color 140ms, background 140ms, transform 140ms;
+  }
+  .tasks-stat-block.tile:hover { border-color: var(--grey); background: rgba(127,127,127,0.06); }
+  .tasks-stat-block.tile:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+  .tasks-stat-block.tile.active { border-color: var(--red); background: rgba(234,51,35,0.07); }
+  .tasks-stat-block.tile.active .tasks-stat-num { color: var(--red); }
+  .tasks-stat-block.tile.tile-warn .tasks-stat-num { color: var(--amber); }
+  .tasks-stat-block.tile.tile-warn.active .tasks-stat-num { color: var(--red); }
+
+  /* Priority breakdown revealed by the active tile */
+  .tile-breakdown { display: flex; justify-content: center; padding: 4px 0 16px; }
+  .tile-breakdown-inner {
+    display: inline-flex; align-items: center; flex-wrap: wrap; gap: 8px;
+    padding: 8px 14px; border: 1px solid var(--grey); border-radius: 999px;
+  }
+  [data-theme="dark"] .tile-breakdown-inner { border-color: #2a2a2a; }
+  .tile-breakdown-title {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--slate); margin-right: 4px;
+  }
+  .tile-seg {
+    display: inline-flex; align-items: center; gap: 6px;
+    min-height: 30px; padding: 0 12px; border-radius: 999px;
+    border: 1px solid var(--grey); background: var(--white); color: var(--carbon);
+    font-family: inherit; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer;
+    transition: border-color 140ms, background 140ms;
+  }
+  .tile-seg:hover { border-color: var(--slate); }
+  .tile-seg:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+  .tile-seg-n { font-size: 13px; font-weight: 800; }
+  .tile-seg.p-high .tile-seg-n { color: var(--red); }
+  .tile-seg.p-med  .tile-seg-n { color: var(--amber); }
+  .tile-seg.p-low  .tile-seg-n { color: var(--green); }
+  .tile-seg.active { background: var(--red); border-color: var(--red); color: #fff; }
+  .tile-seg.active .tile-seg-n { color: #fff; }
+  .tile-seg.clear { color: var(--slate); border-style: dashed; }
+  [data-theme="dark"] .tile-seg { background: #1a1a1a; border-color: #333; color: #ddd; }
+
+  /* Quick filter chips */
+  .quick-chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 0 10px; }
+  .qchip {
+    display: inline-flex; align-items: center; gap: 7px;
+    min-height: 32px; padding: 0 14px;
+    border: 1px solid var(--grey); border-radius: 999px;
+    background: var(--white); color: var(--carbon);
+    font-family: inherit; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    cursor: pointer; transition: border-color 140ms, color 140ms, background 140ms;
+  }
+  .qchip:hover { border-color: var(--slate); }
+  .qchip.active { background: var(--red); border-color: var(--red); color: #fff; }
+  .qchip-n {
+    font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 999px;
+    background: var(--grey-2); color: var(--carbon); min-width: 18px; text-align: center;
+  }
+  .qchip.active .qchip-n { background: rgba(255,255,255,0.25); color: #fff; }
+  [data-theme="dark"] .qchip { background: #1a1a1a; border-color: #333; color: #ddd; }
+  [data-theme="dark"] .qchip-n { background: #2a2a2a; color: #ccc; }
+  .qchip:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+  /* ── Task drawer ── */
+  .tdrawer-sec { padding: 16px 20px; border-bottom: 1px solid var(--grey); }
+  .tdrawer-row { display: flex; gap: 14px; align-items: flex-start; padding: 6px 0; }
+  .tdrawer-label {
+    flex: 0 0 120px; font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--slate); padding-top: 7px;
+  }
+  .tdrawer-value { flex: 1; min-width: 0; font-size: 13px; color: var(--black); }
+  .tdrawer-value select { width: 100%; max-width: 260px; min-height: 32px; }
+  .tdrawer-text { line-height: 1.55; white-space: pre-wrap; }
+  .tdrawer-empty { color: var(--slate); font-style: italic; }
+  .tdrawer-note { padding: 8px 0; border-bottom: 1px solid var(--grey-2); }
+  .tdrawer-note-text { font-size: 13px; line-height: 1.5; color: var(--black); }
+  .tdrawer-note-meta { font-size: 11px; color: var(--slate); margin-top: 3px; }
+  [data-theme="dark"] .tdrawer-sec { border-color: #2a2a2a; }
+  [data-theme="dark"] .tdrawer-note { border-color: #222; }
+  .tdrawer-full {
+    display: inline-flex; align-items: center; min-height: 40px; margin: 16px 20px 28px;
+    padding: 0 18px; border-radius: 999px; background: var(--red); color: #fff;
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    text-decoration: none; transition: opacity 140ms;
+  }
+  .tdrawer-full:hover { opacity: 0.88; }
+  /* Legend dot reused in the drawer subheading. */
+  .q-dot { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; box-shadow: 0 0 0 1px rgba(0,0,0,.25); }
+  .q-dot.q-iu { background: var(--q-iu); } .q-dot.q-inu { background: var(--q-inu); }
+  .q-dot.q-uni { background: var(--q-uni); } .q-dot.q-nn { background: var(--q-nn); }
   td.task-nextstep-cell  { font-size: 12px; color: var(--slate); line-height: 1.4; }
   td.task-createdat-cell { font-size: 11px; color: var(--slate); white-space: nowrap; }
   table.tasks td { word-wrap: break-word; overflow-wrap: anywhere; vertical-align: middle; padding: 6px 8px; }
@@ -945,17 +1080,47 @@
   }
 
   /* Column filter row */
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Search */
+  .cf-search { position: relative; display: inline-flex; align-items: center; }
+  .cf-search-icon {
+    position: absolute; left: 11px; width: 14px; height: 14px;
+    color: var(--slate); pointer-events: none;
+  }
+  .cf-search input {
+    appearance: none; -webkit-appearance: none;
+    min-height: 32px; width: 230px;
+    padding: 6px 30px 6px 32px;
+    border: 1px solid var(--grey); border-radius: 999px;
+    background: var(--white); color: var(--carbon);
+    font-family: inherit; font-size: 12px;
+  }
+  .cf-search input::-webkit-search-cancel-button { display: none; }
+  .cf-search input:focus-visible { outline: 2px solid var(--red); outline-offset: 1px; }
+  .cf-search input::placeholder { color: var(--slate); }
+  .cf-search-clear {
+    position: absolute; right: 8px; width: 18px; height: 18px; line-height: 1;
+    border: none; background: none; color: var(--slate); cursor: pointer; font-size: 15px;
+  }
+  .cf-search-clear:hover { color: var(--red); }
+  [data-theme="dark"] .cf-search input { background: #1a1a1a; border-color: #333; color: #eee; }
+
   .col-filter-bar {
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-wrap: wrap;
     padding: 10px 0 14px;
     flex-wrap: wrap;
   }
   .col-filter-bar select {
     appearance: none;
     -webkit-appearance: none;
-    padding: 4px 26px 4px 10px;
+    /* Was 4px vertical: a ~22px control. Raised to a 32px target — the filter
+       bar is not density-constrained the way the grid is. */
+    min-height: 32px;
+    padding: 6px 26px 6px 12px;
     border: 1px solid var(--grey);
     background: var(--white) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%233B3B3B' fill='none' stroke-width='1.4'/></svg>") no-repeat right 8px center;
     font-family: inherit;
@@ -1419,30 +1584,42 @@
 </section>
 
 <div class="hero-bar">
-  <div class="hero-overview tasks-stats-row">
-    <div class="tasks-stat-block">
-      <span class="tasks-stat-num" id="tasks-stat-total">—</span>
-      <span class="tasks-stat-label">Total Tasks</span>
-    </div>
-    <div class="tasks-stat-block">
-      <span class="tasks-stat-num" id="tasks-stat-investment">—</span>
-      <span class="tasks-stat-label">Investment Tasks</span>
-    </div>
-    <div class="tasks-stat-block">
-      <span class="tasks-stat-num" id="tasks-stat-ops">—</span>
-      <span class="tasks-stat-label">Ops Tasks</span>
-    </div>
-    <div class="tasks-stat-block">
-      <span class="tasks-stat-num" id="tasks-stat-longterm">—</span>
-      <span class="tasks-stat-label">Long Term Tasks</span>
-    </div>
+  <!-- Status tiles. Each tile filters the board on click and expands a
+       priority breakdown; each breakdown segment filters further. The old
+       tiles counted task *types* (Investment/Ops/Long Term), which duplicated
+       the Type filter and answered a question nobody was asking — "how much is
+       open vs done, and how urgent is it" is the one people open this for. -->
+  <div class="hero-overview tasks-stats-row" id="tasks-tiles">
+    <button type="button" class="tasks-stat-block tile" data-tile="open" onclick="toggleTile('open')" aria-expanded="false">
+      <span class="tasks-stat-num" id="tile-n-open">—</span>
+      <span class="tasks-stat-label">Open</span>
+    </button>
+    <button type="button" class="tasks-stat-block tile" data-tile="closed" onclick="toggleTile('closed')" aria-expanded="false">
+      <span class="tasks-stat-num" id="tile-n-closed">—</span>
+      <span class="tasks-stat-label">Closed</span>
+    </button>
+    <button type="button" class="tasks-stat-block tile tile-warn" data-tile="overdue" onclick="toggleTile('overdue')" aria-expanded="false">
+      <span class="tasks-stat-num" id="tile-n-overdue">—</span>
+      <span class="tasks-stat-label">Overdue</span>
+    </button>
+    <button type="button" class="tasks-stat-block tile" data-tile="total" onclick="toggleTile('total')" aria-expanded="false">
+      <span class="tasks-stat-num" id="tile-n-total">—</span>
+      <span class="tasks-stat-label">Total</span>
+    </button>
   </div>
+  <div class="tile-breakdown" id="tile-breakdown" hidden></div>
   <div class="filter-strip" id="tasks-filter-strip"></div>
 </div>
 
 <div class="body-wrap" id="tasks-body-wrap">
   <!-- Column filter bar -->
   <div class="col-filter-bar" id="col-filter-bar">
+    <div class="cf-search">
+      <svg class="cf-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <label for="cf-search" class="sr-only">Search tasks</label>
+      <input type="search" id="cf-search" placeholder="Search tasks…" autocomplete="off" oninput="applyColFilters()">
+      <button type="button" class="cf-search-clear" id="cf-search-clear" aria-label="Clear search" onclick="clearSearch()" style="display:none">×</button>
+    </div>
     <span class="col-filter-label">Filter:</span>
     <select id="cf-quadrant" onchange="applyColFilters()">
       <option value="">Imp/Urg</option>
@@ -1506,6 +1683,15 @@
     </label>
     <button class="col-filter-clear" id="col-filter-clear" onclick="clearColFilters()" style="display:none">✕ Clear filters</button>
   </div>
+  <!-- Quick filters. Borrowed from Asana's "My Tasks" and Jira's quick filters:
+       the three questions people actually open a task board to answer. Each
+       chip shows its own count so you can see the state without clicking. -->
+  <div class="quick-chips" id="quick-chips">
+    <button type="button" class="qchip" data-chip="mine"       onclick="toggleChip('mine')">Mine <span class="qchip-n" id="qn-mine">0</span></button>
+    <button type="button" class="qchip" data-chip="week"       onclick="toggleChip('week')">Due this week <span class="qchip-n" id="qn-week">0</span></button>
+    <button type="button" class="qchip" data-chip="unassigned" onclick="toggleChip('unassigned')">Unassigned <span class="qchip-n" id="qn-unassigned">0</span></button>
+  </div>
+
   <div class="quad-legend" aria-label="Importance and urgency legend">
     <span class="lg"><span class="dot" style="background:var(--q-iu)"></span>Important &amp; urgent</span>
     <span class="lg"><span class="dot" style="background:var(--q-inu)"></span>Important, not urgent</span>
@@ -1519,34 +1705,26 @@
   <table class="tasks" id="tasks-table" style="display:none">
     <colgroup>
       <col class="col-title">
-      <col class="col-desc">
       <col class="col-nextstep">
-      <col class="col-pri">
       <col class="col-quad">
+      <col class="col-pri">
       <col class="col-family">
       <col class="col-type">
       <col class="col-due">
-      <col class="col-recur">
       <col class="col-owner">
-      <col class="col-coowner">
       <col class="col-status">
-      <col class="col-createdat">
     </colgroup>
     <thead>
       <tr>
         <th class="sortable" id="th-title" onclick="toggleSort('title')">Title</th>
-        <th class="sortable" id="th-overview" onclick="toggleSort('overview')">Description</th>
         <th class="sortable" id="th-next_step" onclick="toggleSort('next_step')">Next Step</th>
-        <th class="sortable" id="th-priority" onclick="toggleSort('priority')">Priority</th>
         <th class="sortable" id="th-quadrant" onclick="toggleSort('quadrant')">Imp/Urg</th>
+        <th class="sortable" id="th-priority" onclick="toggleSort('priority')">Priority</th>
         <th class="sortable" id="th-family" onclick="toggleSort('family')">Family</th>
         <th class="sortable" id="th-function" onclick="toggleSort('function')">Type</th>
         <th class="sortable" id="th-due_date" onclick="toggleSort('due_date')">Due Date</th>
-        <th class="sortable" id="th-recurrence" onclick="toggleSort('recurrence')">Repeats</th>
         <th class="sortable" id="th-assigned_to" onclick="toggleSort('assigned_to')">Owner</th>
-        <th class="sortable" id="th-co_owner" onclick="toggleSort('co_owner')">Co-owner</th>
         <th class="sortable" id="th-status" onclick="toggleSort('status')">Status</th>
-        <th class="sortable" id="th-created_at" onclick="toggleSort('created_at')">Date Added</th>
       </tr>
     </thead>
     <tbody id="task-rows"></tbody>
@@ -1652,6 +1830,20 @@
 </div>
 
 <!-- Detail drawer -->
+<!-- Task detail drawer. Reuses the Protocols tab's drawer styling so the two
+     tabs share one interaction vocabulary rather than inventing a second. -->
+<div class="drawer-scrim" id="taskScrim"></div>
+<aside class="drawer" id="taskDrawer" aria-labelledby="taskDrawerTitle" aria-hidden="true">
+  <div class="drawer-head">
+    <div>
+      <h2 id="taskDrawerTitle">—</h2>
+      <div class="submeta" id="taskDrawerMeta"></div>
+    </div>
+    <button class="drawer-close" id="taskClose" aria-label="Close">×</button>
+  </div>
+  <div class="drawer-body" id="taskDrawerBody"></div>
+</aside>
+
 <div class="drawer-scrim" id="statusScrim"></div>
 <aside class="drawer" id="statusDrawer" aria-hidden="true">
   <div class="drawer-head">
@@ -2273,7 +2465,9 @@ async function loadTasks() {
     const tasks = await TM.loadTasks();
     window.__allTasks = tasks;
     populateColFilterOptions(tasks);
-    renderTaskCards(tasks);
+    restoreUrlState();          // a shared link opens the same view
+    refreshChipCounts(tasks);
+    applyColFilters();          // renders through the restored filters
     renderTasksHeaderCounts(tasks);
   } catch(e) {
     const el = document.getElementById('task-rows');
@@ -2287,11 +2481,9 @@ function renderTasksHeaderCounts(tasks) {
   const filtered = pf === 'all' ? tasks
     : tf ? tasks.filter(t => tf.includes(t.assigned_to))
     : tasks.filter(t => t.assigned_to === pf);
-  const setN = (id, n) => { const el = document.getElementById(id); if (el) el.textContent = n; };
-  setN('tasks-stat-total',      filtered.length);
-  setN('tasks-stat-investment', filtered.filter(t => (t.function||'').toLowerCase() === 'investment').length);
-  setN('tasks-stat-ops',        filtered.filter(t => (t.function||'').toLowerCase() === 'ops' || (t.function||'').toLowerCase() === 'operations').length);
-  setN('tasks-stat-longterm',   filtered.filter(t => (t.function||'').toLowerCase().includes('long')).length);
+  // Tiles count within the selected person/team, so the avatar strip and the
+  // tiles never disagree about the same population.
+  refreshTileCounts(tasks);
 
   // Recount breakdown by task status for the Tasks hero
   const counts = { active:0, build:0, draft:0, ondeck:0 };
@@ -2400,10 +2592,74 @@ function applyColFilters() {
       el.classList.toggle('active', !!el.value);
     }
   });
-  const anyActive = ids.some(id => colFilters[id]);
+  const q = (document.getElementById('cf-search') || {}).value || '';
+  const clr = document.getElementById('cf-search-clear');
+  if (clr) clr.style.display = q ? '' : 'none';
+
+  const anyActive = ids.some(id => colFilters[id]) || !!q || !!window.__activeChip
+    || (document.getElementById('cf-showdone') || {}).checked;
   const clearBtn = document.getElementById('col-filter-clear');
   if (clearBtn) clearBtn.style.display = anyActive ? '' : 'none';
+  syncUrlState();
   renderTaskCards(window.__allTasks);
+}
+
+// ── Shareable view state ────────────────────────────────────────────────────
+// Filters, search, sort and the active chip live in the query string, so a
+// filtered view can be pasted into Slack and open the same way for someone
+// else (Linear/Asana behaviour). replaceState keeps it out of history so the
+// back button still leaves the page rather than stepping through filter edits.
+const URL_FILTER_IDS = ['priority','quadrant','status','family','type','owner','due','date'];
+
+function syncUrlState() {
+  if (window.__restoringState) return;
+  const p = new URLSearchParams();
+  const tab = document.getElementById('tasks-view');
+  if (tab && tab.style.display !== 'none') p.set('tab', 'tasks');
+  URL_FILTER_IDS.forEach(id => {
+    const el = document.getElementById('cf-' + id);
+    if (el && el.value) p.set(id, el.value);
+  });
+  const q = (document.getElementById('cf-search') || {}).value || '';
+  if (q) p.set('q', q);
+  if (window.__activeChip) p.set('chip', window.__activeChip);
+  if (window.__tileFilter) p.set('tile', window.__tileFilter);
+  if ((document.getElementById('cf-showdone') || {}).checked) p.set('done', '1');
+  if (__sortField) { p.set('sort', __sortField); p.set('dir', __sortDir); }
+  const qs = p.toString();
+  history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+}
+
+function restoreUrlState() {
+  const p = new URLSearchParams(location.search);
+  window.__restoringState = true;
+  URL_FILTER_IDS.forEach(id => {
+    const el = document.getElementById('cf-' + id);
+    if (el && p.get(id)) el.value = p.get(id);
+  });
+  const s = document.getElementById('cf-search');
+  if (s && p.get('q')) s.value = p.get('q');
+  if (p.get('done') === '1') {
+    const d = document.getElementById('cf-showdone');
+    if (d) d.checked = true;
+  }
+  const chip = p.get('chip');
+  if (chip && CHIP_TESTS[chip]) {
+    window.__activeChip = chip;
+    document.querySelectorAll('.qchip').forEach(b => b.classList.toggle('active', b.dataset.chip === chip));
+  }
+  const tile = p.get('tile');
+  if (tile && TILE_TESTS[tile]) {
+    window.__tileFilter = tile;
+    document.querySelectorAll('#tasks-tiles .tile').forEach(b => {
+      const on = b.dataset.tile === tile;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-expanded', on ? 'true' : 'false');
+    });
+    renderTileBreakdown();
+  }
+  if (p.get('sort')) { __sortField = p.get('sort'); __sortDir = p.get('dir') === 'desc' ? 'desc' : 'asc'; }
+  window.__restoringState = false;
 }
 
 function clearColFilters() {
@@ -2416,12 +2672,185 @@ function clearColFilters() {
   // restore the default view, not leave completed work on screen.
   const sd = document.getElementById('cf-showdone');
   if (sd) sd.checked = false;
+  const s = document.getElementById('cf-search');
+  if (s) s.value = '';
+  window.__activeChip = null;
+  document.querySelectorAll('.qchip').forEach(b => b.classList.remove('active'));
+  window.__tileFilter = null;
+  document.querySelectorAll('#tasks-tiles .tile').forEach(b => {
+    b.classList.remove('active'); b.setAttribute('aria-expanded','false');
+  });
+  const bd = document.getElementById('tile-breakdown');
+  if (bd) { bd.hidden = true; bd.innerHTML = ''; }
+  __sortField = null;
+  document.querySelectorAll('#tasks-body-wrap th.sortable').forEach(th => {
+    th.classList.remove('sort-asc','sort-desc'); th.removeAttribute('aria-sort');
+  });
   const clearBtn = document.getElementById('col-filter-clear');
   if (clearBtn) clearBtn.style.display = 'none';
   renderTaskCards(window.__allTasks);
 }
 
+// ── Status tiles ────────────────────────────────────────────────────────────
+// Clicking a tile filters the board AND expands a priority breakdown; clicking
+// a breakdown segment narrows further. Clicking the active tile clears it.
+window.__tileFilter = null;
+
+const TILE_TESTS = {
+  open:    t => !DONE_STATUSES.includes(t.status),
+  closed:  t => DONE_STATUSES.includes(t.status),
+  overdue: t => { const d = parseLocalDate(t.due_date);
+                  return !DONE_STATUSES.includes(t.status) && !!d && d < startOfToday(); },
+  total:   () => true,
+};
+const TILE_LABEL = { open: 'Open', closed: 'Closed', overdue: 'Overdue', total: 'All' };
+
+function toggleTile(name) {
+  const wasActive = window.__tileFilter === name;
+  window.__tileFilter = wasActive ? null : name;
+  // A priority drill-down only exists inside a tile's breakdown, so dismissing
+  // the tile takes it with it — otherwise clearing "Closed" silently leaves you
+  // filtered to High and the row count looks wrong.
+  if (wasActive) {
+    const pri = document.getElementById('cf-priority');
+    if (pri) pri.value = '';
+  }
+  // The tiles and the "Show completed" checkbox are the same decision; keep
+  // them consistent so "Closed" isn't filtered away by the default view.
+  const sd = document.getElementById('cf-showdone');
+  if (sd) sd.checked = (window.__tileFilter === 'closed' || window.__tileFilter === 'total');
+  document.querySelectorAll('#tasks-tiles .tile').forEach(b => {
+    const on = b.dataset.tile === window.__tileFilter;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-expanded', on ? 'true' : 'false');
+  });
+  renderTileBreakdown();
+  applyColFilters();
+}
+
+// The breakdown always describes the tile's own population, so the numbers
+// stay stable while you drill into one of them.
+function renderTileBreakdown() {
+  const el = document.getElementById('tile-breakdown');
+  if (!el) return;
+  const name = window.__tileFilter;
+  if (!name) { el.hidden = true; el.innerHTML = ''; return; }
+
+  const pool = scopeToPerson(window.__allTasks || []).filter(TILE_TESTS[name]);
+  const curPri = (document.getElementById('cf-priority') || {}).value || '';
+  const seg = (label, value, n, cls) => `
+    <button type="button" class="tile-seg ${cls || ''} ${curPri === value ? 'active' : ''}"
+            onclick="setPriorityFilter('${value}')">
+      <span class="tile-seg-n">${n}</span><span class="tile-seg-l">${esc(label)}</span>
+    </button>`;
+
+  el.innerHTML = `
+    <div class="tile-breakdown-inner">
+      <span class="tile-breakdown-title">${esc(TILE_LABEL[name])} by priority</span>
+      ${seg('High',   'high',   pool.filter(t => (t.priority || 'medium') === 'high').length,   'p-high')}
+      ${seg('Medium', 'medium', pool.filter(t => (t.priority || 'medium') === 'medium').length, 'p-med')}
+      ${seg('Low',    'low',    pool.filter(t => (t.priority || 'medium') === 'low').length,    'p-low')}
+      ${curPri ? `<button type="button" class="tile-seg clear" onclick="setPriorityFilter('')">Clear</button>` : ''}
+    </div>`;
+  el.hidden = false;
+}
+
+function setPriorityFilter(value) {
+  const el = document.getElementById('cf-priority');
+  if (!el) return;
+  el.value = (el.value === value) ? '' : value;
+  applyColFilters();
+  renderTileBreakdown();
+}
+
+// The avatar strip filters by person; the tiles must count within whatever
+// person is selected, or the two controls contradict each other.
+function scopeToPerson(tasks) {
+  const pf = window.__tasksPersonFilter || 'all';
+  const tf = window.__tasksTeamFilter || null;
+  if (pf === 'all') return tasks;
+  return tf ? tasks.filter(t => tf.includes(t.assigned_to)) : tasks.filter(t => t.assigned_to === pf);
+}
+
+function refreshTileCounts(tasks) {
+  const pool = scopeToPerson(tasks || []);
+  Object.keys(TILE_TESTS).forEach(k => {
+    const el = document.getElementById('tile-n-' + k);
+    if (el) el.textContent = pool.filter(TILE_TESTS[k]).length;
+  });
+}
+
+// ── Quick filter chips ──────────────────────────────────────────────────────
+// One chip may be active at a time; clicking the active one clears it.
+window.__activeChip = null;
+
+function startOfToday() { const d = new Date(); d.setHours(0,0,0,0); return d; }
+function parseLocalDate(iso) {
+  if (!iso) return null;
+  const p = String(iso).split('-');
+  if (p.length !== 3) return null;
+  const d = new Date(+p[0], +p[1]-1, +p[2]);
+  return isNaN(d) ? null : d;
+}
+
+// Chip predicates run against the OPEN tasks only — an overdue count that
+// includes finished work is noise, not a to-do list.
+const CHIP_TESTS = {
+  mine:       t => { const me = getPageUserSlug(); return !!me && (t.assigned_to === me || t.co_owner === me); },
+  overdue:    t => { const d = parseLocalDate(t.due_date); return !!d && d < startOfToday(); },
+  week:       t => { const d = parseLocalDate(t.due_date); if (!d) return false;
+                     const now = startOfToday(), wk = new Date(now); wk.setDate(wk.getDate() + 7);
+                     return d >= now && d <= wk; },
+  unassigned: t => !t.assigned_to,
+};
+
+function toggleChip(name) {
+  window.__activeChip = (window.__activeChip === name) ? null : name;
+  window.__mineOnly = window.__activeChip === 'mine';
+  document.querySelectorAll('.qchip').forEach(b =>
+    b.classList.toggle('active', b.dataset.chip === window.__activeChip));
+  applyColFilters();
+}
+
+function refreshChipCounts(tasks) {
+  const open = (tasks || []).filter(t => !DONE_STATUSES.includes(t.status));
+  Object.entries(CHIP_TESTS).forEach(([name, test]) => {
+    const el = document.getElementById('qn-' + name);
+    if (el) el.textContent = open.filter(test).length;
+  });
+  // "Mine" is meaningless until someone has picked an identity.
+  const mineBtn = document.querySelector('.qchip[data-chip="mine"]');
+  if (mineBtn) mineBtn.style.display = getPageUserSlug() ? '' : 'none';
+}
+
+// Free-text search across the fields people actually recall a task by.
+// Space-separated terms are ANDed (Linear/Asana behaviour) so "andrew katz"
+// narrows rather than widening.
+function taskMatchesSearch(t) {
+  const el = document.getElementById('cf-search');
+  const q = el ? (el.value || '').trim().toLowerCase() : '';
+  if (!q) return true;
+  const owner = OWNER_SLUG_TO_NAME[t.assigned_to] || t.assigned_to || '';
+  const co    = OWNER_SLUG_TO_NAME[t.co_owner] || t.co_owner || '';
+  const hay = [t.title, t.overview, t.next_step, t.family, t.function, owner, co, t.status]
+    .map(v => (v || '').toString().toLowerCase()).join(' ');
+  return q.split(/\s+/).every(term => hay.includes(term));
+}
+
+function clearSearch() {
+  const el = document.getElementById('cf-search');
+  if (el) { el.value = ''; el.focus(); }
+  applyColFilters();
+}
+
 function taskMatchesColFilters(t) {
+  if (!taskMatchesSearch(t)) return false;
+
+  const chip = window.__activeChip;
+  if (chip && CHIP_TESTS[chip] && !CHIP_TESTS[chip](t)) return false;
+
+  const tile = window.__tileFilter;
+  if (tile && TILE_TESTS[tile] && !TILE_TESTS[tile](t)) return false;
   // Completed work is hidden unless explicitly asked for. This is the default
   // view (Andrew, 2026-08-14) — 'done', 'completed' and 'archived' all count
   // as finished, so all three drop out.
@@ -2723,7 +3152,9 @@ function toggleSort(field) {
   renderTaskCards(window.__allTasks);
 }
 
-const SORTABLE_FIELDS = ['title','overview','next_step','priority','quadrant','family','function','due_date','recurrence','assigned_to','co_owner','status','created_at'];
+// Only fields with a visible <th> belong here — a sort key with no header
+// is unreachable. The drawer-only fields are deliberately absent.
+const SORTABLE_FIELDS = ['title','next_step','quadrant','priority','family','function','due_date','assigned_to','status'];
 
 // Comparable key for one field. Ranked vocabularies (priority, quadrant,
 // status, type, recurrence) sort by meaning rather than alphabetically —
@@ -2794,6 +3225,13 @@ function renderTaskCards(tasks) {
   // Apply column filters
   filtered = filtered.filter(taskMatchesColFilters);
 
+  refreshChipCounts(tasks);
+  refreshTileCounts(tasks);
+  // Keep the sticky thead pinned directly under the sticky filter bar, whatever
+  // height the bar wraps to.
+  const bar = document.querySelector('.col-filter-bar');
+  if (bar) document.documentElement.style.setProperty('--filter-h', bar.offsetHeight + 'px');
+
   // Say what the default view is holding back rather than just showing fewer rows.
   const noteEl = document.getElementById('hidden-done-note');
   if (noteEl) {
@@ -2825,24 +3263,20 @@ function renderTaskCards(tasks) {
   tbody.innerHTML = filtered.map(t => {
     const pri = t.priority || 'medium';
     const desc = (t.overview || '').slice(0, 120) + ((t.overview || '').length > 120 ? '…' : '');
-    return `<tr class="${t.quadrant ? 'row-q-' + esc(t.quadrant) : ''}" onclick="window.location='/protocols/task.html?id=${esc(t.id)}'">
+    return `<tr class="${t.quadrant ? 'row-q-' + esc(t.quadrant) : ''}" tabindex="0" role="button" aria-label="Open ${esc(t.title)}" onclick="openTaskDrawer('${esc(t.id)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openTaskDrawer('${esc(t.id)}')}">
       <td class="task-title-cell">
-        <button class="task-row-delete" title="Delete task" onclick="deleteTask(event, '${esc(t.id)}')">×</button>${esc(t.title)}
+        <div class="task-title-text">${esc(t.title)}</div>
       </td>
-      <td class="task-desc-cell">${esc(desc)}</td>
-      <td class="task-nextstep-cell">${esc((t.next_step || '').slice(0, 80) + ((t.next_step || '').length > 80 ? '…' : ''))}</td>
+      <td class="task-nextstep-cell">${esc((t.next_step || '').slice(0, 90) + ((t.next_step || '').length > 90 ? '\u2026' : ''))}</td>
+      <td onclick="event.stopPropagation()">${quadrantCellHTML(t)}</td>
       <td class="priority-cell" onclick="event.stopPropagation()">
         <select class="priority-select" id="pri-pill-${esc(t.id)}" data-task-id="${esc(t.id)}" onchange="updatePriority(this)">${priOptions.map(p=>`<option value="${p}" ${p===pri?'selected':''}>${p.charAt(0).toUpperCase()+p.slice(1)}</option>`).join('')}</select>
       </td>
-      <td onclick="event.stopPropagation()">${quadrantCellHTML(t)}</td>
       <td onclick="event.stopPropagation()">${familyCellHTML(t)}</td>
       <td onclick="event.stopPropagation()">${typeCellHTML(t)}</td>
       <td onclick="event.stopPropagation()">${dueDateInputHTML(t)}</td>
-      <td onclick="event.stopPropagation()">${recurrenceCellHTML(t)}</td>
       <td onclick="event.stopPropagation()">${ownerCellHTML2(t)}</td>
-      <td onclick="event.stopPropagation()">${coOwnerCellHTML(t)}</td>
       <td onclick="event.stopPropagation()">${statusCellHTML(t)}</td>
-      <td class="task-createdat-cell">${esc(t.created_at ? formatDueShort(t.created_at) : '—')}</td>
     </tr>`;
   }).join('');
 }
@@ -2949,6 +3383,103 @@ function statusCellHTML(t) {
 // Eisenhower quadrant. The <select> carries a q-* class so the row picks up
 // the legend colour, and the option text spells the quadrant out — colour on
 // its own is not a label, and 8% of men cannot reliably tell red from green.
+// ── Task detail drawer ──────────────────────────────────────────────────────
+// The grid carries the nine fields people scan; everything else lives here, so
+// the table fits a laptop screen without sideways scrolling. Fields shown here
+// are editable and write through the same updateTaskField() path as the grid.
+let __drawerTaskId = null;
+
+function drawerRow(label, valueHTML) {
+  return `<div class="tdrawer-row"><div class="tdrawer-label">${esc(label)}</div><div class="tdrawer-value">${valueHTML}</div></div>`;
+}
+
+function openTaskDrawer(id) {
+  const t = (window.__allTasks || []).find(x => x.id === id);
+  if (!t) return;
+  __drawerTaskId = id;
+  document.getElementById('taskDrawerTitle').textContent = t.title || 'Untitled';
+
+  const q = QUAD_BY_V[t.quadrant];
+  document.getElementById('taskDrawerMeta').innerHTML =
+    [ t.family ? esc(t.family) : null,
+      t.function ? esc(t.function) : null,
+      q ? `<span class="q-dot q-${q.v}"></span>${esc(q.label)}` : null,
+    ].filter(Boolean).join(' &nbsp;·&nbsp; ');
+
+  const notes = Array.isArray(t.notes) ? t.notes : [];
+  document.getElementById('taskDrawerBody').innerHTML = `
+    <div class="tdrawer-sec">
+      ${drawerRow('Description', `<div class="tdrawer-text">${t.overview ? esc(t.overview) : '<span class="tdrawer-empty">None</span>'}</div>`)}
+      ${drawerRow('Next step',   `<div class="tdrawer-text">${t.next_step ? esc(t.next_step) : '<span class="tdrawer-empty">None</span>'}</div>`)}
+    </div>
+    <div class="tdrawer-sec">
+      ${drawerRow('Co-owner / helper', coOwnerCellHTML(t))}
+      ${drawerRow('Repeats', recurrenceCellHTML(t))}
+      ${drawerRow('Created by', t.created_by_raw || t.created_by ? esc(t.created_by_raw || t.created_by) : '<span class="tdrawer-empty">—</span>')}
+      ${drawerRow('Date added', t.created_at ? esc(formatDueShort(t.created_at)) : '<span class="tdrawer-empty">—</span>')}
+    </div>
+    <div class="tdrawer-sec">
+      <div class="tdrawer-label" style="margin-bottom:8px">Notes</div>
+      ${notes.length
+        ? notes.map(n => `<div class="tdrawer-note"><div class="tdrawer-note-text">${esc(n.text || '')}</div><div class="tdrawer-note-meta">${esc(n.author || '')}${n.author && n.ts ? ' · ' : ''}${esc(n.ts || '')}</div></div>`).join('')
+        : '<div class="tdrawer-empty">No notes yet.</div>'}
+    </div>
+    <a class="tdrawer-full" href="/protocols/task.html?id=${encodeURIComponent(t.id)}">Open full detail &rarr;</a>
+  `;
+
+  document.getElementById('taskDrawer').classList.add('open');
+  document.getElementById('taskDrawer').setAttribute('aria-hidden', 'false');
+  document.getElementById('taskScrim').classList.add('open');
+  document.getElementById('taskClose').focus();
+}
+
+function closeTaskDrawer() {
+  document.getElementById('taskDrawer').classList.remove('open');
+  document.getElementById('taskDrawer').setAttribute('aria-hidden', 'true');
+  document.getElementById('taskScrim').classList.remove('open');
+  // Return focus to the row that opened it, so keyboard users aren't dumped
+  // at the top of the document.
+  if (__drawerTaskId) {
+    const row = document.querySelector(`#task-rows tr[onclick*="${__drawerTaskId}"]`);
+    if (row) row.focus();
+  }
+  __drawerTaskId = null;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const c = document.getElementById('taskClose');
+  const s = document.getElementById('taskScrim');
+  if (c) c.addEventListener('click', closeTaskDrawer);
+  if (s) s.addEventListener('click', closeTaskDrawer);
+});
+// ── Keyboard shortcuts (Linear-style) ───────────────────────────────────────
+//   /  or ⌘K / Ctrl-K  focus search
+//   n                  new task
+//   Escape             clear search if focused, else close the drawer
+document.addEventListener('keydown', e => {
+  const inField = /^(INPUT|TEXTAREA|SELECT)$/.test((e.target.tagName || '')) || e.target.isContentEditable;
+
+  if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) {
+    e.preventDefault();
+    const s = document.getElementById('cf-search'); if (s) { s.focus(); s.select(); }
+    return;
+  }
+  if (e.key === 'Escape') {
+    const s = document.getElementById('cf-search');
+    if (document.activeElement === s && s.value) { s.value = ''; applyColFilters(); return; }
+    closeTaskDrawer();
+    return;
+  }
+  if (inField || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === '/') {
+    e.preventDefault();
+    const s = document.getElementById('cf-search'); if (s) s.focus();
+  } else if (e.key === 'n') {
+    e.preventDefault();
+    if (typeof openAddTaskModal === 'function') openAddTaskModal();
+  }
+});
+
 function quadrantCellHTML(t) {
   const cur = t.quadrant || '';
   // Short labels in the grid (the column is narrow); the full wording is on
