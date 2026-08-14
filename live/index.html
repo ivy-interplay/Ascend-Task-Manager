@@ -46,10 +46,21 @@
   tr.row-q-inu td:first-child { box-shadow: inset 3px 0 0 var(--q-inu); }
   tr.row-q-uni td:first-child { box-shadow: inset 3px 0 0 var(--q-uni); }
   tr.row-q-nn  td:first-child { box-shadow: inset 3px 0 0 var(--q-nn); }
-  select.quad-select.q-iu  { color: var(--q-iu-text);  font-weight: 600; }
-  select.quad-select.q-inu { color: var(--q-inu-text); font-weight: 600; }
-  select.quad-select.q-uni { color: var(--q-uni-text); font-weight: 600; }
-  select.quad-select.q-nn  { color: var(--q-nn-text);  font-weight: 600; }
+  /* Imp/Urg gets the same treatment as the due date pill — tinted fill and a
+     matching border, not just coloured text. Colour alone was doing too little
+     work next to a due date that fills. Same 0.12 / 0.5 alphas as .due-input
+     so the two read as one system. */
+  select.quad-select { font-weight: 600; transition: background 120ms, border-color 120ms; }
+  select.quad-select.q-iu  { color: var(--q-iu-text);  border-color: rgba(234,51,35,0.5);  background-color: rgba(234,51,35,0.12); }
+  select.quad-select.q-inu { color: var(--q-inu-text); border-color: rgba(245,158,11,0.5); background-color: rgba(245,158,11,0.12); }
+  select.quad-select.q-uni { color: var(--q-uni-text); border-color: rgba(59,130,246,0.5); background-color: rgba(59,130,246,0.12); }
+  select.quad-select.q-nn  { color: var(--q-nn-text);  border-color: rgba(148,163,184,0.45); background-color: rgba(148,163,184,0.10); }
+  /* On dark the darkened text steps are too low-contrast against a tinted
+     fill, so each uses its lighter counterpart. */
+  [data-theme="dark"] select.quad-select.q-iu  { color: #FF8A7E; }
+  [data-theme="dark"] select.quad-select.q-inu { color: #FBBF24; }
+  [data-theme="dark"] select.quad-select.q-uni { color: #93B8FF; }
+  [data-theme="dark"] select.quad-select.q-nn  { color: #B7C0CC; }
 
   /* Legend strip */
   .quad-legend { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; padding: 8px 0 4px; font-size: 11px; color: var(--slate); }
@@ -275,6 +286,18 @@
   .id-person-btn.selected { border-color: var(--red); background: rgba(234,51,35,0.1); color: var(--red); }
   [data-theme="dark"] .id-person-btn { background: #222; border-color: #333; color: #ccc; }
   [data-theme="dark"] .id-person-btn:hover { border-color: var(--red); background: rgba(234,51,35,0.1); color: var(--red); }
+  /* .selected was declared BEFORE the dark-theme rules above, at equal
+     specificity — so in dark mode the plain background won on source order and
+     picking a name showed nothing. Declared last, and as a solid fill, so the
+     choice is unmistakable in both themes. */
+  .id-person-btn.selected,
+  [data-theme="dark"] .id-person-btn.selected,
+  .id-person-btn.selected:hover,
+  [data-theme="dark"] .id-person-btn.selected:hover {
+    border-color: var(--red-strong); background: var(--red-strong); color: #fff;
+  }
+  .id-person-btn.selected::after { content: ' ✓'; font-weight: 700; }
+  .id-person-btn:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
   .id-modal-actions { display: flex; justify-content: flex-end; gap: 8px; }
   .id-confirm-btn {
     padding: 7px 18px; background: var(--red); color: #fff; border: none;
@@ -895,103 +918,42 @@
   .topbar .brand-title { font-size: 12px; letter-spacing: 0.08em; }
   .topbar .tab-link { font-size: 11px; }
 
-  /* ── People strip ──────────────────────────────────────────────────────────
-     Was two stacked centred bands (team circles, then faces) of near-identical
-     weight — the main source of the clutter. Now one row: the three scope
-     buttons read as segmented text, the faces follow, separated by a rule
-     rather than by a line break. */
-  #tasks-view .filter-strip {
-    justify-content: flex-start; gap: 0; align-items: center;
-    border: 1px solid var(--grey); border-radius: 12px;
-    padding: 10px 14px; background: var(--grey-2);
-  }
-  [data-theme="dark"] #tasks-view .filter-strip { background: #121212; border-color: #262626; }
-  #tasks-view .tasks-strip-groups {
-    margin-bottom: 0; gap: 6px; padding-right: 14px; margin-right: 14px;
-    border-right: 1px solid var(--grey); flex: none;
-  }
-  [data-theme="dark"] #tasks-view .tasks-strip-groups { border-right-color: #2c2c2c; }
-  #tasks-view .tasks-strip-persons { justify-content: flex-start; gap: 2px; width: auto; flex: 1; }
 
-  /* Scope buttons lose the empty grey circle — it carried no information. */
-  #tasks-view .tasks-strip-groups .avatar-btn { flex-direction: row; padding: 0 12px; height: 34px; border-radius: 999px; gap: 7px; }
-  #tasks-view .tasks-strip-groups .avatar-btn .avatar { display: none; }
-  #tasks-view .tasks-strip-groups .avatar-btn .name { font-size: 11px; font-weight: 700; }
-  #tasks-view .tasks-strip-groups .avatar-btn .count { font-size: 10px; opacity: 0.75; }
-  #tasks-view .tasks-strip-groups .avatar-btn.active { background: var(--red-strong); border-color: var(--red-strong); }
-  #tasks-view .tasks-strip-groups .avatar-btn.active .name,
-  #tasks-view .tasks-strip-groups .avatar-btn.active .count { color: #fff; }
+  /* "Show completed" is a checkbox wearing the chip's clothes, so it sits with
+     the other toggles instead of as a stray box on its own line. */
+  .qchip-check { cursor: pointer; }
+  .qchip-check:focus-within { outline: 2px solid var(--red); outline-offset: 2px; }
 
-  /* Faces: smaller, tighter, count on hover only — 13 of them stacked with
-     names AND counts was three lines of text per person. */
-  #tasks-view .tasks-strip-persons .avatar { width: 34px; height: 34px; }
-  #tasks-view .tasks-strip-persons .avatar-btn { padding: 4px 5px; gap: 3px; }
-  #tasks-view .tasks-strip-persons .avatar-btn .name { font-size: 9.5px; letter-spacing: 0.04em; }
-  #tasks-view .tasks-strip-persons .avatar-btn .count { display: none; }
-  #tasks-view .tasks-strip-persons .avatar-btn.active .avatar { box-shadow: 0 0 0 2px var(--red); }
+  /* Rows open the detail drawer, so they have to look openable: pointer,
+     a hover surface, and a chevron that steps in on hover. */
+  table.tasks tbody tr.task-row { cursor: pointer; transition: background 120ms; }
+  table.tasks tbody tr.task-row:hover td { background: var(--grey-2); }
+  [data-theme="dark"] table.tasks tbody tr.task-row:hover td { background: #161616; }
+  table.tasks tbody tr.task-row:hover .task-title-btn { color: var(--red); }
+  table.tasks col.col-open { width: 3%; }
+  td.row-open {
+    text-align: center; font-size: 20px; line-height: 1;
+    color: var(--grey); transition: color 120ms, transform 120ms;
+  }
+  [data-theme="dark"] td.row-open { color: #3a3a3a; }
+  table.tasks tbody tr.task-row:hover td.row-open { color: var(--red); transform: translateX(2px); }
+  table.tasks thead th:last-child { width: 3%; }
+  /* Tasks presents its people strip exactly as Protocols does — full-size
+     circles, names and counts, centred and uncramped. Scrolling to the table
+     is an accepted trade for a scannable team row.
 
-  /* Table toolbar — search is the primary control here, so it is the widest. */
-  .table-toolbar {
-    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-    padding: 12px 14px;
-    border: 1px solid var(--grey); border-bottom: 0;
-    border-radius: 12px 12px 0 0; background: var(--grey-2);
-  }
-  [data-theme="dark"] .table-toolbar { background: #121212; border-color: #262626; }
-  .table-toolbar .cf-search { flex: 1 1 340px; max-width: 520px; }
-  .table-toolbar .cf-search input { width: 100%; min-height: 40px; font-size: 14px; }
-  .toolbar-count {
-    margin-left: auto; font-size: 12px; color: var(--slate);
-    font-variant-numeric: tabular-nums; white-space: nowrap;
-  }
-  .toolbar-add { min-height: 40px; padding: 0 18px; }
-  /* The table joins the toolbar as one object. */
-  .tasks-table-scroll {
-    border: 1px solid var(--grey); border-radius: 0 0 12px 12px; overflow: hidden auto;
-  }
-  [data-theme="dark"] .tasks-table-scroll { border-color: #262626; }
-  .tasks-table-scroll { overflow-x: auto; }
-
-  /* Sortable headers are real buttons — a bare th[onclick] cannot be reached,
-     activated, or announced. */
-  table.tasks thead th.sortable { padding: 0; }
-  table.tasks thead th .th-btn {
-    display: flex; align-items: center; gap: 5px; width: 100%;
-    min-height: 40px; padding: 0 8px;
-    background: none; border: 0; color: inherit; font: inherit;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; text-align: left; cursor: pointer;
-  }
-  table.tasks thead th .th-btn:hover { color: var(--red); }
-  table.tasks thead th .th-btn:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
-  table.tasks thead th.sort-asc  .th-btn::after { content: '↑'; color: var(--red); }
-  table.tasks thead th.sort-desc .th-btn::after { content: '↓'; color: var(--red); }
-  /* The old ::after on the th itself would now double up. */
-  table.tasks thead th.sort-asc::after, table.tasks thead th.sort-desc::after { content: none; }
-
-  /* Title is the row's trigger — a real button, so it is focusable, activates
-     on Enter/Space, and does not swallow the nine controls beside it. */
-  .task-title-btn {
-    display: block; width: 100%; text-align: left;
-    background: none; border: 0; padding: 2px 0; cursor: pointer;
-    font: inherit; font-weight: 600; color: var(--black);
-    letter-spacing: -0.01em; line-height: 1.35;
-  }
-  .task-title-btn:hover { color: var(--red); }
-  .task-title-btn:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
-  /* Medium finding: this button was 25px. */
-  .add-task-btn { min-height: 36px; }
-  #tasks-view .hero { display: none; }
+     display:contents dissolves the two wrapper divs so the scope circles and
+     the faces flow as ONE centred row, the way Protocols reads, instead of
+     breaking into a scopes row and a people row. */
+  #tasks-view .tasks-strip-groups,
+  #tasks-view .tasks-strip-persons { display: contents; }
+  #tasks-view .hero { padding: 30px 28px 14px; }
+  #tasks-view .hero h1 { font-size: clamp(28px, 3.4vw, 40px); }
+  #tasks-view .hero .sub { font-size: 14px; margin-top: 6px; }
   #tasks-view .tasks-stats-row { padding: 18px 0 4px; gap: 14px; }
   #tasks-view .tile-breakdown { padding: 4px 0 10px; }
-  #tasks-view .avatar { width: 52px; height: 52px; }
-  #tasks-view .avatar-btn { padding: 5px 8px; }
-  #tasks-view .avatar-btn .name { font-size: 11px; }
-  #tasks-view .avatar-btn .count { font-size: 10px; }
-  #tasks-view .filter-strip { padding: 0 0 10px; margin-top: 0; }
   #tasks-view .hero-overview { margin-bottom: 0; padding-bottom: 0; min-height: 0; }
   #tasks-view .hero-bar > * + * { margin-top: 0; }
-  #tasks-view .tasks-strip-groups { margin-bottom: 6px; }
   #tasks-view .hero-bar { padding-bottom: 8px; }
   #tasks-view .quad-legend { padding: 6px 0; font-size: 12px; }
   #tasks-view .quick-chips { padding: 4px 0 10px; }
@@ -1118,9 +1080,16 @@
   }
   .qchip:hover { border-color: var(--slate); }
   .qchip.active { background: var(--red-strong); border-color: var(--red-strong); color: #fff; }
+  /* The count badge and the label were on different line boxes, so the badge
+     rode high against the uppercase text. Both are flex-centred at a fixed
+     height now, and the chip sets line-height:1 so nothing inherits slack. */
+  .qchip { line-height: 1; }
   .qchip-n {
-    font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 999px;
-    background: var(--grey-2); color: var(--carbon); min-width: 18px; text-align: center;
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 20px; min-width: 20px; padding: 0 7px; border-radius: 999px;
+    font-size: 10px; font-weight: 700; line-height: 1;
+    font-variant-numeric: tabular-nums;
+    background: var(--grey-2); color: var(--carbon);
   }
   .qchip.active .qchip-n { background: rgba(255,255,255,0.25); color: #fff; }
   [data-theme="dark"] .qchip { background: #1a1a1a; border-color: #333; color: #ddd; }
@@ -1819,51 +1788,43 @@
   <!-- Column filter bar -->
   <div class="col-filter-bar" id="col-filter-bar">
    <div class="cf-row cf-row-2">
-    <span class="col-filter-label">Filter</span>
     <label for="cf-quadrant" class="sr-only">Filter by importance and urgency</label><select id="cf-quadrant" onchange="applyColFilters()">
-      <option value="">Imp/Urg</option>
-      <option value="__blank__">— Blank</option>
-      <option value="iu">Important &amp; urgent</option>
-      <option value="inu">Important, not urgent</option>
-      <option value="uni">Urgent, not important</option>
-      <option value="nn">Neither</option>
+      <option value="">Any focus</option>
+      <option value="iu">Do first — important &amp; urgent</option>
+      <option value="inu">Schedule — important, not urgent</option>
+      <option value="uni">Delegate — urgent, not important</option>
+      <option value="nn">Later — neither</option>
+      <option value="__blank__">Not set</option>
     </select>
     <label for="cf-priority" class="sr-only">Filter by priority</label><select id="cf-priority" onchange="applyColFilters()">
-      <option value="">Priority</option>
+      <option value="">Any priority</option>
       <option value="high">High</option>
       <option value="medium">Medium</option>
       <option value="low">Low</option>
-      <option value="completed">Completed</option>
-      <option value="archived">Archived</option>
     </select>
     <label for="cf-status" class="sr-only">Filter by status</label><select id="cf-status" onchange="applyColFilters()">
-      <option value="">Status</option>
+      <option value="">All statuses</option>
       <option value="open">Open</option>
-      <option value="in_progress">In Progress</option>
+      <option value="in_progress">In progress</option>
       <option value="blocked">Blocked</option>
       <option value="done">Done</option>
       <option value="completed">Completed</option>
       <option value="archived">Archived</option>
-      <option value="__blank__">— Blank</option>
+      <option value="__blank__">Not set</option>
     </select>
     <label for="cf-family" class="sr-only">Filter by client or family</label><select id="cf-family" onchange="applyColFilters()">
       <option value="">Family</option>
       <option value="__blank__">— Blank</option>
     </select>
     <label for="cf-type" class="sr-only">Filter by type</label><select id="cf-type" onchange="applyColFilters()">
-      <option value="">Type</option>
-      <option value="Investment">Investment</option>
-      <option value="Operations">Operations</option>
-      <option value="Member Success">Member Success</option>
-      <option value="Long Term">Long Term</option>
-      <option value="__blank__">— Blank</option>
+      <option value="">All types</option>
     </select>
     <label for="cf-owner" class="sr-only">Filter by owner</label><select id="cf-owner" onchange="applyColFilters()">
       <option value="">Owner</option>
       <option value="__blank__">— Blank</option>
     </select>
     <label for="cf-due" class="sr-only">Filter by due date</label><select id="cf-due" onchange="applyColFilters()">
-      <option value="">Due Date</option>
+      <option value="">Any due date</option>
       <option value="overdue">Overdue</option>
       <option value="week">Due this week</option>
       <option value="month">Due this month</option>
@@ -1871,15 +1832,12 @@
       <option value="none">No due date</option>
     </select>
     <label for="cf-date" class="sr-only">Filter by date added</label><select id="cf-date" onchange="applyColFilters()">
-      <option value="">Date Added</option>
+      <option value="">Any date added</option>
       <option value="today">Today</option>
       <option value="week">This week</option>
       <option value="month">This month</option>
       <option value="older">Older than 30 days</option>
     </select>
-    <label class="cf-toggle" for="cf-showdone">
-      <input type="checkbox" id="cf-showdone" onchange="applyColFilters()"> Show completed
-    </label>
     <button class="col-filter-clear" id="col-filter-clear" onclick="clearColFilters()" style="display:none">✕ Clear all</button>
    </div>
   </div>
@@ -1890,13 +1848,17 @@
     <button type="button" class="qchip" data-chip="mine"       onclick="toggleChip('mine')">Mine <span class="qchip-n" id="qn-mine">0</span></button>
     <button type="button" class="qchip" data-chip="week"       onclick="toggleChip('week')">Due this week <span class="qchip-n" id="qn-week">0</span></button>
     <button type="button" class="qchip" data-chip="unassigned" onclick="toggleChip('unassigned')">Unassigned <span class="qchip-n" id="qn-unassigned">0</span></button>
+    <label class="qchip qchip-check" id="chip-showdone" for="cf-showdone">
+      <input type="checkbox" id="cf-showdone" class="sr-only" onchange="applyColFilters()">
+      Show completed <span class="qchip-n" id="qn-completed">0</span>
+    </label>
   </div>
 
-  <div class="quad-legend" aria-label="Importance and urgency legend">
-    <span class="lg"><span class="dot" style="background:var(--q-iu)"></span>Important &amp; urgent</span>
-    <span class="lg"><span class="dot" style="background:var(--q-inu)"></span>Important, not urgent</span>
-    <span class="lg"><span class="dot" style="background:var(--q-uni)"></span>Urgent, not important</span>
-    <span class="lg"><span class="dot" style="background:var(--q-nn)"></span>Neither</span>
+  <div class="quad-legend" aria-label="Focus legend">
+    <span class="lg"><span class="dot" style="background:var(--q-iu)"></span><b>Do first</b> — important &amp; urgent</span>
+    <span class="lg"><span class="dot" style="background:var(--q-inu)"></span><b>Schedule</b> — important, not urgent</span>
+    <span class="lg"><span class="dot" style="background:var(--q-uni)"></span><b>Delegate</b> — urgent, not important</span>
+    <span class="lg"><span class="dot" style="background:var(--q-nn)"></span><b>Later</b> — neither</span>
     <span class="lg" id="hidden-done-note" style="margin-left:auto;color:var(--slate)"></span>
   </div>
   <div class="tasks-filter-stats" id="tasks-filter-stats"></div>
@@ -1925,18 +1887,20 @@
       <col class="col-due">
       <col class="col-owner">
       <col class="col-status">
+      <col class="col-open">
     </colgroup>
     <thead>
       <tr>
         <th class="sortable" id="th-title" scope="col"><button type="button" class="th-btn" onclick="toggleSort('title')">Title</button></th>
         <th class="sortable" id="th-next_step" scope="col"><button type="button" class="th-btn" onclick="toggleSort('next_step')">Next Step</button></th>
-        <th class="sortable" id="th-quadrant" scope="col"><button type="button" class="th-btn" onclick="toggleSort('quadrant')">Imp/Urg</button></th>
+        <th class="sortable" id="th-quadrant" scope="col"><button type="button" class="th-btn" onclick="toggleSort('quadrant')">Focus</button></th>
         <th class="sortable" id="th-priority" scope="col"><button type="button" class="th-btn" onclick="toggleSort('priority')">Priority</button></th>
         <th class="sortable" id="th-family" scope="col"><button type="button" class="th-btn" onclick="toggleSort('family')">Family</button></th>
         <th class="sortable" id="th-function" scope="col"><button type="button" class="th-btn" onclick="toggleSort('function')">Type</button></th>
         <th class="sortable" id="th-due_date" scope="col"><button type="button" class="th-btn" onclick="toggleSort('due_date')">Due Date</button></th>
         <th class="sortable" id="th-assigned_to" scope="col"><button type="button" class="th-btn" onclick="toggleSort('assigned_to')">Owner</button></th>
         <th class="sortable" id="th-status" scope="col"><button type="button" class="th-btn" onclick="toggleSort('status')">Status</button></th>
+        <th scope="col"><span class="sr-only">Open detail</span></th>
       </tr>
     </thead>
     <tbody id="task-rows"></tbody>
@@ -2017,7 +1981,7 @@
 
     <div class="atm-row">
       <div class="atm-field">
-        <label for="atm-quadrant">Importance / urgency</label>
+        <label for="atm-quadrant">Focus</label>
         <select id="atm-quadrant"></select>
       </div>
       <div class="atm-field">
@@ -2218,10 +2182,10 @@ function slugId(title) {
 // hoisted: a derived constant further down the file (RECUR_ORDER, QUAD_ORDER)
 // that runs before this point throws and aborts the whole script.
 const QUADRANTS = [
-  { v: 'iu',  label: 'Important & urgent',      short: 'Imp + urg',    rank: 1 },
-  { v: 'inu', label: 'Important, not urgent',   short: 'Imp, not urg', rank: 2 },
-  { v: 'uni', label: 'Urgent, not important',   short: 'Urg, not imp', rank: 3 },
-  { v: 'nn',  label: 'Neither',                 short: 'Neither',      rank: 4 },
+  { v: 'iu',  label: 'Important & urgent',    short: 'Do first', rank: 1 },
+  { v: 'inu', label: 'Important, not urgent', short: 'Schedule', rank: 2 },
+  { v: 'uni', label: 'Urgent, not important', short: 'Delegate', rank: 3 },
+  { v: 'nn',  label: 'Neither',               short: 'Later',    rank: 4 },
 ];
 const QUAD_BY_V  = Object.fromEntries(QUADRANTS.map(q => [q.v, q]));
 const QUAD_ORDER = Object.fromEntries(QUADRANTS.map(q => [q.v, q.rank]));
@@ -2783,16 +2747,29 @@ function populateColFilterOptions(tasks) {
   const cfFam = document.getElementById('cf-family');
   if (cfFam) {
     const cur = cfFam.value;
-    cfFam.innerHTML = '<option value="">Family</option><option value="__blank__">— Blank</option>' +
-      families.map(f => `<option value="${esc(f)}" ${f === cur ? 'selected' : ''}>${esc(f)}</option>`).join('');
+    cfFam.innerHTML = '<option value="">All clients</option>' +
+      families.map(f => `<option value="${esc(f)}" ${f === cur ? 'selected' : ''}>${esc(f)}</option>`).join('') +
+      `<option value="__blank__" ${cur === '__blank__' ? 'selected' : ''}>Not set</option>`;
   }
+  // Type — built from the shared TYPE_OPTIONS rather than hardcoded markup,
+  // which is why Compliance and HR were missing from this filter.
+  const cfType = document.getElementById('cf-type');
+  if (cfType) {
+    const cur = cfType.value;
+    cfType.innerHTML = '<option value="">All types</option>' +
+      sortOptions(TYPE_OPTIONS).filter(Boolean)
+        .map(t => `<option value="${esc(t)}" ${t === cur ? 'selected' : ''}>${esc(t)}</option>`).join('') +
+      `<option value="__blank__" ${cur === '__blank__' ? 'selected' : ''}>Not set</option>`;
+  }
+
   // Owner
   const owners = sortOwnerSlugs([...new Set(tasks.map(t => t.assigned_to || '').filter(Boolean))]);
   const cfOwn = document.getElementById('cf-owner');
   if (cfOwn) {
     const cur = cfOwn.value;
-    cfOwn.innerHTML = '<option value="">Owner</option><option value="__blank__">— Blank</option>' +
-      owners.map(s => `<option value="${esc(s)}" ${s === cur ? 'selected' : ''}>${esc(OWNER_SLUG_TO_NAME[s] || s)}</option>`).join('');
+    cfOwn.innerHTML = '<option value="">All owners</option>' +
+      owners.map(s => `<option value="${esc(s)}" ${s === cur ? 'selected' : ''}>${esc(OWNER_SLUG_TO_NAME[s] || s)}</option>`).join('') +
+      `<option value="__blank__" ${cur === '__blank__' ? 'selected' : ''}>Unassigned</option>`;
   }
 }
 
@@ -2805,6 +2782,12 @@ function applyColFilters() {
       el.classList.toggle('active', !!el.value);
     }
   });
+  // The "Show completed" chip is a styled checkbox — mirror its state onto the
+  // chip so it reads pressed like the others.
+  const sdEl = document.getElementById('cf-showdone');
+  const sdChip = document.getElementById('chip-showdone');
+  if (sdChip && sdEl) sdChip.classList.toggle('active', sdEl.checked);
+
   const q = (document.getElementById('cf-search') || {}).value || '';
   const clr = document.getElementById('cf-search-clear');
   if (clr) clr.style.display = q ? '' : 'none';
@@ -3093,6 +3076,8 @@ function refreshChipCounts(tasks) {
   // "Mine" is meaningless until someone has picked an identity.
   const mineBtn = document.querySelector('.qchip[data-chip="mine"]');
   if (mineBtn) mineBtn.style.display = getPageUserSlug() ? '' : 'none';
+  const done = document.getElementById('qn-completed');
+  if (done) done.textContent = (tasks || []).filter(t => DONE_STATUSES.includes(t.status)).length;
 }
 
 // Free-text search across the fields people actually recall a task by.
@@ -3557,7 +3542,7 @@ function renderTaskCards(tasks) {
   tbody.innerHTML = pageRows.map(t => {
     const pri = t.priority || 'medium';
     const desc = (t.overview || '').slice(0, 120) + ((t.overview || '').length > 120 ? '…' : '');
-    return `<tr class="${t.quadrant ? 'row-q-' + esc(t.quadrant) : ''}">
+    return `<tr class="task-row ${t.quadrant ? 'row-q-' + esc(t.quadrant) : ''}" onclick="openTaskDrawer('${esc(t.id)}')">
       <td class="task-title-cell">
         <button type="button" class="task-title-btn" onclick="openTaskDrawer('${esc(t.id)}')">${esc(t.title)}</button>
       </td>
@@ -3571,6 +3556,7 @@ function renderTaskCards(tasks) {
       <td onclick="event.stopPropagation()">${dueDateInputHTML(t)}</td>
       <td onclick="event.stopPropagation()">${ownerCellHTML2(t)}</td>
       <td onclick="event.stopPropagation()">${statusCellHTML(t)}</td>
+      <td class="row-open" aria-hidden="true">&rsaquo;</td>
     </tr>`;
   }).join('');
 }
@@ -3781,7 +3767,7 @@ function quadrantCellHTML(t) {
   const opts = [{ v: '', short: '—' }].concat(QUADRANTS).map(q =>
     `<option value="${esc(q.v)}" ${q.v === cur ? 'selected' : ''}>${esc(q.short)}</option>`
   ).join('');
-  return `<select class="priority-select quad-select ${cur ? 'q-' + cur : ''}" id="quad-sel-${esc(t.id)}" aria-label="Importance and urgency — ${esc(t.title)}" data-task-id="${esc(t.id)}" data-field="quadrant" onchange="updateTaskField(this); refreshQuadClass(this);">${opts}</select>`;
+  return `<select class="priority-select quad-select ${cur ? 'q-' + cur : ''}" id="quad-sel-${esc(t.id)}" aria-label="Focus — ${esc(t.title)}" data-task-id="${esc(t.id)}" data-field="quadrant" onchange="updateTaskField(this); refreshQuadClass(this);">${opts}</select>`;
 }
 
 function recurrenceCellHTML(t) {
@@ -3918,10 +3904,10 @@ function updateIdentityPill(slug) {
   const pill = document.getElementById('identityPill');
   if (!pill) return;
   if (slug && PERSON_SLUG_MAP[slug]) {
-    pill.textContent = '👤 ' + PERSON_SLUG_MAP[slug];
+    pill.textContent = PERSON_SLUG_MAP[slug];
     pill.classList.remove('anon');
   } else {
-    pill.textContent = '👤 Set identity';
+    pill.textContent = 'Set identity';
     pill.classList.add('anon');
   }
 }
