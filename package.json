@@ -2,7 +2,7 @@
   "name": "ascend-taskmanager-v02",
   "private": true,
   "scripts": {
-    "test": "node tm_test.js"
+    "test": "node prototype/tm_test.js"
   },
   "dependencies": {
     "jsdom": "^29.1.1"

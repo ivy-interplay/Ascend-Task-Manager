@@ -1,0 +1,1038 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Ascend · Task Manager</title>
+<link rel="icon" type="image/svg+xml" href="/protocols/taskmanager/favicon.svg">
+<!-- v2026.06.30.0005 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gothic+A1:wght@300;400;500;600;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #FFFFFF; --black: #000000; --carbon: #3B3B3B;
+    --grey: #EBEBEB; --grey-2: #F6F6F6; --grey-lite: #F2F2F2;
+    --red: #EA3323; --green: #10B981; --amber: #F59E0B; --slate: #94A3B8;
+  }
+  [data-theme="dark"] {
+    --white: #1a1a1a; --black: #ffffff; --carbon: #cccccc;
+    --grey: #333333; --grey-2: #222222; --grey-lite: #2a2a2a;
+    --red: #d32f2f; background: #000000;
+  }
+  [data-theme="dark"] body { background: #000000; }
+  [data-theme="dark"] .topbar { background: #1a1a1a; border-color: #2a2a2a; }
+  [data-theme="dark"] .deal-card { background: #222; border-color: #333; }
+  [data-theme="dark"] .kv-grid { border-color: #333; }
+  [data-theme="dark"] .kv-row { border-color: #2a2a2a; }
+  [data-theme="dark"] .open-item { border-color: #2a2a2a; }
+  [data-theme="dark"] .highlight-item { border-color: #2a2a2a; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'Gothic A1', system-ui, sans-serif; font-weight: 300; color: var(--carbon); background: var(--white); min-height: 100vh; }
+
+  /* Topbar */
+  .topbar { background: #1a1a1a; border-bottom: 1px solid #2a2a2a; padding: 0 40px; display: flex; align-items: stretch; justify-content: space-between; min-height: 52px; }
+  [data-theme="light"] .topbar { background: var(--white); border-bottom: 1px solid var(--grey); }
+  .topbar-left { display: flex; align-items: stretch; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; padding-right: 24px; }
+  .brand svg { width: 20px; height: 40px; display: block; }
+  .brand-title { color: #ffffff; font-size: 0.6em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }
+  [data-theme="light"] .brand-title { color: var(--black); }
+  .tab-nav { display: flex; align-items: stretch; }
+  .tab-link { display: inline-flex; align-items: center; padding: 0 20px; font-family: 'Gothic A1', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #cfcfcf; text-decoration: none; border-bottom: 2px solid transparent; transition: color 120ms, border-color 120ms; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; white-space: nowrap; }
+  .tab-link:hover { color: #fff; }
+  .tab-link.active { color: var(--red); border-bottom-color: var(--red); }
+  [data-theme="light"] .tab-link { color: var(--carbon); }
+  [data-theme="light"] .tab-link.active { color: var(--red); border-bottom-color: var(--red); }
+  .topbar-right { display: flex; align-items: center; gap: 12px; }
+  .back-link { color: #888; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none; transition: color 120ms; }
+  .back-link:hover { color: var(--red); }
+  .theme-toggle { background: none; border: 1px solid #444; color: #ccc; font-family: inherit; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; cursor: pointer; transition: all 120ms; }
+  [data-theme="light"] .theme-toggle { border-color: var(--grey); color: var(--carbon); }
+
+  /* Page */
+  .page { max-width: 960px; margin: 0 auto; padding: 40px 32px 80px; }
+
+  /* Hero */
+  .task-hero { margin-bottom: 32px; }
+  .task-name { font-family: 'Gothic A1', sans-serif; font-weight: 900; font-size: clamp(22px, 3vw, 34px); text-transform: uppercase; letter-spacing: 0.02em; color: var(--black); margin: 0 0 10px; line-height: 1.1; }
+  .task-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .tag { display: inline-flex; align-items: center; padding: 3px 9px; border: 1px solid var(--grey); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--carbon); border-radius: 999px; }
+  .tag-high { background: rgba(234,51,35,0.08); color: var(--red); border-color: rgba(234,51,35,0.3); }
+  .tag-inprogress { background: rgba(245,158,11,0.1); color: #92400e; border-color: rgba(245,158,11,0.4); }
+  [data-theme="dark"] .tag-inprogress { background: rgba(245,158,11,0.12); color: #fcd34d; border-color: rgba(245,158,11,0.35); }
+  .task-status-select { font-family: inherit; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 999px; border: 1px solid rgba(245,158,11,0.4); background: rgba(245,158,11,0.1); color: #92400e; cursor: pointer; outline: none; transition: opacity 120ms; }
+  [data-theme="dark"] .task-status-select { background: rgba(245,158,11,0.12); color: #fcd34d; border-color: rgba(245,158,11,0.35); }
+  .task-status-select.status-open { background: rgba(99,102,241,0.08); color: #4338ca; border-color: rgba(99,102,241,0.3); }
+  [data-theme="dark"] .task-status-select.status-open { background: rgba(99,102,241,0.12); color: #a5b4fc; border-color: rgba(99,102,241,0.35); }
+  .task-status-select.status-done, .task-status-select.status-completed { background: rgba(16,185,129,0.08); color: #065f46; border-color: rgba(16,185,129,0.3); }
+  [data-theme="dark"] .task-status-select.status-done, [data-theme="dark"] .task-status-select.status-completed { background: rgba(16,185,129,0.1); color: #6ee7b7; border-color: rgba(16,185,129,0.3); }
+  .task-status-select.status-blocked { background: rgba(234,51,35,0.08); color: var(--red); border-color: rgba(234,51,35,0.3); }
+  [data-theme="dark"] .task-status-select.status-blocked { background: rgba(234,51,35,0.1); color: #fca5a5; border-color: rgba(234,51,35,0.3); }
+  .task-status-select.status-archived { background: rgba(100,116,139,0.08); color: var(--slate); border-color: rgba(100,116,139,0.3); }
+  .task-status-select:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  /* Overview + next step */
+  .overview { font-size: 15px; line-height: 1.65; color: var(--carbon); margin-bottom: 10px; max-width: 760px; }
+  .next-step { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border: 1px solid rgba(16,185,129,0.3); background: rgba(16,185,129,0.06); border-radius: 4px; margin-bottom: 32px; max-width: 760px; }
+  .next-step-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green); flex-shrink: 0; padding-top: 1px; }
+  .next-step-text { font-size: 13px; line-height: 1.5; color: var(--black); cursor: text; }
+  .next-step-text.empty { color: rgba(16,185,129,0.5); font-style: italic; }
+  .editable-next-edit { width: 100%; min-height: 60px; font-family: inherit; font-size: 13px; line-height: 1.5; padding: 4px 0; border: none; border-bottom: 1px solid rgba(16,185,129,0.6); background: transparent; color: var(--black); resize: vertical; outline: none; }
+  [data-theme="dark"] .editable-next-edit { color: #eee; border-bottom-color: rgba(16,185,129,0.5); }
+  .next-save-row { display: flex; gap: 8px; margin-top: 8px; align-items: center; }
+
+  /* Section */
+  .section { margin-bottom: 40px; }
+  .section-title { font-family: 'Gothic A1', sans-serif; font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--carbon); margin: 0 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--grey); }
+
+  /* At a glance KV */
+  .kv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0; border: 1px solid var(--grey); border-radius: 4px; overflow: hidden; }
+  .kv-cell { padding: 14px 16px; border-right: 1px solid var(--grey); border-bottom: 1px solid var(--grey); }
+  .kv-cell:last-child { border-right: none; }
+  .kv-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--slate); margin-bottom: 4px; }
+  .kv-value { font-size: 14px; font-weight: 600; color: var(--black); }
+
+  /* Editable kv selects — same pill style as status */
+  .kv-select {
+    appearance: none; -webkit-appearance: none;
+    font-family: inherit; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 3px 22px 3px 9px; border-radius: 999px;
+    border: 1px solid var(--grey); background: var(--grey-2);
+    color: var(--carbon); cursor: pointer; outline: none;
+    transition: opacity 120ms, border-color 120ms;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath fill='%2394A3B8' d='M0 0l4 5 4-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 7px center;
+  }
+  [data-theme="dark"] .kv-select { background-color: #2a2a2a; border-color: #444; color: #ccc;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath fill='%2394A3B8' d='M0 0l4 5 4-5z'/%3E%3C/svg%3E");
+  }
+  .kv-select:hover { border-color: var(--red); }
+  .kv-select:focus { border-color: var(--red); outline: none; }
+  .kv-select:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* Due date kv wrapper */
+  /* Due date — styled native date input, no invisible overlay */
+  .kv-due-input {
+    display: inline-flex; align-items: center;
+    padding: 3px 9px; border-radius: 999px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    font-family: inherit; text-transform: uppercase;
+    border: 1px solid var(--grey); background: var(--grey-2); color: var(--carbon);
+    cursor: pointer; white-space: nowrap;
+    transition: border-color 120ms;
+    -webkit-appearance: none; appearance: none;
+    height: auto; width: auto;
+  }
+  .kv-due-input:hover { border-color: var(--red); }
+  .kv-due-input:focus { border-color: var(--red); outline: none; }
+  [data-theme="dark"] .kv-due-input { background: #2a2a2a; border-color: #444; color: #ccc; }
+  [data-theme="dark"] .kv-due-input:hover, [data-theme="dark"] .kv-due-input:focus { border-color: var(--red); }
+  /* hide the label span — we no longer need it */
+  .kv-due-label { display: none; }
+
+  /* Deal cards */
+  .deal-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 640px) { .deal-cards { grid-template-columns: 1fr; } }
+  .deal-card { border: 1px solid var(--grey); border-radius: 4px; padding: 20px; background: var(--grey-2); }
+  .deal-name { font-family: 'Gothic A1', sans-serif; font-weight: 900; font-size: 14px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black); margin: 0 0 4px; }
+  .deal-address { font-size: 12px; color: var(--slate); margin-bottom: 14px; }
+  .deal-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; margin-bottom: 14px; }
+  .deal-stat-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--slate); }
+  .deal-stat-value { font-size: 14px; font-weight: 700; color: var(--black); margin-top: 1px; }
+  .deal-stat-value.highlight { color: var(--red); }
+  .deal-highlights { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--grey); padding-top: 12px; }
+  .deal-highlights li { font-size: 12px; line-height: 1.55; color: var(--carbon); padding: 3px 0; padding-left: 14px; position: relative; }
+  .deal-highlights li::before { content: '·'; position: absolute; left: 0; color: var(--red); font-weight: 900; }
+
+  /* Open items */
+  .open-items { display: flex; flex-direction: column; }
+  .open-item { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--grey); }
+  .open-item:last-child { border-bottom: none; }
+  .open-item-status { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; margin-top: 4px; background: var(--amber); }
+  .open-item-status.pending { background: var(--slate); }
+  .open-item-body { flex: 1; min-width: 0; }
+  .open-item-text { font-size: 13px; line-height: 1.5; color: var(--black); margin-bottom: 3px; }
+  .open-item-owner { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--slate); }
+
+  /* Context */
+  .context-block { font-size: 13px; line-height: 1.7; color: var(--carbon); padding: 16px; border: 1px solid var(--grey); border-left: 3px solid var(--red); background: var(--grey-2); border-radius: 0 4px 4px 0; }
+
+  /* Inline editable title + description */
+  .editable-title {
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: 900;
+    font-size: clamp(22px, 3vw, 34px);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--black);
+    margin: 0 0 10px;
+    line-height: 1.1;
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    cursor: text;
+    border-bottom: 2px solid transparent;
+    transition: border-color 150ms;
+    padding: 2px 0;
+  }
+  .editable-title:hover { border-bottom-color: var(--grey); }
+  .editable-title:focus { border-bottom-color: var(--red); }
+  .editable-title.saving { opacity: 0.5; }
+
+  .editable-desc-wrap { position: relative; max-width: 760px; margin-bottom: 10px; }
+  .editable-desc-display {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--carbon);
+    cursor: text;
+    padding: 6px 8px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: border-color 150ms, background 150ms;
+    white-space: pre-wrap;
+    min-height: 28px;
+  }
+  .editable-desc-display:hover { border-color: var(--grey); background: var(--grey-2); }
+  .editable-desc-display.empty { color: var(--slate); font-style: italic; }
+  .editable-desc-edit {
+    display: none;
+    width: 100%;
+    min-height: 80px;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.65;
+    padding: 6px 8px;
+    border: 1px solid var(--red);
+    border-radius: 4px;
+    background: var(--grey-2);
+    color: var(--black);
+    resize: vertical;
+    outline: none;
+  }
+  [data-theme="dark"] .editable-desc-edit { background: #222; color: #eee; }
+  [data-theme="dark"] .editable-title:hover { border-bottom-color: #444; }
+  [data-theme="dark"] .editable-desc-display:hover { border-color: #444; background: #222; }
+  .edit-hint { font-size: 10px; color: var(--slate); font-style: italic; margin-top: 3px; display: none; }
+  .editable-desc-wrap:hover .edit-hint { display: block; }
+  .editable-desc-wrap.editing .edit-hint { display: none; }
+  .desc-save-row { display: none; gap: 8px; margin-top: 6px; align-items: center; }
+  .editable-desc-wrap.editing .desc-save-row { display: flex; }
+  .desc-save-btn { padding: 5px 14px; background: var(--red); color: #fff; border: none; font-family: inherit; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; border-radius: 3px; }
+  .desc-cancel-btn { padding: 5px 10px; background: none; border: 1px solid var(--grey); color: var(--carbon); font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer; border-radius: 3px; }
+  .desc-save-status { font-size: 12px; color: var(--green); font-weight: 600; display: none; }
+
+  /* Notes */
+  .notes-section { margin-bottom: 40px; }
+  .notes-list { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
+  .note-item { padding: 12px 0 12px 0; border-bottom: 1px solid var(--grey); display: flex; flex-direction: column; gap: 4px; position: relative; padding-right: 22px; }
+  .note-item:first-child { border-top: 1px solid var(--grey); }
+  .note-text { font-size: 13px; line-height: 1.6; color: var(--black); white-space: pre-wrap; }
+  .note-ts { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--slate); }
+  .note-empty { font-size: 13px; color: var(--slate); font-style: italic; margin-bottom: 16px; }
+  .note-form { display: flex; flex-direction: column; gap: 10px; }
+  .note-textarea { width: 100%; min-height: 80px; font-family: inherit; font-size: 13px; line-height: 1.6; padding: 10px 12px; border: 1px solid var(--grey); background: var(--grey-2); color: var(--black); resize: vertical; outline: none; border-radius: 4px; transition: border-color 120ms; }
+  .note-textarea:focus { border-color: var(--red); }
+  [data-theme="dark"] .note-textarea { background: #222; border-color: #333; color: #eee; }
+  [data-theme="dark"] .note-textarea:focus { border-color: var(--red); }
+  [data-theme="dark"] .note-item { border-color: #2a2a2a; }
+  [data-theme="dark"] .note-item:first-child { border-color: #2a2a2a; }
+  [data-theme="dark"] .note-item.edit-log-item { border-color: #222; }
+  .note-submit { align-self: flex-start; padding: 7px 20px; background: var(--red); color: #fff; border: none; font-family: inherit; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; transition: opacity 120ms; border-radius: 3px; }
+  .note-submit:hover { opacity: 0.85; }
+  .note-submit:disabled { opacity: 0.45; cursor: not-allowed; }
+  .note-success { font-size: 12px; color: var(--green); font-weight: 600; display: none; }
+  .note-delete-btn { position: absolute; top: 10px; right: 0; background: none; border: none; cursor: pointer; font-size: 16px; color: var(--slate); opacity: 0; transition: opacity 120ms, color 120ms; padding: 0 2px; line-height: 1; }
+  .note-item:hover .note-delete-btn { opacity: 1; }
+  .note-delete-btn:hover { color: var(--red); }
+
+
+  /* Edit log entries — subtler than manual notes */
+  .edit-log-item { padding: 6px 10px !important; background: var(--grey-2); border-radius: 3px; border-bottom: none !important; border-top: none !important; margin-bottom: 3px; }
+  .edit-log-item .note-text { font-size: 11.5px; color: var(--slate); font-style: italic; }
+  .edit-log-item .note-ts  { font-size: 10px; color: var(--slate); opacity: 0.7; }
+  [data-theme="dark"] .edit-log-item { background: #1a1a1a; }
+  .notes-identity-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 12px; color: var(--slate); }
+  .notes-identity-row select { font-family: inherit; font-size: 12px; padding: 3px 8px; border: 1px solid var(--grey); border-radius: 3px; background: var(--grey-2); color: var(--black); outline: none; cursor: pointer; }
+  [data-theme="dark"] .notes-identity-row select { background: #222; border-color: #333; color: #eee; }
+  .notes-identity-row label { font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; font-size: 10px; }
+
+  /* Skel */
+  .skel { height: 14px; background: linear-gradient(90deg, var(--grey-lite), var(--grey), var(--grey-lite)); background-size: 200% 100%; animation: shimmer 1.4s ease-in-out infinite; border-radius: 2px; margin: 8px 0; }
+  .skel.short { width: 55%; } .skel.med { width: 75%; }
+  @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+  .no-data { text-align: center; padding: 80px 0; color: var(--slate); font-size: 13px; }
+  .no-data a { color: var(--red); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <a class="brand" href="/protocols/">
+      <svg viewBox="0 0 29 59" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.55428 0L0 58.9228L7.62983 58.9806L8.81403 51.7935L14.1389 11.0761H14.3037L19.8105 49.8829H13.3138L7.62983 58.9806H8.18084H20.3444L29 59L20.6165 0H8.55428Z" fill="#d32f2f"/></svg>
+      <span class="brand-title">Task Manager</span>
+    </a>
+    <nav class="tab-nav">
+      <a class="tab-link active" href="/protocols/">Tasks</a>
+      <a class="tab-link" href="/protocols/?tab=protocols">Protocols</a>
+    </nav>
+  </div>
+  <div class="topbar-right">
+    <a class="back-link" href="/protocols/">← All tasks</a>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">Light mode</button>
+  </div>
+</header>
+
+<main class="page" id="page">
+  <div class="skel med"></div>
+  <div class="skel short" style="margin-top:16px"></div>
+  <div class="skel" style="margin-top:32px"></div>
+  <div class="skel med"></div>
+</main>
+
+<script>
+// ============================================================================
+// TM — same storage layer as the board page (/protocols/index.html).
+// Supabase first, PHP + tasks.json as fallback. Kept as a copy rather than a
+// shared file because this page is deployed as a standalone HTML document.
+// If you change the contract here, change it there too.
+// ============================================================================
+const SB_URL  = 'https://xfxitjrubczqfnsslzuq.supabase.co';
+const SB_KEY  = '__SUPABASE_ANON_KEY__';
+const SB_REST = SB_URL + '/rest/v1/tasks';
+const SB_HDR  = {
+  'apikey': SB_KEY,
+  'Authorization': 'Bearer ' + SB_KEY,
+  'Content-Type': 'application/json',
+};
+
+const TM = {
+  supabaseUp: true,
+
+  async _sb(path, opts) {
+    const r = await fetch(SB_REST + path, { ...opts, headers: { ...SB_HDR, ...(opts.headers || {}) } });
+    if (!r.ok) throw new Error('Supabase ' + r.status + ' ' + (await r.text()).slice(0, 200));
+    return r.status === 204 ? null : r.json();
+  },
+
+  _fellBack(where, e) {
+    console.warn('[TM] Supabase ' + where + ' failed, falling back to PHP:', e.message);
+    this.supabaseUp = false;
+  },
+
+  async getTask(id) {
+    if (this.supabaseUp) {
+      try {
+        const rows = await this._sb('?id=eq.' + encodeURIComponent(id) + '&select=*', { method: 'GET' });
+        return rows[0] || null;
+      } catch (e) { this._fellBack('getTask', e); }
+    }
+    const r = await fetch('/protocols/taskmanager/tasks.json?ts=' + Date.now());
+    const data = await r.json();
+    return (data.tasks || []).find(t => t.id === id) || null;
+  },
+
+  async saveField(id, field, value, author) {
+    if (this.supabaseUp) {
+      try {
+        const v = (field === 'due_date' && !value) ? null : value;
+        await this._sb('?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: JSON.stringify({ [field]: v }) });
+        return;
+      } catch (e) { this._fellBack('saveField', e); }
+    }
+    const r = await fetch('/protocols/taskmanager/update-task.php', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, field, value, author }),
+    });
+    const json = await r.json();
+    if (!r.ok || !json.ok) throw new Error(json.error || 'update failed');
+  },
+
+  // Notes are a jsonb array on the row, so append/delete are read-modify-write.
+  // Two people editing notes on the same task within the same second can lose
+  // one of the two entries; the PHP store had the same characteristic.
+  async appendNote(id, text, author, noteType) {
+    if (this.supabaseUp) {
+      try {
+        const task = await this.getTask(id);
+        const notes = (task && task.notes) || [];
+        notes.push({ ts: new Date().toISOString().slice(0, 10), text, author: author || '', type: noteType || 'note' });
+        await this._sb('?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: JSON.stringify({ notes }) });
+        return;
+      } catch (e) { this._fellBack('appendNote', e); }
+    }
+    const r = await fetch('/protocols/taskmanager/update-task.php', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, field: 'notes_append', value: text, author, note_type: noteType || 'note' }),
+    });
+    const json = await r.json();
+    if (!r.ok || !json.ok) throw new Error(json.error || 'save failed');
+  },
+
+  async deleteNote(id, noteTs, author) {
+    if (this.supabaseUp) {
+      try {
+        const task = await this.getTask(id);
+        const notes = ((task && task.notes) || []).filter(n => String(n.ts) !== String(noteTs));
+        await this._sb('?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: JSON.stringify({ notes }) });
+        return;
+      } catch (e) { this._fellBack('deleteNote', e); }
+    }
+    const r = await fetch('/protocols/taskmanager/delete-note.php', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, note_ts: noteTs, author }),
+    });
+    const json = await r.json();
+    if (!r.ok || !json.ok) throw new Error(json.error || 'delete failed');
+  },
+};
+
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function fmt$(n) {
+  if (!n && n !== 0) return '—';
+  return '$' + Number(n).toLocaleString();
+}
+
+function renderDeal(d) {
+  const highlights = (d.highlights || []).map(h => `<li>${esc(h)}</li>`).join('');
+  return `
+    <div class="deal-card">
+      <div class="deal-name">${esc(d.name)}</div>
+      <div class="deal-address">${esc(d.address)}</div>
+      <div class="deal-stats">
+        <div>
+          <div class="deal-stat-label">Stories / Units</div>
+          <div class="deal-stat-value">${esc(String(d.stories))} stories · ${esc(String(d.units))} units</div>
+        </div>
+        <div>
+          <div class="deal-stat-label">Total Cost</div>
+          <div class="deal-stat-value">${fmt$(d.total_cost)}</div>
+        </div>
+        <div>
+          <div class="deal-stat-label">Equity Required</div>
+          <div class="deal-stat-value">${fmt$(d.equity)}</div>
+        </div>
+        <div>
+          <div class="deal-stat-label">LTC</div>
+          <div class="deal-stat-value">${esc(d.ltc || '—')}</div>
+        </div>
+        <div>
+          <div class="deal-stat-label">Projected IRR</div>
+          <div class="deal-stat-value highlight">${esc(d.projected_irr || '—')}</div>
+        </div>
+        <div>
+          <div class="deal-stat-label">Equity Multiple</div>
+          <div class="deal-stat-value highlight">${esc(d.equity_multiple || '—')}</div>
+        </div>
+        <div>
+          <div class="deal-stat-label">Yield to Cost (untrended)</div>
+          <div class="deal-stat-value">${esc(d.yield_to_cost_untrended || '—')}</div>
+        </div>
+        <div>
+          <div class="deal-stat-label">Hold Period</div>
+          <div class="deal-stat-value">${esc(d.hold_period || '—')}</div>
+        </div>
+        <div>
+          <div class="deal-stat-label">Market Rate Rent/SF</div>
+          <div class="deal-stat-value">$${esc(String(d.market_rate_rent_psf))}/SF</div>
+        </div>
+        <div>
+          <div class="deal-stat-label">Unit Mix</div>
+          <div class="deal-stat-value">${esc(d.unit_mix || '—')}</div>
+        </div>
+        <div>
+          <div class="deal-stat-label">Buildable SF</div>
+          <div class="deal-stat-value">${Number(d.buildable_sf).toLocaleString()} SF</div>
+        </div>
+        <div>
+          <div class="deal-stat-label">Cost/SF</div>
+          <div class="deal-stat-value">$${esc(String(d.cost_per_sf))}/SF</div>
+        </div>
+      </div>
+      ${highlights ? `<ul class="deal-highlights">${highlights}</ul>` : ''}
+    </div>`;
+}
+
+function render(task) {
+  document.title = `${task.title} · Ascend Task Manager`;
+  const STATUS_OPTIONS_TASK = ['open','in_progress','done','blocked','completed','archived'];
+  const STATUS_LABELS_TASK  = { open:'Open', in_progress:'In Progress', done:'Done', blocked:'Blocked', completed:'Completed', archived:'Archived' };
+  const statusLabel = STATUS_LABELS_TASK[task.status] || task.status;
+  const statusClass = 'status-' + (task.status || 'open').replace('_','-');
+  const statusOpts  = STATUS_OPTIONS_TASK.map(v =>
+    `<option value="${v}" ${v === (task.status||'open') ? 'selected' : ''}>${STATUS_LABELS_TASK[v]}</option>`
+  ).join('');
+  const deals = (task.deals || []).map(renderDeal).join('');
+  const openItems = (task.open_items || []).map(i => `
+    <div class="open-item">
+      <div class="open-item-status ${i.status === 'pending' ? 'pending' : ''}"></div>
+      <div class="open-item-body">
+        <div class="open-item-text">${esc(i.item)}</div>
+        <div class="open-item-owner">Owner: ${esc(i.owner)} · ${esc(i.status)}</div>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('page').innerHTML = `
+    <div class="task-hero">
+      <input class="editable-title" id="editable-title" type="text" value="${esc(task.title)}" data-task-id="${esc(task.id)}" data-original="${esc(task.title)}">
+      <div class="task-meta">
+        <select class="task-status-select ${esc(statusClass)}" id="task-status-select" data-task-id="${esc(task.id)}" onchange="updateTaskStatus(this)">${statusOpts}</select>
+        ${task.priority === 'high' ? '<span class="tag tag-high">High Priority</span>' : ''}
+        <span class="tag">${esc(task.function || '—')}</span>
+        ${task.family ? `<span class="tag">Family: ${esc(task.family)}</span>` : ''}
+        ${task.due_date ? `<span class="tag">Due ${esc(task.due_date)}</span>` : ''}
+      </div>
+    </div>
+
+    <div class="editable-desc-wrap" id="editable-desc-wrap">
+      <div class="editable-desc-display${task.overview ? '' : ' empty'}" id="editable-desc-display">${task.overview ? esc(task.overview) : 'Click to add a description…'}</div>
+      <div class="edit-hint">Click to edit description</div>
+      <textarea class="editable-desc-edit" id="editable-desc-edit" data-task-id="${esc(task.id)}">${esc(task.overview || '')}</textarea>
+      <div class="desc-save-row">
+        <button class="desc-save-btn" onclick="saveDesc('${esc(task.id)}')">Save</button>
+        <button class="desc-cancel-btn" onclick="cancelDesc()">Cancel</button>
+        <span class="desc-save-status" id="desc-save-status">Saved ✓</span>
+      </div>
+    </div>
+
+    <div class="next-step" id="next-step-wrap">
+      <div class="next-step-label">Next step</div>
+      <div class="next-step-text editable-next-display${task.next_step ? '' : ' empty'}" id="editable-next-display">${task.next_step ? esc(task.next_step) : 'Click to add a next step…'}</div>
+      <textarea class="editable-next-edit" id="editable-next-edit" data-task-id="${esc(task.id)}" style="display:none">${esc(task.next_step || '')}</textarea>
+      <div class="next-save-row" id="next-save-row" style="display:none">
+        <button class="desc-save-btn" onclick="saveNextStep('${esc(task.id)}')">Save</button>
+        <button class="desc-cancel-btn" onclick="cancelNextStep()">Cancel</button>
+        <span class="desc-save-status" id="next-save-status">Saved ✓</span>
+      </div>
+    </div>
+
+    ${openItems ? `
+    <div class="section">
+      <div class="section-title">Next Steps</div>
+      <div class="open-items">${openItems}</div>
+    </div>` : ''}
+
+    <div class="section">
+      <div class="section-title">At a Glance</div>
+      <div class="kv-grid">
+        <div class="kv-cell"><div class="kv-label">Assigned To</div><div class="kv-value">${ownerSelectHTML(task)}</div></div>
+        <div class="kv-cell"><div class="kv-label">Co-owner / helper</div><div class="kv-value">${coOwnerSelectHTML(task)}</div></div>
+        <div class="kv-cell"><div class="kv-label">Created By</div><div class="kv-value">${esc(task.created_by_raw || '—')}</div></div>
+        <div class="kv-cell"><div class="kv-label">Family</div><div class="kv-value">${familySelectHTML(task)}</div></div>
+        <div class="kv-cell"><div class="kv-label">Due Date</div><div class="kv-value">${kvDueDateHTML(task)}</div></div>
+        <div class="kv-cell"><div class="kv-label">Repeats</div><div class="kv-value">${recurrenceSelectHTML(task)}</div></div>
+        <div class="kv-cell"><div class="kv-label">Importance / urgency</div><div class="kv-value">${quadrantSelectHTML(task)}</div></div>
+        <div class="kv-cell"><div class="kv-label">Function</div><div class="kv-value">${functionSelectHTML(task)}</div></div>
+        <div class="kv-cell"><div class="kv-label">Status</div><div class="kv-value"><select class="task-status-select ${esc(statusClass)}" id="task-status-select-kv" data-task-id="${esc(task.id)}" onchange="updateTaskStatus(this)">${statusOpts}</select></div></div>
+      </div>
+    </div>
+
+    ${task.context ? `
+    <div class="section">
+      <div class="section-title">Context</div>
+      <div class="context-block">${esc(task.context)}</div>
+    </div>` : ''}
+
+    ${deals ? `
+    <div class="section">
+      <div class="section-title">Deals</div>
+      <div class="deal-cards">${deals}</div>
+    </div>` : ''}
+
+    ${task.market_context ? `
+    <div class="section">
+      <div class="section-title">Market Context</div>
+      <div class="context-block">${esc(task.market_context)}</div>
+    </div>` : ''}
+
+    <div class="section notes-section" id="notes-section">
+      <div class="section-title">Notes</div>
+      <div class="notes-list" id="notes-list">${renderNotes(task.notes || [], task.id)}</div>
+      <form class="note-form" id="note-form" onsubmit="submitNote(event, '${esc(task.id)}')">
+        <div class="notes-identity-row" id="notes-identity-row">
+          <label for="identity-select">Editing as:</label>
+          <select id="identity-select" onchange="setCurrentUser(this.value)">
+            <option value="">— select person —</option>
+            ${OWNER_SLUGS.filter(s=>s).map(s=>`<option value="${s}">${OWNER_NAMES[s]||s}</option>`).join('')}
+          </select>
+        </div>
+        <textarea class="note-textarea" id="note-input" placeholder="Add a note visible to the whole team…" rows="3"></textarea>
+        <div style="display:flex;align-items:center;gap:14px">
+          <button class="note-submit" type="submit" id="note-btn">Add note</button>
+          <span class="note-success" id="note-ok">Saved ✓</span>
+        </div>
+      </form>
+    </div>
+
+  `;
+  // Initialize identity picker to stored/URL value
+  const sel = document.getElementById('identity-select');
+  if (sel) {
+    const slug = getIdentitySlug();
+    if (slug) sel.value = slug;
+  }
+}
+
+function renderNotes(notes, taskId) {
+  if (!notes || !notes.length) return '<div class="note-empty">No notes yet — be the first to add one.</div>';
+  return notes.slice().reverse().map(n => {
+    const d = new Date(n.ts);
+    const ts = isNaN(d) ? n.ts : d.toLocaleString('en-US', { month:'short', day:'numeric', year:'numeric', hour:'numeric', minute:'2-digit', hour12:true });
+    const noteTs = esc(n.ts);
+    if (n.type === 'edit_log') {
+      return `<div class="note-item edit-log-item" data-note-ts="${noteTs}"><div class="note-text">${esc(n.text)}</div><div class="note-ts">${ts}</div><button class="note-delete-btn" title="Delete entry" onclick="deleteNote(event, '${esc(taskId)}', '${noteTs}')">×</button></div>`;
+    }
+    const authorLine = n.author ? `<div class="note-ts" style="margin-bottom:2px;color:var(--carbon);font-style:normal;font-weight:600">${esc(n.author)}</div>` : '';
+    return `<div class="note-item" data-note-ts="${noteTs}">${authorLine}<div class="note-text">${esc(n.text)}</div><div class="note-ts">${ts}</div><button class="note-delete-btn" title="Delete note" onclick="deleteNote(event, '${esc(taskId)}', '${noteTs}')">×</button></div>`;
+  }).join('');
+}
+
+async function deleteNote(e, taskId, noteTs) {
+  e.stopPropagation();
+  if (!confirm('Delete this note?')) return;
+  const author = getCurrentUser();
+  try {
+    await TM.deleteNote(taskId, noteTs, author);
+    await reloadNotes(taskId);
+  } catch(err) {
+    alert('Failed to delete note: ' + err.message);
+  }
+}
+
+async function submitNote(e, taskId) {
+  e.preventDefault();
+  const input  = document.getElementById('note-input');
+  const btn    = document.getElementById('note-btn');
+  const ok     = document.getElementById('note-ok');
+  const text   = input.value.trim();
+  if (!text) return;
+  btn.disabled = true;
+  ok.style.display = 'none';
+  const author = getCurrentUser();
+  try {
+    await TM.appendNote(taskId, text, author, 'note');
+    input.value = '';
+    ok.style.display = 'inline';
+    // Reload notes from server
+    const task = await TM.getTask(taskId);
+    if (task) {
+      const list = document.getElementById('notes-list');
+      if (list) list.innerHTML = renderNotes(task.notes || [], taskId);
+    }
+    setTimeout(() => { ok.style.display = 'none'; }, 3000);
+  } catch(err) {
+    alert('Failed to save note: ' + err.message);
+  }
+  btn.disabled = false;
+}
+
+// ===== Identity helpers =====
+const OWNER_NAMES = {
+  'mpd':'Mark','kevin':'Kevin','will':'Will','andrew':'Andrew',
+  'ned':'Ned','miho':'Miho','eddie':'Eddie','eli':'Eli',
+  'albert':'Albert','mariz':'Mariz','rebecca':'Rebecca','cz':'Chris','ryan':'Ryan',
+};
+const OWNER_SLUGS = ['mpd','kevin','will','andrew','ned','miho','eddie','eli','albert','mariz','rebecca','cz','ryan'];
+
+function getCurrentUser() {
+  // Priority: URL ?person= param, then localStorage
+  const params = new URLSearchParams(window.location.search);
+  const p = params.get('person');
+  if (p && OWNER_SLUGS.includes(p)) return OWNER_NAMES[p] || p;
+  const stored = localStorage.getItem('taskManagerUser');
+  if (stored && OWNER_SLUGS.includes(stored)) return OWNER_NAMES[stored] || stored;
+  return '';
+}
+
+function setCurrentUser(slug) {
+  if (slug) localStorage.setItem('taskManagerUser', slug);
+  else localStorage.removeItem('taskManagerUser');
+  // Re-render identity row label
+  const label = document.getElementById('identity-label');
+  if (label) label.textContent = slug ? (OWNER_NAMES[slug] || slug) : 'Anonymous';
+}
+
+function getIdentitySlug() {
+  const params = new URLSearchParams(window.location.search);
+  const p = params.get('person');
+  if (p && OWNER_SLUGS.includes(p)) return p;
+  return localStorage.getItem('taskManagerUser') || '';
+}
+
+// ===== Reload notes helper =====
+async function reloadNotes(taskId) {
+  const task = await TM.getTask(taskId);
+  if (task) {
+    const list = document.getElementById('notes-list');
+    if (list) list.innerHTML = renderNotes(task.notes || [], taskId);
+  }
+}
+
+// ===== Inline title editing =====
+document.addEventListener('change', async function(e) {
+  const el = e.target;
+  if (!el.classList.contains('editable-title')) return;
+  const id = el.dataset.taskId;
+  const value = el.value.trim();
+  if (!value) { el.value = el.dataset.original; return; }
+  if (value === el.dataset.original) return;
+  el.classList.add('saving');
+  const author = getCurrentUser();
+  try {
+    await TM.saveField(id, 'title', value, author);
+    el.dataset.original = value;
+    document.title = value + ' · Ascend Task Manager';
+    if (author) reloadNotes(id);
+  } catch(err) {
+    alert('Failed to save title: ' + err.message);
+    el.value = el.dataset.original;
+  }
+  el.classList.remove('saving');
+});
+
+// ===== Inline next-step editing =====
+document.addEventListener('click', function(e) {
+  const display = e.target.closest('#editable-next-display');
+  if (!display) return;
+  const edit    = document.getElementById('editable-next-edit');
+  const saveRow = document.getElementById('next-save-row');
+  if (!edit || !saveRow) return;
+  display.style.display = 'none';
+  edit.style.display = 'block';
+  saveRow.style.display = 'flex';
+  edit.focus();
+  const len = edit.value.length;
+  edit.setSelectionRange(len, len);
+});
+
+function cancelNextStep() {
+  const display = document.getElementById('editable-next-display');
+  const edit    = document.getElementById('editable-next-edit');
+  const saveRow = document.getElementById('next-save-row');
+  if (!display || !edit || !saveRow) return;
+  edit.style.display = 'none';
+  saveRow.style.display = 'none';
+  display.style.display = '';
+}
+
+async function saveNextStep(taskId) {
+  const display = document.getElementById('editable-next-display');
+  const edit    = document.getElementById('editable-next-edit');
+  const saveRow = document.getElementById('next-save-row');
+  const status  = document.getElementById('next-save-status');
+  const saveBtn = saveRow.querySelector('.desc-save-btn');
+  const value   = edit.value.trim();
+  const author  = getCurrentUser();
+  saveBtn.disabled = true;
+  status.style.display = 'none';
+  try {
+    await TM.saveField(taskId, 'next_step', value, author);
+    display.textContent = value || 'Click to add a next step…';
+    display.classList.toggle('empty', !value);
+    status.style.display = 'inline';
+    if (author) reloadNotes(taskId);
+    setTimeout(() => { status.style.display = 'none'; cancelNextStep(); }, 1200);
+  } catch(err) {
+    alert('Failed to save next step: ' + err.message);
+  }
+  saveBtn.disabled = false;
+}
+
+// ===== Inline description editing =====
+document.addEventListener('click', function(e) {
+  const display = e.target.closest('#editable-desc-display');
+  if (!display) return;
+  const wrap = document.getElementById('editable-desc-wrap');
+  const edit  = document.getElementById('editable-desc-edit');
+  if (!wrap || !edit) return;
+  wrap.classList.add('editing');
+  display.style.display = 'none';
+  edit.style.display = 'block';
+  edit.focus();
+  // Place cursor at end
+  const len = edit.value.length;
+  edit.setSelectionRange(len, len);
+});
+
+function cancelDesc() {
+  const wrap    = document.getElementById('editable-desc-wrap');
+  const display = document.getElementById('editable-desc-display');
+  const edit    = document.getElementById('editable-desc-edit');
+  if (!wrap || !display || !edit) return;
+  edit.style.display = 'none';
+  display.style.display = '';
+  wrap.classList.remove('editing');
+}
+
+async function saveDesc(taskId) {
+  const wrap    = document.getElementById('editable-desc-wrap');
+  const display = document.getElementById('editable-desc-display');
+  const edit    = document.getElementById('editable-desc-edit');
+  const status  = document.getElementById('desc-save-status');
+  const saveBtn = wrap.querySelector('.desc-save-btn');
+  const value   = edit.value.trim();
+  const author  = getCurrentUser();
+  saveBtn.disabled = true;
+  status.style.display = 'none';
+  try {
+    await TM.saveField(taskId, 'overview', value, author);
+    // Update display
+    display.textContent = value || 'Click to add a description…';
+    display.classList.toggle('empty', !value);
+    status.style.display = 'inline';
+    if (author) reloadNotes(taskId);
+    setTimeout(() => {
+      status.style.display = 'none';
+      cancelDesc();
+    }, 1200);
+  } catch(err) {
+    alert('Failed to save description: ' + err.message);
+    saveBtn.disabled = false;
+  }
+  saveBtn.disabled = false;
+}
+
+// ===== KV field helpers =====
+// These lists must match the ones on the board page (/protocols/index.html).
+// They were a separate hardcoded copy \u2014 that is how Newman survived here after
+// being removed elsewhere \u2014 so they are now sorted at render time and carry
+// the same entries. Change both files together.
+const KV_OWNER_NAMES = { mpd:'Mark', cz:'Chris', kevin:'Kevin', will:'Will', andrew:'Andrew', ned:'Ned', miho:'Miho', eddie:'Eddie', eli:'Eli', albert:'Albert', mariz:'Mariz', rebecca:'Rebecca', ryan:'Ryan', alec:'Alec' };
+const KV_OWNER_SLUGS = ['','mpd','cz','kevin','will','andrew','ned','miho','eddie','eli','albert','mariz','rebecca','ryan','alec'];
+const KV_FAMILY_OPTIONS = ['','Davis','Escher Trust','Grojean','Guagenti','Hsu','Idriss','Katz','KT Ventures','Levine','Prosor','Shalev','Sukhatme','Tsenter','Zybin'];
+const KV_FUNCTION_OPTIONS = ['','Compliance','HR','Investment','Long Term','Member Success','Operations'];
+const KV_QUADRANTS = [
+  { v:'',    label:'\u2014 None' },
+  { v:'iu',  label:'Important & urgent' },
+  { v:'inu', label:'Important, not urgent' },
+  { v:'uni', label:'Urgent, not important' },
+  { v:'nn',  label:'Neither' },
+];
+const KV_RECURRENCES = [
+  { v:'none',      label:'Does not repeat' },
+  { v:'daily',     label:'Daily' },
+  { v:'weekly',    label:'Weekly' },
+  { v:'biweekly',  label:'Every 2 weeks' },
+  { v:'monthly',   label:'Monthly' },
+  { v:'quarterly', label:'Quarterly' },
+  { v:'annually',  label:'Annually' },
+];
+
+// Blank stays pinned first as the placeholder; the rest sort A\u2192Z.
+function kvSortOptions(list) {
+  return list.filter(v => !v).concat(
+    list.filter(Boolean).sort((a, b) => String(a).localeCompare(String(b), undefined, { sensitivity: 'base' })));
+}
+function kvSortOwners(list) {
+  return list.filter(v => !v).concat(
+    list.filter(Boolean).sort((a, b) =>
+      String(KV_OWNER_NAMES[a] || a).localeCompare(String(KV_OWNER_NAMES[b] || b), undefined, { sensitivity: 'base' })));
+}
+
+function kvSelect(task, field, opts) {
+  return `<select class="kv-select" data-task-id="${esc(task.id)}" data-field="${esc(field)}" onchange="updateTaskFieldKV(this)">${opts}</select>`;
+}
+
+function ownerSelectHTML(task) {
+  const cur = task.assigned_to || '';
+  const opts = kvSortOwners(KV_OWNER_SLUGS).map(v =>
+    `<option value="${esc(v)}" ${v === cur ? 'selected' : ''}>${v ? (KV_OWNER_NAMES[v] || v) : '\u2014 Unassigned'}</option>`
+  ).join('');
+  return kvSelect(task, 'assigned_to', opts);
+}
+
+function coOwnerSelectHTML(task) {
+  const cur = task.co_owner || '';
+  const opts = kvSortOwners(KV_OWNER_SLUGS).map(v =>
+    `<option value="${esc(v)}" ${v === cur ? 'selected' : ''}>${v ? (KV_OWNER_NAMES[v] || v) : '\u2014 None'}</option>`
+  ).join('');
+  return kvSelect(task, 'co_owner', opts);
+}
+
+function familySelectHTML(task) {
+  const cur = task.family || '';
+  const opts = kvSortOptions(KV_FAMILY_OPTIONS).map(v =>
+    `<option value="${esc(v)}" ${v === cur ? 'selected' : ''}>${v || '\u2014 None'}</option>`
+  ).join('');
+  return kvSelect(task, 'family', opts);
+}
+
+function functionSelectHTML(task) {
+  const cur = task.function || '';
+  const opts = kvSortOptions(KV_FUNCTION_OPTIONS).map(v =>
+    `<option value="${esc(v)}" ${v === cur ? 'selected' : ''}>${v || '\u2014 None'}</option>`
+  ).join('');
+  return kvSelect(task, 'function', opts);
+}
+
+function quadrantSelectHTML(task) {
+  const cur = task.quadrant || '';
+  const opts = KV_QUADRANTS.map(q =>
+    `<option value="${esc(q.v)}" ${q.v === cur ? 'selected' : ''}>${esc(q.label)}</option>`
+  ).join('');
+  return kvSelect(task, 'quadrant', opts);
+}
+
+function recurrenceSelectHTML(task) {
+  const cur = task.recurrence || 'none';
+  const opts = KV_RECURRENCES.map(r =>
+    `<option value="${esc(r.v)}" ${r.v === cur ? 'selected' : ''}>${esc(r.label)}</option>`
+  ).join('');
+  return kvSelect(task, 'recurrence', opts);
+}
+
+function formatKVDate(dateStr) {
+  if (!dateStr) return '\u2014';
+  const p = dateStr.split('-');
+  if (p.length !== 3) return dateStr;
+  return p[1] + '/' + p[2] + '/' + p[0].slice(2);
+}
+
+function kvDueDateHTML(task) {
+  const val = task.due_date || '';
+  return `<input type="date" class="kv-due-input" id="kv-due-input" data-task-id="${esc(task.id)}" value="${esc(val)}" onchange="updateDueDateKV(this)">`;
+}
+
+async function updateTaskFieldKV(select) {
+  const id    = select.dataset.taskId;
+  const field = select.dataset.field;
+  const value = select.value;
+  const author = getCurrentUser();
+  select.disabled = true;
+  try {
+    await TM.saveField(id, field, value, author);
+    if (author) reloadNotes(id);
+  } catch(e) {
+    alert('Failed to update: ' + e.message);
+  }
+  select.disabled = false;
+}
+
+async function updateDueDateKV(input) {
+  const id    = input.dataset.taskId;
+  const value = input.value;
+  const author = getCurrentUser();
+  input.disabled = true;
+  try {
+    await TM.saveField(id, 'due_date', value, author);
+    // label span removed — input itself shows the value
+    if (author) reloadNotes(id);
+  } catch(e) {
+    alert('Failed to update due date: ' + e.message);
+  }
+  input.disabled = false;
+}
+
+async function updateTaskStatus(select) {
+  const id     = select.dataset.taskId;
+  const value  = select.value;
+  const author = getCurrentUser();
+  select.disabled = true;
+  try {
+    await TM.saveField(id, 'status', value, author);
+    // Update both dropdowns' colour class to reflect new status
+    const newClass = 'status-' + value.replace('_','-');
+    ['task-status-select','task-status-select-kv'].forEach(elId => {
+      const el = document.getElementById(elId);
+      if (!el) return;
+      el.className = el.className.replace(/status-\S+/, newClass);
+      el.value = value;
+    });
+    if (author) reloadNotes(id);
+    // Completing a repeating task queues the next occurrence — same rule as
+    // the board page, so it does not matter where you tick it off.
+    await maybeSpawnRecurrence(id, value, author);
+  } catch(e) {
+    alert('Failed to update status: ' + e.message);
+  }
+  select.disabled = false;
+}
+
+const DONE_STATUSES = ['done', 'completed', 'archived'];
+const RECUR_STEPS = { daily:{days:1}, weekly:{days:7}, biweekly:{days:14}, monthly:{months:1}, quarterly:{months:3}, annually:{months:12} };
+
+function todayISO() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+// Month steps clamp to the end of the target month (31 Jan + 1 month → 28/29 Feb).
+function nextDueDate(iso, recurV) {
+  const r = RECUR_STEPS[recurV];
+  if (!r) return null;
+  const base = (iso && !isNaN(Date.parse(iso))) ? new Date(iso + 'T00:00:00Z') : new Date(todayISO() + 'T00:00:00Z');
+  if (r.days) { base.setUTCDate(base.getUTCDate() + r.days); return base.toISOString().slice(0,10); }
+  const day = base.getUTCDate();
+  const target = new Date(Date.UTC(base.getUTCFullYear(), base.getUTCMonth() + r.months, 1));
+  const lastDay = new Date(Date.UTC(target.getUTCFullYear(), target.getUTCMonth()+1, 0)).getUTCDate();
+  target.setUTCDate(Math.min(day, lastDay));
+  return target.toISOString().slice(0,10);
+}
+
+async function maybeSpawnRecurrence(id, newStatus, author) {
+  if (!DONE_STATUSES.includes(newStatus)) return;
+  const task = await TM.getTask(id);
+  if (!task || !task.recurrence || task.recurrence === 'none') return;
+  const base = (task.title || 'task').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40) || 'task';
+  const row = {
+    id: base + '-' + Math.random().toString(16).slice(2,8),
+    title: task.title, overview: task.overview || '', next_step: task.next_step || '',
+    priority: task.priority || 'medium', status: 'open',
+    function: task.function || '', family: task.family || '',
+    assigned_to: task.assigned_to || '', co_owner: task.co_owner || '',
+    quadrant: task.quadrant || '', recurrence: task.recurrence,
+    recurrence_parent_id: task.id,
+    due_date: nextDueDate(task.due_date, task.recurrence),
+    created_by: author || '', created_at: todayISO(),
+    notes: [{ ts: todayISO(), text: 'Created automatically — repeats ' + task.recurrence, author: author || '', type: 'edit_log' }],
+  };
+  try {
+    await TM._sb('', { method: 'POST', body: JSON.stringify(row) });
+  } catch (e) {
+    console.error('Could not create the next occurrence:', e);
+    alert('Status saved, but the next occurrence could not be created: ' + e.message);
+  }
+}
+
+async function load() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  if (!id) {
+    document.getElementById('page').innerHTML = `<div class="no-data">No task specified. <a href="/protocols/">← Back</a></div>`;
+    return;
+  }
+  try {
+    const task = await TM.getTask(id);
+    if (!task || task.status === 'deleted') {
+      document.getElementById('page').innerHTML = `<div class="no-data">Task not found. <a href="/protocols/">← Back</a></div>`;
+      return;
+    }
+    render(task);
+  } catch(e) {
+    document.getElementById('page').innerHTML = `<div class="no-data">Failed to load: ${esc(e.message)}. <a href="/protocols/">← Back</a></div>`;
+  }
+}
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', load);
+else load();
+
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  const btn = document.getElementById('themeToggle');
+  if (btn) btn.textContent = t === 'dark' ? 'Light mode' : 'Dark mode';
+  localStorage.setItem('taskManagerTheme', t);
+}
+function toggleTheme() { applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
+applyTheme(localStorage.getItem('taskManagerTheme') || 'dark');
+</script>
+</body>
+</html>

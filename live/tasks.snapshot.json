@@ -1,0 +1,3899 @@
+{
+    "generated_at_iso": "2026-08-14",
+    "tasks": [
+        {
+            "id": "athena-billing-tool-b5255e",
+            "title": "Athena Billing Tool",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-17",
+            "overview": "",
+            "next_step": "Ping AP and AB on Monday 8/17",
+            "created_at": "2026-08-14",
+            "notes": [
+                {
+                    "ts": "2026-08-14",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "revise-mpd-may-invoice-87b0de",
+            "title": "Revise MPD May Invoice",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "Davis",
+            "function": "Operations",
+            "due_date": "2026-08-19",
+            "overview": "",
+            "next_step": "Revise once July goes out",
+            "created_at": "2026-08-14",
+            "notes": [
+                {
+                    "ts": "2026-08-14",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "zybin-public-data-d11024",
+            "title": "Zybin public data",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": null,
+            "created_by_raw": null,
+            "family": "Zybin",
+            "function": "",
+            "due_date": null,
+            "overview": "Zybin public data",
+            "next_step": "Complete this task and update the task manager with status/notes.",
+            "created_at": "2026-08-14",
+            "notes": []
+        },
+        {
+            "id": "instructions-for-capital-call-distribution-combine-ccb33a",
+            "title": "Instructions for capital call & distribution (combined) ingest",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": null,
+            "created_by_raw": null,
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "Instructions for capital call & distribution (combined) ingest",
+            "next_step": "Complete this task and update the task manager with status/notes.",
+            "created_at": "2026-08-14",
+            "notes": []
+        },
+        {
+            "id": "historical-data-compilation-for-funds-with-capital-c90edd",
+            "title": "Historical data compilation for funds with capital call & Distribution in one notice",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": null,
+            "created_by_raw": null,
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "Historical data compilation for funds with capital call & Distribution in one notice",
+            "next_step": "Complete this task and update the task manager with status/notes.",
+            "created_at": "2026-08-14",
+            "notes": []
+        },
+        {
+            "id": "investment-updates-ingest-for-july-2026-c58854",
+            "title": "investment updates ingest for July 2026",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": null,
+            "created_by_raw": null,
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "investment updates ingest for July 2026",
+            "next_step": "Complete this task and update the task manager with status/notes.",
+            "created_at": "2026-08-14",
+            "notes": []
+        },
+        {
+            "id": "distributions-docs-compilation-with-recallable-dis-c2127e",
+            "title": "distributions docs compilation (with recallable distributions)",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": null,
+            "created_by_raw": null,
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "distributions docs compilation (with recallable distributions)",
+            "next_step": "Complete this task and update the task manager with status/notes.",
+            "created_at": "2026-08-14",
+            "notes": []
+        },
+        {
+            "id": "k1-refresh-mid-august-f35abb",
+            "title": "K1 Refresh Mid-August",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "",
+            "due_date": "2026-08-21",
+            "overview": "",
+            "next_step": "Call booked for Mon 8/17",
+            "created_at": "2026-08-11",
+            "notes": [
+                {
+                    "ts": "2026-08-11",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T18:53:19+00:00",
+                    "text": "Andrew updated next step to: \"Call booked for Mon 8/17\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "investment-update-protocols-2dc690",
+            "title": "Investment Update Protocols",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "rebecca",
+            "assigned_to_raw": "rebecca",
+            "created_by": null,
+            "created_by_raw": null,
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "Create or update Investment Update Protocols.",
+            "next_step": "Draft the protocol details and publish for review.",
+            "created_at": "2026-08-06",
+            "notes": []
+        },
+        {
+            "id": "astounding-statutory-transfer-interests-to-asii-210de8",
+            "title": "Astounding Statutory - Transfer Interests to ASII",
+            "status": "in_progress",
+            "priority": "medium",
+            "assigned_to": "rebecca",
+            "assigned_to_raw": "rebecca",
+            "created_by": null,
+            "created_by_raw": null,
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "Astounding Statutory - Transfer Interests to ASII",
+            "next_step": "Transfer interests to ASII.",
+            "created_at": "2026-08-05",
+            "notes": [
+                {
+                    "ts": "2026-08-05T18:32:18+00:00",
+                    "text": "Rebecca changed status from open to in_progress",
+                    "author": "Rebecca",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "ingestion-issue-on-reading-documents-revise-prompt-eebc5b",
+            "title": "Ingestion issue on reading documents - revise prompt",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": "mariz",
+            "created_by_raw": "mariz",
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "",
+            "next_step": "",
+            "created_at": "2026-07-31",
+            "notes": [
+                {
+                    "ts": "2026-07-31",
+                    "text": "Mariz created this task",
+                    "author": "mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "new-terranova-investment-e29c70",
+            "title": "New Terranova Investment",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "albert",
+            "assigned_to_raw": "albert",
+            "created_by": "albert",
+            "created_by_raw": "albert",
+            "family": "Davis",
+            "function": "Operations",
+            "due_date": "2026-08-03",
+            "overview": "50K angel investment in Terranova from Descendant Capital",
+            "next_step": "Update tracker, insert new record in Athena",
+            "created_at": "2026-07-31",
+            "notes": [
+                {
+                    "ts": "2026-07-31",
+                    "text": "Albert created this task",
+                    "author": "albert",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T20:30:57+00:00",
+                    "text": "Albert changed function from (none) to Operations",
+                    "author": "Albert",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "ingestion-testing-with-abhi-263ee5",
+            "title": "Ingestion Testing with Abhi",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": "mariz",
+            "created_by_raw": "mariz",
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "Check Investment Updates quality",
+            "next_step": "",
+            "created_at": "2026-07-31",
+            "notes": [
+                {
+                    "ts": "2026-07-31",
+                    "text": "Mariz created this task",
+                    "author": "mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "carta-certificate-for-mura-membership-unit-b2f406",
+            "title": "Carta Certificate for Mura (Membership Unit)",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "albert",
+            "assigned_to_raw": "albert",
+            "created_by": "albert",
+            "created_by_raw": "albert",
+            "family": "Davis",
+            "function": "Operations",
+            "due_date": "2026-08-03",
+            "overview": "Membership Unit from ServiceTrade TopCo LLC",
+            "next_step": "Review carta certificate and inform Mark to sign if ok",
+            "created_at": "2026-07-31",
+            "notes": [
+                {
+                    "ts": "2026-07-31",
+                    "text": "Albert created this task",
+                    "author": "albert",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "distributions-protocol-f2770b",
+            "title": "Distributions Protocol",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": "mariz",
+            "created_by_raw": "mariz",
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "Build an email protocol for distributions where I can just feed the distribution docs then itll spit out a summary thruout the years",
+            "next_step": "",
+            "created_at": "2026-07-31",
+            "notes": [
+                {
+                    "ts": "2026-07-31",
+                    "text": "Mariz created this task",
+                    "author": "mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "soundcore-special-contribution-adjustments-ae3b88",
+            "title": "Soundcore Special Contribution Adjustments",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "albert",
+            "assigned_to_raw": "albert",
+            "created_by": "albert",
+            "created_by_raw": "albert",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-03",
+            "overview": "Review LP Capital Activity Report from Soundcore Team",
+            "next_step": "Confirm actual adjusted total contributed capital for each investor",
+            "created_at": "2026-07-31",
+            "notes": [
+                {
+                    "ts": "2026-07-31",
+                    "text": "Albert created this task",
+                    "author": "albert",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "disaggregation-of-public-holdings-from-brokerage-191917",
+            "title": "Disaggregation of Public Holdings from Brokerage",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "Eddie",
+            "created_by": "albert",
+            "created_by_raw": "albert",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-14",
+            "overview": "Unrolling of account level records for Davis / Levine / Hsu",
+            "next_step": "Request for Access / Copy of Statements",
+            "created_at": "2026-07-31",
+            "notes": [
+                {
+                    "ts": "2026-07-31",
+                    "text": "Albert created this task",
+                    "author": "albert",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T20:33:02+00:00",
+                    "text": "Albert changed owner from Albert to Eddie",
+                    "author": "Albert",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "ingestion-tool-build-out-ad1298",
+            "title": "Ingestion Tool Build Out",
+            "status": "in_progress",
+            "priority": "high",
+            "assigned_to": "albert",
+            "assigned_to_raw": "albert",
+            "created_by": "albert",
+            "created_by_raw": "albert",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-03",
+            "overview": "Athena V2 Ingestion Tool c/o Abhi",
+            "next_step": "Dry Run July PCAP Statements",
+            "created_at": "2026-07-31",
+            "notes": [
+                {
+                    "ts": "2026-07-31",
+                    "text": "Albert created this task",
+                    "author": "albert",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T20:23:45+00:00",
+                    "text": "Albert changed status from open to in_progress",
+                    "author": "Albert",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "july-data-ingestion-files-00170b",
+            "title": "July Data Ingestion Files",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": "mariz",
+            "created_by_raw": "mariz",
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "Collection of files",
+            "next_step": "",
+            "created_at": "2026-07-31",
+            "notes": [
+                {
+                    "ts": "2026-07-31",
+                    "text": "Mariz created this task",
+                    "author": "mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "athena-july-data-ingestion-523a8f",
+            "title": "Athena July Data Ingestion",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "albert",
+            "assigned_to_raw": "albert",
+            "created_by": "albert",
+            "created_by_raw": "albert",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-07",
+            "overview": "July Data Ingestion to Athena v2",
+            "next_step": "Alts PCAP Compilation and Parsing",
+            "created_at": "2026-07-31",
+            "notes": [
+                {
+                    "ts": "2026-07-31",
+                    "text": "Albert created this task",
+                    "author": "albert",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "hypercard-distribution-7e745f",
+            "title": "Hypercard Distribution",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "albert",
+            "assigned_to_raw": "albert",
+            "created_by": "albert",
+            "created_by_raw": "albert",
+            "family": "Davis",
+            "function": "Operations",
+            "due_date": "2026-08-03",
+            "overview": "Confirm bank details receiving the funds. No access to SRS Portal.",
+            "next_step": "Ask EK to confirm with MPD",
+            "created_at": "2026-07-31",
+            "notes": [
+                {
+                    "ts": "2026-07-31",
+                    "text": "Albert created this task",
+                    "author": "albert",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "ingestion-audit-for-katz-55f5d9",
+            "title": "Ingestion Audit for Katz",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": "mariz",
+            "created_by_raw": "mariz",
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "",
+            "next_step": "",
+            "created_at": "2026-07-31",
+            "notes": [
+                {
+                    "ts": "2026-07-31",
+                    "text": "Mariz created this task",
+                    "author": "mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "ingestion-audit-427168",
+            "title": "Ingestion Audit",
+            "status": "in_progress",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": "mariz",
+            "created_by_raw": "mariz",
+            "family": "Hsu",
+            "function": "",
+            "due_date": "2026-07-31",
+            "overview": "Auditing details and values we have per family",
+            "next_step": "",
+            "created_at": "2026-07-31",
+            "notes": [
+                {
+                    "ts": "2026-07-31",
+                    "text": "Mariz created this task",
+                    "author": "mariz",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T19:54:35+00:00",
+                    "text": "Mariz changed status from open to in_progress",
+                    "author": "Mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "investment-updates-ingestion-5ca3ac",
+            "title": "Investment Updates Ingestion",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": "mariz",
+            "created_by_raw": "mariz",
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "Fix reading issues of claude especially if it's tables or photos",
+            "next_step": "",
+            "created_at": "2026-07-31",
+            "notes": [
+                {
+                    "ts": "2026-07-31",
+                    "text": "Mariz created this task",
+                    "author": "mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "distributions-summary-emails-57c89d",
+            "title": "Distributions Summary Emails",
+            "status": "in_progress",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": "mariz",
+            "created_by_raw": "mariz",
+            "family": "",
+            "function": "",
+            "due_date": "2026-07-31",
+            "overview": "Send out summary emails with context to families (special emails for sundial, leonid, crusoe)",
+            "next_step": "Checking of accounts if distributions were received to those we have access to",
+            "created_at": "2026-07-31",
+            "notes": [
+                {
+                    "ts": "2026-07-31",
+                    "text": "Mariz created this task",
+                    "author": "mariz",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T16:38:03+00:00",
+                    "text": "Mariz updated next step to: \"Checking of accounts if distributions were received to those we have access to\"",
+                    "author": "Mariz",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T16:39:00+00:00",
+                    "text": "Mariz updated description to: \"Send out summary emails with context to families (special emails for sundial, leonid, crusoe)\"",
+                    "author": "Mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "deep-enrichment-of-historical-go-forward-athena-2--7e4727",
+            "title": "Deep Enrichment of Historical/Go Forward Athena 2 Data",
+            "status": "open",
+            "priority": "low",
+            "assigned_to": "eli",
+            "assigned_to_raw": "eli",
+            "created_by": "eli",
+            "created_by_raw": "eli",
+            "family": "",
+            "function": "Member Success",
+            "due_date": "2026-08-28",
+            "overview": "",
+            "next_step": "",
+            "created_at": "2026-07-29",
+            "notes": [
+                {
+                    "ts": "2026-07-29",
+                    "text": "Eli created this task",
+                    "author": "eli",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "feed-ivy-think-day-notes-to-improve-pillars-f5ae4e",
+            "title": "Feed Ivy Think Day Notes to Improve Pillars",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "eli",
+            "assigned_to_raw": "eli",
+            "created_by": "eli",
+            "created_by_raw": "eli",
+            "family": "",
+            "function": "",
+            "due_date": "2026-08-07",
+            "overview": "",
+            "next_step": "",
+            "created_at": "2026-07-29",
+            "notes": [
+                {
+                    "ts": "2026-07-29",
+                    "text": "Eli created this task",
+                    "author": "eli",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "tembo-sub-docs-2a02f8",
+            "title": "Tembo Sub Docs",
+            "status": "in_progress",
+            "priority": "medium",
+            "assigned_to": "rebecca",
+            "assigned_to_raw": "rebecca",
+            "created_by": null,
+            "created_by_raw": null,
+            "family": "",
+            "function": "Member Success",
+            "due_date": null,
+            "overview": "Rebecca asked Ivy to add this to the task tracker on 2026-07-28.",
+            "next_step": "Complete the Tembo subscription documents.",
+            "created_at": "2026-07-28",
+            "notes": [
+                {
+                    "ts": "2026-08-05T18:32:14+00:00",
+                    "text": "Rebecca changed status from open to in_progress",
+                    "author": "Rebecca",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "al-artea-transfer-docs-265ace",
+            "title": "AL Artea Transfer Docs",
+            "status": "in_progress",
+            "priority": "medium",
+            "assigned_to": "rebecca",
+            "assigned_to_raw": "rebecca",
+            "created_by": null,
+            "created_by_raw": null,
+            "family": "",
+            "function": "Member Success",
+            "due_date": "2026-07-31",
+            "overview": "Rebecca asked Ivy to add this to the task tracker on 2026-07-28.",
+            "next_step": "Complete the AL Artea transfer documents.",
+            "created_at": "2026-07-28",
+            "notes": [
+                {
+                    "ts": "2026-08-05T18:32:23+00:00",
+                    "text": "Rebecca changed status from open to in_progress",
+                    "author": "Rebecca",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "review-ai-compliance-governance-document-22d0a7",
+            "title": "Review AI Compliance Governance Document",
+            "status": "completed",
+            "priority": "medium",
+            "assigned_to": "rebecca",
+            "assigned_to_raw": "rebecca",
+            "created_by": null,
+            "created_by_raw": null,
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-07-31",
+            "overview": "Rebecca asked Ivy to add this to the task tracker on 2026-07-28.",
+            "next_step": "Review the AI Compliance Governance Document.",
+            "created_at": "2026-07-28",
+            "notes": [
+                {
+                    "ts": "2026-07-31T18:24:06+00:00",
+                    "text": "Rebecca changed status from open to completed",
+                    "author": "Rebecca",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "investment-updates-re-run-for-march-to-june-2026-f65e31",
+            "title": "Investment Updates re-run for March to June 2026",
+            "status": "completed",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": null,
+            "created_by_raw": null,
+            "family": "",
+            "function": "",
+            "due_date": "2026-07-28",
+            "overview": "Re-run Investment Updates for March through June 2026.",
+            "next_step": "Re-run Investment Updates for March through June 2026.",
+            "created_at": "2026-07-28",
+            "notes": [
+                {
+                    "ts": "2026-07-31T16:34:23+00:00",
+                    "text": "Mariz changed status from open to completed",
+                    "author": "Mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "income-versus-expenses-7cb03c",
+            "title": "Income versus expenses",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "mpd",
+            "assigned_to_raw": "Mark",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "Davis",
+            "function": "Member Success",
+            "due_date": "2026-07-29",
+            "overview": "Personal investment income compared to personal expenses \nDistributions he's been receiving from cash management \nOf the money he has today - what is generating income \nHousehold expenses (sources & uses sheet) \nInterplay related income compares to Efinia expenses - \nIncome generated by bowery, chelsea, etc (SnU) - guaranteed distributions\nBusiness expenses (from andrew)",
+            "next_step": "Review",
+            "created_at": "2026-07-28",
+            "notes": [
+                {
+                    "ts": "2026-07-28",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-28T13:30:27+00:00",
+                    "text": "Ryan changed family from (none) to Davis",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-28T17:07:49+00:00",
+                    "text": "hahah",
+                    "type": "note",
+                    "author": "Ryan"
+                }
+            ]
+        },
+        {
+            "id": "nps-survey-follow-up-6c97e7",
+            "title": "NPS Survey follow up",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "ryan",
+            "assigned_to_raw": "ryan",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "",
+            "function": "Member Success",
+            "due_date": "2026-08-07",
+            "overview": "digest learnings and next steps",
+            "next_step": "Ryan to chat with Chris",
+            "created_at": "2026-07-28",
+            "notes": [
+                {
+                    "ts": "2026-07-28",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "directive-letter-ef1654",
+            "title": "Directive Letter",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "ryan",
+            "assigned_to_raw": "ryan",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "Davis",
+            "function": "",
+            "due_date": "2026-08-07",
+            "overview": "",
+            "next_step": "",
+            "created_at": "2026-07-28",
+            "notes": [
+                {
+                    "ts": "2026-07-28",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "directive-letter-template-841efd",
+            "title": "Directive letter (template)",
+            "status": "open",
+            "priority": "low",
+            "assigned_to": "ryan",
+            "assigned_to_raw": "ryan",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "Hsu",
+            "function": "Member Success",
+            "due_date": "2026-08-07",
+            "overview": "",
+            "next_step": "",
+            "created_at": "2026-07-28",
+            "notes": [
+                {
+                    "ts": "2026-07-28",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "transfer-of-existing-investments-to-new-entity-nam-d7b47d",
+            "title": "Transfer of existing investments to new entity name",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "ryan",
+            "assigned_to_raw": "ryan",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "Tsenter",
+            "function": "Member Success",
+            "due_date": "2026-07-31",
+            "overview": "Review docs for anything else that stands out (compare to previous ones)",
+            "next_step": "",
+            "created_at": "2026-07-28",
+            "notes": [
+                {
+                    "ts": "2026-07-28",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-28T01:49:27+00:00",
+                    "text": "Ryan changed function from (none) to Member Success",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-28T01:49:31+00:00",
+                    "text": "Ryan changed family from (none) to Tsenter",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "allocation-for-merryl-accounts-7f3a34",
+            "title": "Allocation for Merryl accounts",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "eddie",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "Guagenti",
+            "function": "Investment",
+            "due_date": "2026-07-31",
+            "overview": "look over holdings and figure out what might be more optimal. Focus more on generating income.",
+            "next_step": "",
+            "created_at": "2026-07-28",
+            "notes": [
+                {
+                    "ts": "2026-07-28",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "task-manager-375185",
+            "title": "Task Manager",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "ryan",
+            "assigned_to_raw": "ryan",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "",
+            "function": "Long Term",
+            "due_date": "2026-07-31",
+            "overview": "Get working task manager",
+            "next_step": "team to send feedback by 7/28 EOD",
+            "created_at": "2026-07-27",
+            "notes": [
+                {
+                    "ts": "2026-07-27",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-27T22:07:02+00:00",
+                    "text": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQhVXGPrFsWLfhQKqXRBTlKtflc",
+                    "type": "note",
+                    "author": "Ryan"
+                },
+                {
+                    "ts": "2026-07-28T01:46:20+00:00",
+                    "text": "Ryan changed function from Member Success to Long Term",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "account-clean-up-f903cb",
+            "title": "Account clean up",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "ryan",
+            "assigned_to_raw": "ryan",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "Davis",
+            "function": "Member Success",
+            "due_date": "2026-08-05",
+            "overview": "",
+            "next_step": "Ryan and Eddie to at what we have and make decisions / recommendations",
+            "created_at": "2026-07-27",
+            "notes": [
+                {
+                    "ts": "2026-07-27",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-27T20:36:52+00:00",
+                    "text": "Ryan updated next step to: \"Ryan and Eddie to at what we have and make decisions / recommendations\"",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "qlac-projection-b80167",
+            "title": "QLAC Projection",
+            "status": "in_progress",
+            "priority": "medium",
+            "assigned_to": "ryan",
+            "assigned_to_raw": "ryan",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "Levine",
+            "function": "Member Success",
+            "due_date": "2026-08-07",
+            "overview": "Ask for balances, projections to put together a comparison. Has 401k, Roth, IRA. Build out estimated value by the time he retires. what are the task brackets for RMD, what would QLAC do? When do you do it? Are there deadlines to doing it?",
+            "next_step": "Check with Albert - can you give me list of accts that we report on.  (tax-deferred retirement accts)",
+            "created_at": "2026-07-27",
+            "notes": [
+                {
+                    "ts": "2026-07-27",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "projection-of-capital-calls-refresh-b5e607",
+            "title": "Projection of Capital Calls Refresh",
+            "status": "in_progress",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": null,
+            "created_by_raw": null,
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "Refresh the projection of capital calls so the Task Manager tracks this work item.",
+            "next_step": "Refresh the capital call projection and confirm when the updated projection is ready.",
+            "created_at": "2026-07-27",
+            "notes": [
+                {
+                    "ts": "2026-07-31T16:36:31+00:00",
+                    "text": "Mariz changed status from open to in_progress",
+                    "author": "Mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "irr-on-all-alts-performance-gauge-31b80c",
+            "title": "IRR on all alts — performance gauge",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "ryan",
+            "assigned_to_raw": "ryan",
+            "created_by": null,
+            "created_by_raw": null,
+            "family": "Davis",
+            "function": "Member Success",
+            "due_date": "2026-07-28",
+            "overview": "Calculate IRR across all alternative investments as a performance gauge.",
+            "next_step": "Bring up in weekly workflow task tracker meeting on Monday",
+            "created_at": "2026-07-24",
+            "notes": [
+                {
+                    "ts": "2026-07-27T19:30:00+00:00",
+                    "text": "Ryan changed family from (none) to Davis",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-28T01:46:16+00:00",
+                    "text": "Ryan changed function from (none) to Member Success",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "angel-investments-list-incl-exited-count-marketing-f2f528",
+            "title": "Angel investments list (incl. exited) — count + marketing potential",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "ryan",
+            "assigned_to_raw": "ryan",
+            "created_by": null,
+            "created_by_raw": null,
+            "family": "Davis",
+            "function": "Member Success",
+            "due_date": "2026-07-28",
+            "overview": "Compile full list of angel investments including exited ones. Determine total count and assess whether the track record could be used as a marketing asset.",
+            "next_step": "Bring up in weekly workflow task tracker meeting on Monday",
+            "created_at": "2026-07-24",
+            "notes": [
+                {
+                    "ts": "2026-07-27T19:30:11+00:00",
+                    "text": "Ryan changed family from (none) to Davis",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-27T22:47:21+00:00",
+                    "text": "https://docs.google.com/spreadsheets/d/1DhzgXKwM0sYNpEstmAyG-kFuarqqXbJp/edit?gid=1466661631#gid=1466661631\nPW: 01272026",
+                    "type": "note",
+                    "author": "Ryan"
+                },
+                {
+                    "ts": "2026-07-27T22:48:44+00:00",
+                    "text": "https://docs.google.com/spreadsheets/d/1yxVQDjvnQVAmMv6fuxhk7Egp5you-zlp/edit?gid=590487639#gid=590487639 - this is another sheet",
+                    "type": "note",
+                    "author": "Ryan"
+                },
+                {
+                    "ts": "2026-07-28T01:46:10+00:00",
+                    "text": "Ryan changed function from (none) to Long Term",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-28T01:46:15+00:00",
+                    "text": "Ryan changed function from Long Term to Member Success",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-28T13:24:47+00:00",
+                    "text": "consolidated / updated list: https://docs.google.com/spreadsheets/d/1UFzaOsPNGcdf4nxrtOQ0ioh6KofXwsnj/edit?rtpof=true&gid=1159554521#gid=1159554521",
+                    "type": "note",
+                    "author": "Ryan"
+                }
+            ]
+        },
+        {
+            "id": "davis-family-trust-premium-notice-e3093e",
+            "title": "Davis Family Trust Premium Notice",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "ryan",
+            "assigned_to_raw": "ryan",
+            "created_by": null,
+            "created_by_raw": null,
+            "family": "Davis",
+            "function": "Member Success",
+            "due_date": "2026-07-29",
+            "overview": "Premium notice received for Davis Family Trust. Need to confirm the Crummey letter process with Eddie before the premium is due.",
+            "next_step": "Confirm with Eddie on the Crummey process for Davis Family Trust premium notice.",
+            "created_at": "2026-07-24",
+            "notes": [
+                {
+                    "ts": "2026-07-28T01:46:08+00:00",
+                    "text": "Ryan changed function from (none) to Member Success",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "reach-out-to-will-re-design-marketing-refresh-c7a3f2",
+            "title": "Design/marketing materials refresh",
+            "status": "open",
+            "priority": "low",
+            "assigned_to": "ryan",
+            "assigned_to_raw": "ryan",
+            "created_by": "ivy",
+            "created_by_raw": "ivy",
+            "family": "",
+            "function": "Long Term",
+            "due_date": "2026-08-14",
+            "overview": "Andrew flagged a need to refresh the firm's design and marketing materials. Will is the point of contact to coordinate and kick off this project.",
+            "next_step": "Reach out to Will to kick off the design/marketing materials refresh",
+            "created_at": "2026-07-24",
+            "notes": [
+                {
+                    "ts": "2026-07-24",
+                    "text": "Ryan requested this task via Slack. Andrew flagged the need for a design/marketing materials refresh.",
+                    "author": "ivy",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-24T19:16:37+00:00",
+                    "text": "Ryan updated title to: \"design/marketing materials refresh\"",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-24T19:17:41+00:00",
+                    "text": "Ryan changed priority from medium to low",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-24T19:17:44+00:00",
+                    "text": "Ryan changed function from Operations to Member Success",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-24T19:17:48+00:00",
+                    "text": "Ryan changed due date from (none) to 2026-08-14",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-24T19:18:06+00:00",
+                    "text": "Ryan updated title to: \"Design/marketing materials refresh\"",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-27T20:05:57+00:00",
+                    "text": "add Eli / Ryan to slide 7/8. make sure that slide library matches our latest. \n\nour deck: \n- update slide 9/10",
+                    "type": "note",
+                    "author": "Ryan"
+                },
+                {
+                    "ts": "2026-07-28T01:46:29+00:00",
+                    "text": "Ryan changed function from Member Success to Long Term",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "gp-manager-exposure-476343",
+            "title": "GP/Manager Exposure",
+            "status": "archived",
+            "priority": "low",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "1% Alts Adjusted + shift over to an internal Athena",
+            "next_step": "",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-27T19:08:40+00:00",
+                    "text": "Mariz changed family from (none) to Shalev",
+                    "author": "Mariz",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-27T19:08:43+00:00",
+                    "text": "Mariz changed family from Shalev to (none)",
+                    "author": "Mariz",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T16:36:35+00:00",
+                    "text": "Mariz changed status from open to archived",
+                    "author": "Mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "protocols-c41f1d",
+            "title": "Protocols",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-31",
+            "overview": "Tax, phishing simulation, investment updates, investment valuations, etc.",
+            "next_step": "Working with RS/EG on vals + updates, RS/AP on phishing, and MP on tax",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T20:27:29+00:00",
+                    "text": "Andrew changed due date from (none) to 2026-08-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T18:57:41+00:00",
+                    "text": "Andrew updated next step to: \"Working with RS/EG on vals + updates, RS/AP on phishing, and MP on tax\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "athena-reporting-3b75ac",
+            "title": "Athena Reporting",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-31",
+            "overview": "",
+            "next_step": "Coordinate with EG starting on 8/19",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T18:58:47+00:00",
+                    "text": "Andrew changed due date from (none) to 2026-08-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T18:59:05+00:00",
+                    "text": "Andrew updated next step to: \"Coordinate with EG starting on 8/19\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "athena-v2-spot-check-3af76c",
+            "title": "Athena v2 Checks",
+            "status": "completed",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-31",
+            "overview": "",
+            "next_step": "",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-11T14:48:36+00:00",
+                    "text": "Andrew changed status from open to completed",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:14:35+00:00",
+                    "text": "Andrew updated title to: \"Athena v2 Checks\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:14:43+00:00",
+                    "text": "Andrew changed due date from (none) to 2026-08-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "athena-june-data-ingestion-248bb1",
+            "title": "Athena June Data Ingestion",
+            "status": "in_progress",
+            "priority": "high",
+            "assigned_to": "albert",
+            "assigned_to_raw": "albert",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-07-31",
+            "overview": "June Data Ingestion to Athena v2",
+            "next_step": "Run Alts Audit",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T20:14:19+00:00",
+                    "text": "Albert changed due date from 2026-07-24 to 2026-07-31",
+                    "author": "Albert",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T20:14:41+00:00",
+                    "text": "Albert updated description to: \"June Data Ingestion to Athena v2\"",
+                    "author": "Albert",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T20:23:39+00:00",
+                    "text": "Albert changed status from open to in_progress",
+                    "author": "Albert",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T20:25:11+00:00",
+                    "text": "Albert updated next step to: \"Run Alts Audit\"",
+                    "author": "Albert",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "athena-ingestion-tool-project-b919ca",
+            "title": "Athena Ingestion Tool Project",
+            "status": "in_progress",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "",
+            "next_step": "",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T16:36:45+00:00",
+                    "text": "Mariz changed status from open to in_progress",
+                    "author": "Mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "insurance-review-1c4198",
+            "title": "Insurance Review",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "eddie",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "Sukhatme",
+            "function": "",
+            "due_date": null,
+            "overview": "Look into homeowners, umbrella, auto, etc",
+            "next_step": "",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "ryan-onboarding-d33c6b",
+            "title": "Ryan Onboarding",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-18",
+            "overview": "Compliance call + billing call + Mayukh project call",
+            "next_step": "Compliance call booked for week of 8/17",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:16:11+00:00",
+                    "text": "Andrew updated next step to: \"Compliance call booked for week of 8/17\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:18:52+00:00",
+                    "text": "Andrew changed due date from (none) to 2026-08-18",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "website-update-4a86b5",
+            "title": "Website Update",
+            "status": "completed",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "",
+            "due_date": "2026-08-31",
+            "overview": "Update titles, investments (funds + directs)",
+            "next_step": "Check with RH and EK on this",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T19:20:56+00:00",
+                    "text": "Andrew changed status from open to completed",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:19:05+00:00",
+                    "text": "Andrew updated next step to: \"Check with RH and EK on this\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:27:37+00:00",
+                    "text": "Andrew changed due date from (none) to 2026-08-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "invoices-118efc",
+            "title": "Invoices",
+            "status": "completed",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "June invoices out\nRevise MPD May",
+            "next_step": "",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T19:13:49+00:00",
+                    "text": "Andrew updated description to: \"June invoices out\nRevise MPD May\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-11T14:47:50+00:00",
+                    "text": "Andrew changed status from open to completed",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "task-management-platforms-ed9301",
+            "title": "Task Management Platforms",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": null,
+            "overview": "Feedback needed on task manager + Hiver replacement",
+            "next_step": "Call w/ Abhi booked for week of 8/17",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T21:38:21+00:00",
+                    "text": "Andrew updated next step to: \"Ping Abhi\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T21:39:16+00:00",
+                    "text": "a.\tFor Type, can you add compliance and HR\nb.\tCan drop downs (such as family) be sorted A to Z\nc.\tIn family, Newman family exists\nd.\tEscher Trust Family is missing\ne.\tKT Ventures is missing\nf.\tNeed ability to tag another person who is working on it. So owner and co-owner or owner and helper\ng.\tRecurring Tasks\nh.\tSort all fields\ni.\tCan the new Hiver built software communicate with the task tracker\nj.\tMake sure team transitions",
+                    "type": "note",
+                    "author": "Andrew"
+                },
+                {
+                    "ts": "2026-08-14T19:28:05+00:00",
+                    "text": "Andrew updated next step to: \"Book call w/ Abhi\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:28:21+00:00",
+                    "text": "Andrew updated next step to: \"Call w/ Abhi booked for week of 8/17\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:41:13+00:00",
+                    "text": "Add color codes and filter out completed tasks as default",
+                    "type": "note",
+                    "author": "Andrew"
+                }
+            ]
+        },
+        {
+            "id": "ascend-taxes-9a3090",
+            "title": "Ascend Taxes",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-19",
+            "overview": "Sort out open questions",
+            "next_step": "Waiting on feedback from Chelsea  - check back Wed 8/19",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T21:37:06+00:00",
+                    "text": "Andrew updated next step to: \"Email to Chelsea\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T21:37:07+00:00",
+                    "text": "Andrew updated next step to: \"Email to Chelsea\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T21:37:11+00:00",
+                    "text": "Andrew updated description to: \"Sort out open questions\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-11T14:49:15+00:00",
+                    "text": "Andrew changed due date from 2026-08-07 to 2026-08-14",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-11T14:49:40+00:00",
+                    "text": "8/11 - Some answers sent to Nuno's team. Followed up with Chelsea. They will get back to us soon.",
+                    "type": "note",
+                    "author": "Andrew"
+                },
+                {
+                    "ts": "2026-08-14T19:45:47+00:00",
+                    "text": "Andrew updated next step to: \"Waiting on feedback from Chelsea\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:45:55+00:00",
+                    "text": "Andrew changed due date from 2026-08-14 to 2026-08-19",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:46:03+00:00",
+                    "text": "Andrew updated next step to: \"Waiting on feedback from Chelsea  - check back Wed 8/19\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "superman-analysis-abd68e",
+            "title": "Superman Analysis",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-28",
+            "overview": "Ops Team",
+            "next_step": "",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T21:35:50+00:00",
+                    "text": "Ops Team",
+                    "type": "note",
+                    "author": "Andrew"
+                },
+                {
+                    "ts": "2026-07-23T21:36:06+00:00",
+                    "text": "Andrew updated description to: \"Ops Team\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "moxo-portal-cleanup-c2f9f3",
+            "title": "Moxo Portal Cleanup",
+            "status": "in_progress",
+            "priority": "low",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": null,
+            "overview": "Clean up before we transition off Moxo (naming conventions and organization)",
+            "next_step": "",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T16:36:40+00:00",
+                    "text": "Mariz changed status from open to in_progress",
+                    "author": "Mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "master-billing-list-8069be",
+            "title": "Master Billing List",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-31",
+            "overview": "List of billing methodology for our records and then review with Ryan",
+            "next_step": "Put together list",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:55:35+00:00",
+                    "text": "Andrew changed due date from (none) to 2026-08-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "aua-tracker-h1-2026-update-84ecbb",
+            "title": "AUA Tracker H1 2026 Update",
+            "status": "completed",
+            "priority": "low",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": null,
+            "overview": "",
+            "next_step": "Update through H1",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:55:39+00:00",
+                    "text": "Andrew changed status from open to completed",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "knowledge-center-hub-2d5769",
+            "title": "Knowledge Center / Hub",
+            "status": "open",
+            "priority": "low",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-31",
+            "overview": "",
+            "next_step": "Implement after Athena v2 rolled out",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:55:43+00:00",
+                    "text": "Andrew changed due date from (none) to 2026-08-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "betting-ratios-for-randomly-selected-equity-warran-a3a800",
+            "title": "Betting Ratios for Randomly Selected Equity & Warrant Deals",
+            "status": "open",
+            "priority": "low",
+            "assigned_to": "eli",
+            "assigned_to_raw": "eli",
+            "created_by": "eli",
+            "created_by_raw": "eli",
+            "family": "",
+            "function": "Long Term",
+            "due_date": "2026-09-25",
+            "overview": "Figure out with a random walk whether participating in equity and warrant deals has a positive EV, potential capital efficient alternative to VC return/variance/covariance",
+            "next_step": "Build dataset and run analysis",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Eli created this task",
+                    "author": "eli",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "athena-v2-budgets-s-u-s-7e2f46",
+            "title": "Athena v2 Budgets / S+U's",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-31",
+            "overview": "Distribution/Income Projection Rollout to All Families",
+            "next_step": "",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:55:50+00:00",
+                    "text": "Andrew changed due date from 2026-08-14 to 2026-08-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "google-drive-clean-up-49223d",
+            "title": "Google Drive Clean Up",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-09-30",
+            "overview": "Naming convention / folders",
+            "next_step": "Look into using Ivy for this - check with WR if they did this with their Ivy",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T20:08:25+00:00",
+                    "text": "Andrew changed due date from 2026-07-31 to 2026-08-07",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-11T16:19:06+00:00",
+                    "text": "Andrew changed due date from 2026-08-07 to 2026-08-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:55:55+00:00",
+                    "text": "Andrew changed due date from 2026-08-31 to 2026-09-30",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "investment-updates-athena-v2-82a9e9",
+            "title": "Investment Updates Athena v2",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-19",
+            "overview": "Need to fix ingestion tool, strip out existing updates, and re-ingest",
+            "next_step": "Make list of issues. Share with AP before Wed 8/19",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-11T16:19:17+00:00",
+                    "text": "Andrew changed due date from 2026-07-31 to 2026-08-28",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:56:06+00:00",
+                    "text": "Andrew changed status from open to completed",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:56:11+00:00",
+                    "text": "Andrew changed status from completed to open",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:56:48+00:00",
+                    "text": "Andrew updated next step to: \"Make list of issues. Share with AP before Wed 8/19\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:56:48+00:00",
+                    "text": "Andrew updated next step to: \"Make list of issues. Share with AP before Wed 8/19\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T19:56:56+00:00",
+                    "text": "Andrew changed due date from 2026-08-28 to 2026-08-19",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "escher-trust-portfolio-review-3f2f49",
+            "title": "Escher Trust Portfolio Review",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "eddie",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Member Success",
+            "due_date": "2026-07-31",
+            "overview": "Review portfolio, transition to Fidelity from Vanguard and Columbia, & provide them materials on Sundial for their final alts",
+            "next_step": "Eddie to email them to set up a call",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "statement-cadence-tracker-c83e47",
+            "title": "Statements / Updates cadence tracker",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-28",
+            "overview": "PCAP valuation staleness tracker and alerts",
+            "next_step": "Explore making this a protocol; if not figure out a way to automate this",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T20:31:11+00:00",
+                    "text": "Andrew updated title to: \"Statements / UPDATES Cadence Tracker\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T20:31:30+00:00",
+                    "text": "Andrew updated title to: \"Statements / Updates cadence tracker\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-11T16:19:21+00:00",
+                    "text": "Andrew changed due date from 2026-07-31 to 2026-08-28",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "k1-trackers-99358e",
+            "title": "K1 Trackers",
+            "status": "completed",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "mariz",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-07-31",
+            "overview": "Update email, Ascend portal uploads, and accountant portal uploads",
+            "next_step": "",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T16:35:33+00:00",
+                    "text": "Sent July",
+                    "type": "note",
+                    "author": "Mariz"
+                },
+                {
+                    "ts": "2026-07-31T16:35:38+00:00",
+                    "text": "Mariz changed status from open to completed",
+                    "author": "Mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "ndas-fad757",
+            "title": "NDAs",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-07-31",
+            "overview": "Ryan + Pete",
+            "next_step": "Ryan is signed - We need to follow up with Pete",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T20:56:22+00:00",
+                    "text": "Andrew updated next step to: \"Ryan is signed - We need to follow up with Pete\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T20:56:23+00:00",
+                    "text": "Andrew updated next step to: \"Ryan is signed - We need to follow up with Pete\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T20:56:40+00:00",
+                    "text": "Andrew changed due date from 2026-07-24 to 2026-07-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "spoke-payment-f450e6",
+            "title": "Spoke Payment",
+            "status": "completed",
+            "priority": "low",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-07-23",
+            "overview": "JD payment",
+            "next_step": "Follow up on payment to JD",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T20:34:20+00:00",
+                    "text": "Andrew changed status from open to completed",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "kubera-transition-cceb19",
+            "title": "Kubera Transition",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "eddie",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Member Success",
+            "due_date": null,
+            "overview": "a.\tHsu — BofA, Schwab (Brightwater, Brightwater SEP, CHECK Capital)\nb.\tLevine — Fidelity, Citi, Wealthfront\nc.\tDavis — Vanguard",
+            "next_step": "",
+            "created_at": "2026-07-23",
+            "notes": [
+                {
+                    "ts": "2026-07-23",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "send-formal-notice-to-fixed-income-manager-sam-s-f-4ca8dd",
+            "title": "Send formal notice to fixed-income manager (Sam's fund) re: September performance review",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "ned",
+            "assigned_to_raw": "ned",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "",
+            "function": "Investment",
+            "due_date": "2026-07-28",
+            "overview": "The manager is tracking well below its absolute-return target; team wants to formally flag that September is the decision point for continued allocation, so it isn't a surprise.",
+            "next_step": "Draft and send the notice to Sam.",
+            "created_at": "2026-07-22",
+            "notes": [
+                {
+                    "ts": "2026-07-22",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "schedule-call-with-elan-re-cohen-hill-llp-feedback-434523",
+            "title": "Schedule call with Elan re: Cohen Hill/LLP feedback",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "ned",
+            "assigned_to_raw": "ned",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "",
+            "function": "Investment",
+            "due_date": "2026-08-04",
+            "overview": "After sharing feedback with the company directly, loop in Elan (a major equity holder) on concerns about how the deal has been managed so he can weigh his continued participation.",
+            "next_step": "Set up the call with Elan once the company conversation happens.",
+            "created_at": "2026-07-22",
+            "notes": [
+                {
+                    "ts": "2026-07-22",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "call-jason-re-cohen-hill-llp-legal-fees-dispute-394356",
+            "title": "Call Jason re: Cohen Hill/LLP legal fees dispute",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "cz",
+            "assigned_to_raw": "cz",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "",
+            "function": "Investment",
+            "due_date": "2026-07-23",
+            "overview": "An equity holder made an aggressive, unprofessional call disputing term sheet terms and threatening to walk away; Chris plans to address the legal fee issue directly and give candid feedback on the mismanagement.",
+            "next_step": "Chris to call Jason on Thursday.",
+            "created_at": "2026-07-22",
+            "notes": [
+                {
+                    "ts": "2026-07-22",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "reach-out-to-will-zeng-re-his-departure-from-quant-2f195d",
+            "title": "Reach out to Will Zeng re: his departure from Quanti-nation",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "ned",
+            "assigned_to_raw": "ned",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "",
+            "function": "Investment",
+            "due_date": "2026-07-28",
+            "overview": "Will Zeng, a founding partner and the team's primary contact at Quanti-nation, appears to have left shortly after the fund closed its raise; need to understand what happened and any implications for the investment.",
+            "next_step": "Send Will Zeng a note via LinkedIn to learn more.",
+            "created_at": "2026-07-22",
+            "notes": [
+                {
+                    "ts": "2026-07-22",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "email-kuti-with-concrete-plan-timeline-to-rotate-3-25f3e5",
+            "title": "Email Kuti with concrete plan/timeline to rotate ~$30M of legacy single-names into SPY",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "eddie",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "Shalev",
+            "function": "Investment",
+            "due_date": "2026-08-04",
+            "overview": "Kuti has already agreed to migrate single-name public equity exposure into SPY to support the options overlay; team needs to send him a specific schedule - roughly $10M tranches every 2-3 months via FRAC, tied to capital needs.",
+            "next_step": "Draft and send the email outlining the batching schedule and triggers.",
+            "created_at": "2026-07-22",
+            "notes": [
+                {
+                    "ts": "2026-07-22",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "rebuild-options-sheet-on-forward-based-moneyness-w-12b582",
+            "title": "Rebuild options sheet on forward-based moneyness with risk-free/dividend inputs",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "eddie",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "",
+            "function": "Member Success",
+            "due_date": "2026-07-23",
+            "overview": "Current sheet calculates moneyness off spot price, which mis-estimates strikes; needs forward-adjusted moneyness plus risk-free rate/dividend assumptions, and updated strike adjustments for Google, NVDA, TSM, Apple, AVGO, MU, AMD, and LLY, plus a 5-year historical vol benchmark for SPY.",
+            "next_step": "Update the moneyness formulas to use at-the-money-forward pricing.",
+            "created_at": "2026-07-22",
+            "notes": [
+                {
+                    "ts": "2026-07-22",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "add-disposition-fee-hurdle-note-to-marcus-term-she-095db2",
+            "title": "Add disposition-fee hurdle note to Marcus term sheet",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "ned",
+            "assigned_to_raw": "ned",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "Sukhatme",
+            "function": "Investment",
+            "due_date": "2026-07-22",
+            "overview": "The 25bps disposition fee should be tied to the same 5% return hurdle as other fees; needs to be reflected in the draft.",
+            "next_step": "Insert the clarifying note into the term sheet.",
+            "created_at": "2026-07-22",
+            "notes": [
+                {
+                    "ts": "2026-07-22",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "email-marcus-for-clarity-on-operator-property-mana-ff15f2",
+            "title": "Email Marcus for clarity on operator/property management fees",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "ned",
+            "assigned_to_raw": "ned",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "Sukhatme",
+            "function": "Investment",
+            "due_date": "2026-07-23",
+            "overview": "Marcus has given conflicting answers on whether F6 Partners or the operator covers property management fees; need one clear written answer before finalizing terms.",
+            "next_step": "Send follow-up email asking him to directly answer who pays.",
+            "created_at": "2026-07-22",
+            "notes": [
+                {
+                    "ts": "2026-07-22",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "schedule-15-min-ir-redline-review-of-marcus-mhc-te-f60c1b",
+            "title": "Schedule 15-min IR redline review of Marcus MHC term sheet",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "ned",
+            "assigned_to_raw": "ned",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "Sukhatme",
+            "function": "Investment",
+            "due_date": "2026-07-22",
+            "overview": "Need to align internally on redlines to the manufactured-housing term sheet before walking Mayuk through it tomorrow morning.",
+            "next_step": "Book the internal 15-min review and confirm 8:30am call with Mayuk.",
+            "created_at": "2026-07-22",
+            "notes": [
+                {
+                    "ts": "2026-07-22",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "brief-team-on-popovich-s-architect-role-confirm-da-ec06ee",
+            "title": "Brief team on Popovich's architect role; confirm Dan Rubin retains drafting duties",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "eddie",
+            "created_by": "ryan",
+            "created_by_raw": "ryan",
+            "family": "Sukhatme",
+            "function": "Member Success",
+            "due_date": "2026-07-23",
+            "overview": "Popovich (Mayuk's proposed estate/tax advisor) has proposed a broad service agreement that includes evaluating the family office and its investments; team needs to know Dan Rubin still handles actual contract/operating agreement drafting.",
+            "next_step": "Send team a short summary of Popovich's role and scope boundaries.",
+            "created_at": "2026-07-22",
+            "notes": [
+                {
+                    "ts": "2026-07-22",
+                    "text": "Ryan created this task",
+                    "author": "ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "june-billing-and-invoices-34d0cf",
+            "title": "June Billing and Invoices",
+            "status": "completed",
+            "priority": "high",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-07-31",
+            "overview": "",
+            "next_step": "",
+            "created_at": "2026-07-21",
+            "notes": [
+                {
+                    "ts": "2026-07-21",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T20:56:51+00:00",
+                    "text": "Andrew updated next step to: \"\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T20:57:50+00:00",
+                    "text": "Andrew changed due date from 2026-07-24 to 2026-07-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-11T14:50:28+00:00",
+                    "text": "Andrew changed status from open to completed",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "athena-2-0-feature-rollout-dcb0bf",
+            "title": "Athena 2.0 Feature Rollout",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "eli",
+            "assigned_to_raw": "eli",
+            "created_by": "eli",
+            "created_by_raw": "eli",
+            "family": "",
+            "function": "Member Success",
+            "due_date": "2026-08-14",
+            "overview": "timing as dictated by rollout doc, timeline sets up final completion for end of August at latest",
+            "next_step": "Friday July 31 have v2 features pushed (including certain family specific, and universal changes)",
+            "created_at": "2026-07-21",
+            "notes": [
+                {
+                    "ts": "2026-07-21",
+                    "text": "Eli created this task",
+                    "author": "eli",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-21T17:53:39+00:00",
+                    "text": "Eli changed function from (none) to Member Success",
+                    "author": "Eli",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T15:28:12+00:00",
+                    "text": "Eli updated next step to: \"Friday July 31 have v2 features pushed (including certain family specific, and universal changes)\"",
+                    "author": "Eli",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-27T19:07:34+00:00",
+                    "text": "Eli changed priority from medium to high",
+                    "author": "Eli",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "davis-db-expense-data-update-d2bf3b",
+            "title": "Davis DB Expense Data Update",
+            "status": "in_progress",
+            "priority": "high",
+            "assigned_to": "albert",
+            "assigned_to_raw": "albert",
+            "created_by": "albert",
+            "created_by_raw": "albert",
+            "family": "Davis",
+            "function": "Operations",
+            "due_date": "2026-08-07",
+            "overview": "Insert Loan Interest Payments + Mortgage Payments",
+            "next_step": "Request for the Loan Account Statement from MPD (Sent by FRB Team)",
+            "created_at": "2026-07-20",
+            "notes": [
+                {
+                    "ts": "2026-07-20",
+                    "text": "Albert created this task",
+                    "author": "albert",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T20:23:33+00:00",
+                    "text": "Albert changed due date from 2026-07-24 to 2026-08-07",
+                    "author": "Albert",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "estate-mapping-life-planner-4d627c",
+            "title": "Estate Mapping + Life Planner",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "ryan",
+            "assigned_to_raw": "ryan",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "Sukhatme",
+            "function": "Member Success",
+            "due_date": "2026-08-14",
+            "overview": "Map out estate, accounts, limitations, etc",
+            "next_step": "Sync w/ RH and divide up work",
+            "created_at": "2026-07-20",
+            "notes": [
+                {
+                    "ts": "2026-07-20",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "billing-structures-master-list-ff3877",
+            "title": "Billing Structures Master List",
+            "status": "completed",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "",
+            "due_date": null,
+            "overview": "",
+            "next_step": "",
+            "created_at": "2026-07-20",
+            "notes": [
+                {
+                    "ts": "2026-07-20",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-11T16:58:23+00:00",
+                    "text": "Andrew changed status from open to completed",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "archive-intel-whatsapp-relinks-30914f",
+            "title": "Archive Intel - WhatsApp Relinks",
+            "status": "completed",
+            "priority": "high",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-07-31",
+            "overview": "Relink phones",
+            "next_step": "Waiting on CZ to relink - he was messaged on 7/29",
+            "created_at": "2026-07-20",
+            "notes": [
+                {
+                    "ts": "2026-07-20",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T20:30:26+00:00",
+                    "text": "Andrew updated next step to: \"Waiting on CZ to relink - he was messaged on 7/29\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T20:33:10+00:00",
+                    "text": "Andrew changed due date from 2026-07-20 to 2026-07-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T20:23:47+00:00",
+                    "text": "Andrew changed status from open to completed",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "archive-intel-q2-review-a6004a",
+            "title": "Archive Intel Q2 Review",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-19",
+            "overview": "Review correspondence for Q2 and approve",
+            "next_step": "Review correspondence for Q2 and approve",
+            "created_at": "2026-07-20",
+            "notes": [
+                {
+                    "ts": "2026-07-20",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T20:58:03+00:00",
+                    "text": "Andrew changed due date from 2026-07-24 to 2026-07-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-11T16:19:36+00:00",
+                    "text": "Andrew changed due date from 2026-07-31 to 2026-08-14",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T20:06:17+00:00",
+                    "text": "Andrew changed due date from 2026-08-14 to 2026-08-19",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "may-june-compliance-calendar-items-5562be",
+            "title": "May/June Compliance Calendar Items",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-19",
+            "overview": "Review calendar activities for May/June - complete and take notes on actions taken",
+            "next_step": "Review Comply calendar",
+            "created_at": "2026-07-20",
+            "notes": [
+                {
+                    "ts": "2026-07-20",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T20:58:07+00:00",
+                    "text": "Andrew changed due date from 2026-07-24 to 2026-08-07",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-11T16:19:40+00:00",
+                    "text": "Andrew changed due date from 2026-08-07 to 2026-08-14",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T20:06:14+00:00",
+                    "text": "Andrew changed due date from 2026-08-14 to 2026-08-19",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "employee-handbook-refresh-52f154",
+            "title": "Employee Handbook Refresh",
+            "status": "open",
+            "priority": "low",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2027-01-08",
+            "overview": "Refresh for 2027",
+            "next_step": "Refresh in early January",
+            "created_at": "2026-07-20",
+            "notes": [
+                {
+                    "ts": "2026-07-20",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "onboarding-rh-bf066a",
+            "title": "Onboarding - RH",
+            "status": "completed",
+            "priority": "high",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-07-21",
+            "overview": "Various onboarding steps as per onboarding tracker",
+            "next_step": "Book Series 65 once exam window is open",
+            "created_at": "2026-07-20",
+            "notes": [
+                {
+                    "ts": "2026-07-20",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T20:32:59+00:00",
+                    "text": "Andrew changed status from open to completed",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "guagenti-billing-b9ee5f",
+            "title": "Guagenti Billing",
+            "status": "completed",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "Guagenti",
+            "function": "Operations",
+            "due_date": "2026-08-14",
+            "overview": "CZ sorted everything out with Nolan. See next steps.",
+            "next_step": "June billing is as-is. July billing is based on $30m",
+            "created_at": "2026-07-20",
+            "notes": [
+                {
+                    "ts": "2026-07-20",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T21:03:31+00:00",
+                    "text": "Andrew changed due date from 2026-07-24 to 2026-09-11",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T21:03:36+00:00",
+                    "text": "Andrew changed due date from 2026-09-11 to 2026-08-14",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-14T20:06:05+00:00",
+                    "text": "Andrew changed status from open to completed",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "trading-standing-letter-of-authorization-f373bf",
+            "title": "Trading - Standing Letter of Authorization",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-31",
+            "overview": "Pre-clear trades quarterly for clients to avoid having to get approval for each trade",
+            "next_step": "Awaiting final compliance approval/review",
+            "created_at": "2026-07-20",
+            "notes": [
+                {
+                    "ts": "2026-07-20",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T20:33:22+00:00",
+                    "text": "Andrew changed due date from 2026-07-21 to 2026-07-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-11T16:19:45+00:00",
+                    "text": "Andrew changed due date from 2026-07-31 to 2026-08-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "wires-standing-letter-of-authorization-65ed0e",
+            "title": "Wires - Standing Letter of Authorization",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-08-31",
+            "overview": "Formalizing ability to send wires to pre-approved recipients",
+            "next_step": "IB can accommodate - waiting on Fidelity",
+            "created_at": "2026-07-20",
+            "notes": [
+                {
+                    "ts": "2026-07-20",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T20:33:39+00:00",
+                    "text": "Andrew updated next step to: \"IB can accommodate - waiting on Fidelity\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T20:34:07+00:00",
+                    "text": "Andrew changed due date from 2026-07-21 to 2026-07-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-11T16:19:56+00:00",
+                    "text": "Andrew changed due date from 2026-07-31 to 2026-08-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "spv-syndication-compliance-9c1285",
+            "title": "SPV Syndication Compliance",
+            "status": "archived",
+            "priority": "low",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": null,
+            "overview": "Compliance implications of syndicating out a deal to collect fees.",
+            "next_step": "Reach out to funds attorney once something is more serious",
+            "created_at": "2026-07-20",
+            "notes": [
+                {
+                    "ts": "2026-07-20",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-20T13:23:40+00:00",
+                    "text": "Andrew changed status from open to archived",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "anthropic-shares-ed9189",
+            "title": "Anthropic Shares",
+            "status": "archived",
+            "priority": "low",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "andrew",
+            "created_by": "andrew",
+            "created_by_raw": "andrew",
+            "family": "",
+            "function": "Operations",
+            "due_date": "2026-09-18",
+            "overview": "Speak to Fidelity about Distributing Shares",
+            "next_step": "Reach out this fall",
+            "created_at": "2026-07-20",
+            "notes": [
+                {
+                    "ts": "2026-07-20",
+                    "text": "Andrew created this task",
+                    "author": "andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-20T13:22:19+00:00",
+                    "text": "Andrew changed status from open to archived",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "structured-notes-primer",
+            "title": "Structured Notes for Public Companies",
+            "status": "open",
+            "priority": "low",
+            "assigned_to": "eli",
+            "assigned_to_raw": "Eli",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Investment",
+            "due_date": "2026-08-21",
+            "overview": "Write a primer on structured notes for public companies.",
+            "next_step": "EG to connect with bankers to turn on deal flow",
+            "custom": [],
+            "created_at": "2026-07-09",
+            "notes": [
+                {
+                    "ts": "2026-07-20T13:08:35+00:00",
+                    "text": "Eli changed due date from 2026-07-02 to 2026-08-21",
+                    "author": "Eli",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-20T13:08:41+00:00",
+                    "text": "Eli updated title to: \"Structured Notes for Public Companies\"",
+                    "author": "Eli",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-20T13:08:56+00:00",
+                    "text": "Eli updated next step to: \"EG to connect with bankers to turn on deal flow\"",
+                    "author": "Eli",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-21T17:52:40+00:00",
+                    "text": "Eli changed priority from high to low",
+                    "author": "Eli",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-21T17:54:10+00:00",
+                    "text": "Eli updated next step to: \"EG to connect with bankers to turn on deal flow\"",
+                    "author": "Eli",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "eli-deck-rebuild-context",
+            "title": "Provide deck@ Rebuild Context",
+            "status": "open",
+            "priority": "low",
+            "assigned_to": "eli",
+            "assigned_to_raw": "Eli",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Operations",
+            "due_date": "2026-07-20",
+            "overview": "Ivy sent Eli a Slack DM on Jun 16 asking for workflow context on the deck@ rebuild handoff. No reply received yet.",
+            "next_step": "Eli to reply to Ivy's Jun 16 DM with deck@ workflow context.",
+            "created_at": "2026-07-09",
+            "notes": [
+                {
+                    "ts": "2026-07-20T13:08:14+00:00",
+                    "text": "Eli changed due date from (none) to 2026-07-20",
+                    "author": "Eli",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-27T19:06:39+00:00",
+                    "text": "Eli changed priority from medium to low",
+                    "author": "Eli",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "bad-ideas-allteam-summary-jun11",
+            "title": "Approve Bad Ideas All-Team Summary (Week Jun 11)",
+            "status": "open",
+            "priority": "low",
+            "assigned_to": "eli",
+            "assigned_to_raw": "Eli",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Operations",
+            "due_date": "2026-07-24",
+            "overview": "Week of Jun 11 had 0 winners / 5 ideas. Release cron ran (Eli-only DM per protocol). Eli asked about all-team send; Ivy is awaiting his go-ahead before sending the all-team summary and resharing all ideas.",
+            "next_step": "Eli to confirm whether to send all-team summary + reshare for week Jun 11.",
+            "created_at": "2026-07-09",
+            "notes": [
+                {
+                    "ts": "2026-07-20T13:08:19+00:00",
+                    "text": "Eli changed due date from (none) to 2026-07-23",
+                    "author": "Eli",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T21:03:10+00:00",
+                    "text": "Eli changed due date from 2026-07-23 to 2026-07-24",
+                    "author": "Eli",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "alec-w015-audit-reply",
+            "title": "Reply to Ivy's W-015 Audit Question",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "alec",
+            "assigned_to_raw": "Alec",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Operations",
+            "due_date": null,
+            "overview": "Ivy sent Alec a reply on Jul 6 acknowledging a delay and asking if W-015 still exists. Awaiting his response to continue the audit.",
+            "next_step": "Alec to reply confirming whether W-015 still exists and provide any relevant context.",
+            "created_at": "2026-07-09"
+        },
+        {
+            "id": "zybin-benchmark-weights-config",
+            "title": "Confirm Zybin Benchmark Weights Display Config",
+            "status": "done",
+            "priority": "medium",
+            "assigned_to": "miho",
+            "assigned_to_raw": "Miho",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": "Zybin",
+            "function": "Investment",
+            "due_date": null,
+            "overview": "Zybin benchmark weights display configuration is pending Miho direction before Ivy updates the dashboard config.",
+            "next_step": "Miho to confirm preferred display config for Zybin benchmark weights modal.",
+            "created_at": "2026-07-09",
+            "notes": [
+                {
+                    "ts": "2026-07-21T22:12:42+00:00",
+                    "text": "Miho changed status from open to done",
+                    "author": "Miho",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "zybin-kt-may-mid-month",
+            "title": "Provide Direction on Zybin KT May Mid-Month",
+            "status": "done",
+            "priority": "medium",
+            "assigned_to": "miho",
+            "assigned_to_raw": "Miho",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": "Zybin",
+            "function": "Investment",
+            "due_date": null,
+            "overview": "Zybin Key Takeaways May mid-month draft is awaiting Miho's direction. Clarifying reply sent Jun 27; no response yet.",
+            "next_step": "Miho to reply with direction on the May mid-month KT angle or angle selection.",
+            "created_at": "2026-07-09",
+            "notes": [
+                {
+                    "ts": "2026-07-27T19:16:09+00:00",
+                    "text": "Miho changed status from open to done",
+                    "author": "Miho",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "zybin-governing-doc-changes",
+            "title": "Review and Approve 8 Zybin Governing Doc Changes",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "miho",
+            "assigned_to_raw": "Miho",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": "Zybin",
+            "function": "Investment",
+            "due_date": null,
+            "overview": "8 pending changes to the Zybin governing doc are staged and awaiting Miho and Albert review/approval.",
+            "next_step": "Miho and Albert to review the 8 staged governing doc changes and approve or redirect.",
+            "created_at": "2026-07-09"
+        },
+        {
+            "id": "capcall-projections-link-sources",
+            "title": "Provide Capital Call Projections Link Sources",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "Mariz",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Operations",
+            "due_date": null,
+            "overview": "Capital call projections doc is missing link sources. Blocking Miho and Ivy from completing the projections work.",
+            "next_step": "Mariz to supply the source links for the capital call projections document.",
+            "created_at": "2026-07-09",
+            "notes": [
+                {
+                    "ts": "2026-07-20T17:59:17+00:00",
+                    "text": "Mariz changed status from open to completed",
+                    "author": "Mariz",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-20T17:59:18+00:00",
+                    "text": "Mariz changed status from completed to open",
+                    "author": "Mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "palmer-square-lp-statements",
+            "title": "Upload Palmer Square LP Statements",
+            "status": "completed",
+            "priority": "medium",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "Mariz",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Operations",
+            "due_date": null,
+            "overview": "Palmer Square LP statements folder has been empty since Jun 19 reminder. Statements needed for ingest.",
+            "next_step": "Mariz to upload Palmer Square LP statements to the shared folder.",
+            "created_at": "2026-07-09",
+            "notes": [
+                {
+                    "ts": "2026-07-31T16:36:10+00:00",
+                    "text": "Mariz changed status from open to completed",
+                    "author": "Mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "mariz-az-may-finreport-instructions",
+            "title": "Provide Instructions for AZ May-2026 FinReport",
+            "status": "completed",
+            "priority": "low",
+            "assigned_to": "mariz",
+            "assigned_to_raw": "Mariz",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Operations",
+            "due_date": null,
+            "overview": "Mariz shared the AZ May-2026 Ascend FinReport spreadsheet with Ivy on Jun 22 with no instructions attached.",
+            "next_step": "Mariz to provide instructions on what to do with the AZ May-2026 FinReport.",
+            "created_at": "2026-07-09",
+            "notes": [
+                {
+                    "ts": "2026-07-31T16:36:21+00:00",
+                    "text": "Mariz changed status from open to completed",
+                    "author": "Mariz",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "put-ladder-screener-v2-feedback",
+            "title": "Provide Feedback on Put-Ladder Screener v2",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "Eddie",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Investment",
+            "due_date": null,
+            "overview": "Put-ladder screener v2 has been delivered to Eddie for review. Awaiting his feedback to finalize the options monitoring protocol.",
+            "next_step": "Eddie to review screener output and provide feedback / Polygon API access if needed.",
+            "created_at": "2026-07-09"
+        },
+        {
+            "id": "strangle-protocol-v2-parameters",
+            "title": "Review Strangle Protocol First Dry Run",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "Eddie",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Investment",
+            "due_date": null,
+            "overview": "Strangle Protocol v1.1 spec is locked. strangle_scan.py is built and ran its first dry run on Jul 6: Guagenti SPY qualifies (Sep 18, DTE 74, 2.03% yield). Results sent to Eddie for review. Key parameters confirmed: 65-105 DTE, per-family $1M threshold, delta 0.20-0.30, 2% premium minimum, XYLD excluded.",
+            "next_step": "Eddie to review first dry-run results and provide feedback to move protocol to live execution.",
+            "created_at": "2026-07-09"
+        },
+        {
+            "id": "capital-calls-no-timing-2027-2028",
+            "title": "Capital Call Timing Data - 2027/2028",
+            "status": "open",
+            "priority": "low",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "Andrew",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Operations",
+            "due_date": null,
+            "overview": "Capital calls for 2027 and 2028 are missing timing data in the projections. Andrew needs to supply or confirm.",
+            "next_step": "Andrew to provide timing estimates for 2027/2028 capital calls.",
+            "created_at": "2026-07-09",
+            "notes": [
+                {
+                    "ts": "2026-07-20T13:21:19+00:00",
+                    "text": "Andrew updated title to: \"Capital Call Timing Data - 2027/2028\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "supabase-key-reissue-six-families",
+            "title": "Supabase Keys — 6 Families",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "Andrew",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Operations",
+            "due_date": null,
+            "overview": "Six family Supabase configs (Levine, Idriss, Hsu, Prosor, Tsenter, Grojean) have truncated keys that cause cap call refresh script failures. Andrew to reissue.",
+            "next_step": "Andrew to reissue full-length Supabase keys for Levine, Idriss, Hsu, Prosor, Tsenter, and Grojean.",
+            "created_at": "2026-07-09",
+            "notes": [
+                {
+                    "ts": "2026-07-20T13:21:43+00:00",
+                    "text": "Andrew updated title to: \"Supabase Keys — 6 Families\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "rebecca-subscriber-sheet-redlines",
+            "title": "Review Subscriber Protocol Sheet and Provide Redlines",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "rebecca",
+            "assigned_to_raw": "Rebecca",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Operations",
+            "due_date": null,
+            "overview": "Subscriber information protocol sheet was shared with Rebecca on Jun 29. Awaiting redlines and inline-merge call.",
+            "next_step": "Rebecca to review the Davis Family subscriber sheet and flag redlines or schedule merge call.",
+            "created_at": "2026-07-09"
+        },
+        {
+            "id": "rebecca-1password-setup",
+            "title": "Unblock Rebecca 1Password Setup",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "kevin",
+            "assigned_to_raw": "Kevin",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Operations",
+            "due_date": null,
+            "overview": "Rebecca's 1Password setup is blocked pending Kevin's action. Has been parked in open carries for several weeks.",
+            "next_step": "Kevin to unblock Rebecca's 1Password setup.",
+            "notes": [
+                {
+                    "ts": "2026-07-08T17:32:24+00:00",
+                    "text": "hi"
+                }
+            ],
+            "created_at": "2026-07-09"
+        },
+        {
+            "id": "five-iron-project-high-term-sheet",
+            "title": "Email Project High Term Sheet to Eli (Five Iron Reference)",
+            "status": "done",
+            "priority": "medium",
+            "assigned_to": "miho",
+            "assigned_to_raw": "Miho",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Investment",
+            "due_date": "2026-07-16",
+            "overview": "Locate the old Project High (Q1 2023) term sheet as a structural reference for the Five Iron unitranche deal and send to Eli.",
+            "next_step": "Miho to find the term sheet in Drive and send to Eli.",
+            "created_at": "2026-07-09",
+            "notes": [
+                {
+                    "ts": "2026-07-27T19:15:56+00:00",
+                    "text": "Miho changed status from open to done",
+                    "author": "Miho",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "ai-portfolio-model-update",
+            "title": "Update AI Portfolio Model — Market-Cap Weighting, 24-Month Backtest, 1-Pagers",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "eli",
+            "assigned_to_raw": "Eli",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Investment",
+            "due_date": "2026-07-28",
+            "overview": "Finish the AI portfolio tool: add market-cap exposure breakdown (vs. thesis-only), 24-month backtest against AIQ/BOTC/benchmarks, and one-page tear sheets per name for family presentation.",
+            "next_step": "Eli to continue building model with requested additions.",
+            "created_at": "2026-07-09",
+            "notes": [
+                {
+                    "ts": "2026-07-20T13:08:27+00:00",
+                    "text": "Eli changed due date from 2026-07-16 to 2026-07-23",
+                    "author": "Eli",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T21:03:14+00:00",
+                    "text": "Eli changed due date from 2026-07-23 to 2026-07-28",
+                    "author": "Eli",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "intern-feedback-session-eli",
+            "title": "Intern Feedback Session with Eli",
+            "status": "open",
+            "priority": "low",
+            "assigned_to": "cz",
+            "assigned_to_raw": "Chris",
+            "created_by": "ivy",
+            "created_by_raw": "Ivy",
+            "family": null,
+            "function": "Long Term",
+            "due_date": "2026-07-23",
+            "overview": "Chris wants to grab Eli briefly to discuss feedback on the interns.",
+            "next_step": "Chris to Slack Eli to set up time.",
+            "created_at": "2026-07-09"
+        },
+        {
+            "title": "Review Chloe Capital Summer Webinar Series — 3 upcoming sessions",
+            "overview": "Forwarded by Ryan (Jul 10). Chloe Capital Summer Webinar Series — 3 sessions:\n• Jul 16: Securing a Lead Investor (Proven Strategies for a Successful Round)\n• Jul 23: Insurance 101 for Founders (Protecting People & Assets at Scale)\n• Jul 30: Hiring Decisions (Full-Time, Fractional, or Wait?)\nAll sessions 1–2pm ET on Zoom. Open to all.",
+            "next_step": "Review sessions and decide if any are relevant to attend or share with portfolio/members",
+            "priority": "medium",
+            "status": "done",
+            "family": "",
+            "function": "Investment",
+            "assigned_to": "miho",
+            "assigned_to_raw": "Miho",
+            "created_by": "ryan",
+            "created_by_raw": "Ryan",
+            "due_date": "2026-07-18",
+            "created_at": "2026-07-10",
+            "id": "review-chloe-capital-summer-webinar-series-3-upcoming-sessio",
+            "notes": [
+                {
+                    "ts": "2026-07-27T19:16:02+00:00",
+                    "text": "Miho changed status from open to done",
+                    "author": "Miho",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "accrete-kyc-for-kt-ventures-11ff78",
+            "title": "Accrete KYC for KT Ventures",
+            "status": "completed",
+            "priority": "medium",
+            "assigned_to": "rebecca",
+            "assigned_to_raw": "rebecca",
+            "created_by": "ivy",
+            "created_by_raw": "ivy",
+            "family": "",
+            "function": "Member Success",
+            "due_date": null,
+            "overview": "",
+            "next_step": "",
+            "created_at": "2026-07-10T21:00:20Z",
+            "notes": [
+                {
+                    "ts": "2026-07-10T21:00:20Z",
+                    "text": "Ivy created this task",
+                    "author": "ivy",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T16:13:03+00:00",
+                    "text": "Rebecca changed status from open to done",
+                    "author": "Rebecca",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T16:15:26+00:00",
+                    "text": "Rebecca changed status from done to completed",
+                    "author": "Rebecca",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "tembo-capital-kyc---waiting-for-them-to-get-back-t-40e5c5",
+            "title": "Tembo Capital KYC",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "rebecca",
+            "assigned_to_raw": "rebecca",
+            "created_by": "ivy",
+            "created_by_raw": "ivy",
+            "family": "",
+            "function": "Member Success",
+            "due_date": null,
+            "overview": "",
+            "next_step": "Waiting on Gugaenti docs, Hsu authorized signatory sheet, Shalev proof of address updates",
+            "created_at": "2026-07-10T21:00:20Z",
+            "notes": [
+                {
+                    "ts": "2026-07-10T21:00:20Z",
+                    "text": "Ivy created this task",
+                    "author": "ivy",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T16:12:48+00:00",
+                    "text": "Rebecca updated next step to: \"Working on KYC tasks\"",
+                    "author": "Rebecca",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T16:13:36+00:00",
+                    "text": "Rebecca changed family from (none) to Davis",
+                    "author": "Rebecca",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T16:13:37+00:00",
+                    "text": "Rebecca changed family from Davis to Grojean",
+                    "author": "Rebecca",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-23T16:13:42+00:00",
+                    "text": "Rebecca changed family from Grojean to (none)",
+                    "author": "Rebecca",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T18:24:37+00:00",
+                    "text": "Rebecca updated title to: \"Tembo Capital KYC\"",
+                    "author": "Rebecca",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-31T18:25:26+00:00",
+                    "text": "Rebecca updated next step to: \"Waiting on Gugaenti docs, Hsu authorized signatory sheet, Shalev proof of address updates\"",
+                    "author": "Rebecca",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "bitdefender-protocol-with-ivy-eb99bd",
+            "title": "Bitdefender Protocol with Ivy",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "rebecca",
+            "assigned_to_raw": "rebecca",
+            "created_by": "ivy",
+            "created_by_raw": "ivy",
+            "family": "",
+            "function": "Operations",
+            "due_date": null,
+            "overview": "",
+            "next_step": "",
+            "created_at": "2026-07-10T21:00:20Z",
+            "notes": [
+                {
+                    "ts": "2026-07-10T21:00:20Z",
+                    "text": "Ivy created this task",
+                    "author": "ivy",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "password-update-protocol-with-ivy-591f1d",
+            "title": "Password Update Protocol with Ivy",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "rebecca",
+            "assigned_to_raw": "rebecca",
+            "created_by": "ivy",
+            "created_by_raw": "ivy",
+            "family": "",
+            "function": "Operations",
+            "due_date": null,
+            "overview": "",
+            "next_step": "",
+            "created_at": "2026-07-10T21:00:20Z",
+            "notes": [
+                {
+                    "ts": "2026-07-10T21:00:20Z",
+                    "text": "Ivy created this task",
+                    "author": "ivy",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "join-mr-prosor-call-set-up-options-workflow-input-requiremen",
+            "title": "Join Mr. Prosor call; set up options workflow + input requirements",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "cz",
+            "assigned_to_raw": "Chris",
+            "created_by": "ryan",
+            "created_by_raw": "Ryan Hughes",
+            "family": "Prosor",
+            "function": "Investment",
+            "due_date": "2026-07-24",
+            "date_added": "2026-07-23",
+            "overview": "Prosor's options strategy needs to evolve beyond simple buy/sell quotes toward advanced structures (e.g., upside 3-2-1s); need to join his call and define what inputs are required to demonstrate deeper value.",
+            "next_step": "Schedule and join the call with Prosor.",
+            "context": "Uploaded from Task Manager Upload doc per Ryan Hughes request 2026-07-23.",
+            "open_items": [],
+            "deals": [],
+            "notes": [
+                {
+                    "ts": "2026-07-24T13:24:00+00:00",
+                    "text": "Ryan changed owner from chris to Chris",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-24T13:24:40+00:00",
+                    "text": "Ryan changed due date from 2026-07-30 to 2026-07-24",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "email-wells-fargo-nolans-pfs-estimates-request-feedback",
+            "title": "Email Wells Fargo Nolan's PFS estimates; request feedback",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "Eddie",
+            "created_by": "ryan",
+            "created_by_raw": "Ryan Hughes",
+            "family": "Guagenti",
+            "function": "Member Success",
+            "due_date": "2026-07-23",
+            "date_added": "2026-07-23",
+            "overview": "Wells is awaiting Nolan's PFS estimates covering commercial non-recourse, recourse, and the Andy Hill loan scenarios.",
+            "next_step": "Send the PFS estimates to Wells Fargo with a request for feedback.",
+            "context": "Uploaded from Task Manager Upload doc per Ryan Hughes request 2026-07-23.",
+            "open_items": [],
+            "deals": [],
+            "notes": [
+                {
+                    "ts": "2026-07-24T13:25:20+00:00",
+                    "text": "Ryan changed function from Investment to Member Success",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "email-nolan-re-tembo-kyc-requirements",
+            "title": "Email Nolan re: Tembo KYC requirements",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "Eddie",
+            "created_by": "ryan",
+            "created_by_raw": "Ryan Hughes",
+            "family": "Guagenti",
+            "function": "Member Success",
+            "due_date": "2026-07-23",
+            "date_added": "2026-07-23",
+            "overview": "Nolan's $150k Tembo investment is blocked by extensive KYC requirements (notarized documents, LLC agreement) for what should be a simple partnership.",
+            "next_step": "Email Nolan re KYC requirements.",
+            "context": "Uploaded from Task Manager Upload doc per Ryan Hughes request 2026-07-23.",
+            "open_items": [],
+            "deals": [],
+            "_note": "Doc listed 'Great Jones (unconfirmed)' as assignee - likely a parse artifact; assigned to Eddie per task context.",
+            "notes": [
+                {
+                    "ts": "2026-07-24T13:25:31+00:00",
+                    "text": "Ryan changed function from Investment to Member Success",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "join-nolan-call-re-tembo-check-size-kyc",
+            "title": "Join Nolan call re: Tembo check size + KYC",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "ned",
+            "assigned_to_raw": "Ned",
+            "created_by": "ryan",
+            "created_by_raw": "Ryan Hughes",
+            "family": "Guagenti",
+            "function": "Investment",
+            "due_date": "2026-07-30",
+            "date_added": "2026-07-23",
+            "overview": "Discuss reduced check size ($150k vs. the original $1.5M recommendation) directly with Nolan.",
+            "next_step": "Ned to join the next scheduled call with Nolan.",
+            "context": "Uploaded from Task Manager Upload doc per Ryan Hughes request 2026-07-23.",
+            "open_items": [],
+            "deals": []
+        },
+        {
+            "id": "secure-antons-final-ips-sign-off",
+            "title": "Secure Anton's final IPS sign-off",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "Eddie",
+            "created_by": "ryan",
+            "created_by_raw": "Ryan Hughes",
+            "family": "Tsenter",
+            "function": "Member Success",
+            "due_date": "2026-07-27",
+            "date_added": "2026-07-23",
+            "overview": "Anton's Investment Policy Statement needs final review and sign-off.",
+            "next_step": "Email Anton the IPS for review and confirm sign-off on Monday.",
+            "context": "Uploaded from Task Manager Upload doc per Ryan Hughes request 2026-07-23.",
+            "open_items": [],
+            "deals": [],
+            "notes": [
+                {
+                    "ts": "2026-07-24T13:25:45+00:00",
+                    "text": "Ryan changed function from Operations to Member Success",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-24T13:25:57+00:00",
+                    "text": "Ryan changed family from (none) to Tsenter",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "refresh-antons-strangles",
+            "title": "Refresh Anton's strangles",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "Eddie",
+            "created_by": "ryan",
+            "created_by_raw": "Ryan Hughes",
+            "family": "Tsenter",
+            "function": "Investment",
+            "due_date": "2026-07-30",
+            "date_added": "2026-07-23",
+            "overview": "Anton's options strangle positions need to be refreshed/updated.",
+            "next_step": "Recalculate and place refreshed strangle trades for Anton.",
+            "context": "Uploaded from Task Manager Upload doc per Ryan Hughes request 2026-07-23.",
+            "open_items": [],
+            "deals": [],
+            "notes": [
+                {
+                    "ts": "2026-07-24T13:26:01+00:00",
+                    "text": "Ryan changed family from (none) to Tsenter",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "send-rami-portal-access",
+            "title": "Send Rami portal access",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "Eddie",
+            "created_by": "ryan",
+            "created_by_raw": "Ryan Hughes",
+            "family": null,
+            "function": "Member Success",
+            "due_date": "2026-07-30",
+            "date_added": "2026-07-23",
+            "overview": "Rami needs client portal access provisioned.",
+            "next_step": "Set up and send portal login to Rami.",
+            "context": "Uploaded from Task Manager Upload doc per Ryan Hughes request 2026-07-23.",
+            "open_items": [],
+            "deals": []
+        },
+        {
+            "id": "analyze-land-roll-up-investment-for-cheap-risk-off-plays",
+            "title": "Analyze land roll-up investment for cheap risk-off plays",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "ned",
+            "assigned_to_raw": "Ned",
+            "created_by": "ryan",
+            "created_by_raw": "Ryan Hughes",
+            "family": null,
+            "function": "Investment",
+            "due_date": "2026-08-06",
+            "date_added": "2026-07-23",
+            "overview": "Rami is interested in the land roll-up investment as a potential long position; needs analysis to see if it offers attractively-priced downside protection.",
+            "next_step": "Complete the analysis and share findings with Rami.",
+            "context": "Uploaded from Task Manager Upload doc per Ryan Hughes request 2026-07-23.",
+            "open_items": [],
+            "deals": []
+        },
+        {
+            "id": "follow-up-with-abi-on-athena-ingestion-tool-status",
+            "title": "Follow up with Abhi on Athena ingestion tool status",
+            "status": "completed",
+            "priority": "high",
+            "assigned_to": "andrew",
+            "assigned_to_raw": "Andrew",
+            "created_by": "ryan",
+            "created_by_raw": "Ryan Hughes",
+            "family": null,
+            "function": "Operations",
+            "due_date": "2026-07-31",
+            "date_added": "2026-07-23",
+            "overview": "The automated Athena tool for ingesting June data is delayed; a first draft is due Friday from Bobby, and manual ingestion is the fallback if not production-ready in time for reviews.",
+            "next_step": "Email Bobby to confirm Friday delivery status.",
+            "context": "Uploaded from Task Manager Upload doc per Ryan Hughes request 2026-07-23.",
+            "open_items": [],
+            "deals": [],
+            "notes": [
+                {
+                    "ts": "2026-07-24T13:27:01+00:00",
+                    "text": "Ryan changed owner from Ned to Andrew",
+                    "author": "Ryan",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-28T14:42:35+00:00",
+                    "text": "Andrew updated title to: \"Follow up with AbHi on Athena ingestion tool status\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-28T14:42:56+00:00",
+                    "text": "Andrew updated title to: \"Follow up with Abhi on Athena ingestion tool status\"",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-07-29T21:03:43+00:00",
+                    "text": "Andrew changed due date from 2026-07-24 to 2026-07-31",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                },
+                {
+                    "ts": "2026-08-11T14:51:42+00:00",
+                    "text": "Andrew changed status from open to completed",
+                    "author": "Andrew",
+                    "type": "edit_log"
+                }
+            ]
+        },
+        {
+            "id": "schedule-mid-year-performance-reviews-lior-tom-stuart",
+            "title": "Schedule mid-year performance reviews: Lior, Tom, Stuart",
+            "status": "open",
+            "priority": "high",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "Eddie",
+            "created_by": "ryan",
+            "created_by_raw": "Ryan Hughes",
+            "family": null,
+            "function": "Member Success",
+            "due_date": "2026-07-27",
+            "date_added": "2026-07-23",
+            "overview": "Kick off mid-year review season next week with these three clients to refine the process and visuals ahead of the higher-stakes Elon review.",
+            "next_step": "Schedule the review calls for next week.",
+            "context": "Uploaded from Task Manager Upload doc per Ryan Hughes request 2026-07-23.",
+            "open_items": [],
+            "deals": []
+        },
+        {
+            "id": "schedule-elons-mid-year-performance-review",
+            "title": "Schedule Elon's mid-year performance review",
+            "status": "open",
+            "priority": "medium",
+            "assigned_to": "eddie",
+            "assigned_to_raw": "Eddie",
+            "created_by": "ryan",
+            "created_by_raw": "Ryan Hughes",
+            "family": null,
+            "function": "Member Success",
+            "due_date": "2026-08-03",
+            "date_added": "2026-07-23",
+            "overview": "Elon's review is high-stakes and scheduled for the week after the initial round, once the process has been refined with Lior, Tom, and Stuart.",
+            "next_step": "Book the review call for the week after next.",
+            "context": "Uploaded from Task Manager Upload doc per Ryan Hughes request 2026-07-23.",
+            "open_items": [],
+            "deals": [],
+            "_note": "Doc listed 'Great Jones (unconfirmed)' as assignee, 'Eddie' as Family — likely parse artifact; assigned to Eddie."
+        }
+    ]
+}
