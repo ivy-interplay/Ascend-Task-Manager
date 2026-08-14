@@ -860,51 +860,90 @@
      avatar strip were pushing the first row of data below the fold. These
      overrides are scoped to #tasks-view so the Protocols tab keeps its
      original presentation. */
-  #tasks-view .hero { padding: 20px 28px 10px; }
-  #tasks-view .hero h1 { font-size: clamp(20px, 2.2vw, 28px); }
-  #tasks-view .hero .sub { font-size: 12px; margin-top: 4px; }
-  #tasks-view .tasks-stats-row { padding: 6px 0 2px; }
-  #tasks-view .tasks-stat-block.tile { padding: 6px 18px; }
-  #tasks-view .tasks-stat-num { font-size: clamp(26px, 3vw, 38px); }
-  #tasks-view .tile-breakdown { padding: 2px 0 8px; }
-  #tasks-view .avatar { width: 40px; height: 40px; }
-  #tasks-view .filter-strip { padding: 0 0 6px; margin-top: 0; }
-  #tasks-view .hero-overview { margin-bottom: 0; }
-  #tasks-view .tasks-strip-groups { margin-bottom: 4px; }
-  #tasks-view .avatar-btn { padding: 4px 6px; }
-  #tasks-view .avatar-btn .name { font-size: 10px; }
-  #tasks-view .avatar-btn .count { font-size: 9px; }
-  #tasks-view .hero-bar { padding-bottom: 6px; }
-  #tasks-view .quad-legend { padding: 4px 0; }
-  #tasks-view .quick-chips { padding: 2px 0 8px; }
+  /* The top bar lays children out with align-items:stretch, so the meta block's
+     contents sat flush to the top while the brand and tabs centred. */
+  .topbar .meta { display: flex; align-items: center; gap: 12px; }
 
-  /* Status tiles — now buttons, so they need affordance and focus states. */
+  /* No hero on the Tasks tab. The top bar already says TASK MANAGER › TASKS,
+     so a centred 32px "TASKS" headline repeated it and cost ~130px before any
+     work was visible. The tiles are the top of the page — they carry the same
+     orientation (what's open, what's slipping) and are actionable. The
+     Protocols tab keeps its hero. */
+  #tasks-view .hero { display: none; }
+  #tasks-view .tasks-stats-row { padding: 18px 0 4px; gap: 14px; }
+  #tasks-view .tile-breakdown { padding: 4px 0 10px; }
+  #tasks-view .avatar { width: 52px; height: 52px; }
+  #tasks-view .avatar-btn { padding: 5px 8px; }
+  #tasks-view .avatar-btn .name { font-size: 11px; }
+  #tasks-view .avatar-btn .count { font-size: 10px; }
+  #tasks-view .filter-strip { padding: 0 0 10px; margin-top: 0; }
+  #tasks-view .hero-overview { margin-bottom: 0; padding-bottom: 0; min-height: 0; }
+  #tasks-view .hero-bar > * + * { margin-top: 0; }
+  #tasks-view .tasks-strip-groups { margin-bottom: 6px; }
+  #tasks-view .hero-bar { padding-bottom: 8px; }
+  #tasks-view .quad-legend { padding: 6px 0; font-size: 12px; }
+  #tasks-view .quick-chips { padding: 4px 0 10px; }
+
+  /* Status tiles. These are the primary filter control, so they must read as
+     pressable at rest — a bare number on a background reads as a statistic,
+     not a button. Hence a persistent card: border, surface, and a caret that
+     says "this opens something". */
   .tasks-stat-block.tile {
-    background: none; border: 1px solid transparent; border-radius: 12px;
-    font-family: inherit; cursor: pointer; padding: 10px 22px;
-    transition: border-color 140ms, background 140ms, transform 140ms;
+    position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2px; min-width: 150px; padding: 16px 26px 14px;
+    border: 1px solid var(--grey); border-radius: 14px;
+    background: var(--grey-2); color: inherit;
+    font-family: inherit; cursor: pointer;
+    transition: border-color 140ms, background 140ms, transform 140ms, box-shadow 140ms;
   }
-  .tasks-stat-block.tile:hover { border-color: var(--grey); background: rgba(127,127,127,0.06); }
-  .tasks-stat-block.tile:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
-  .tasks-stat-block.tile.active { border-color: var(--red); background: rgba(234,51,35,0.07); }
+  [data-theme="dark"] .tasks-stat-block.tile { background: #131313; border-color: #2e2e2e; }
+  .tasks-stat-block.tile:hover {
+    border-color: var(--slate); transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  }
+  [data-theme="dark"] .tasks-stat-block.tile:hover { background: #191919; box-shadow: 0 4px 14px rgba(0,0,0,0.5); }
+  .tasks-stat-block.tile:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+  /* The stat number was hardcoded white — invisible once it sits on a light
+     card. --black flips per theme, so it reads in both. */
+  .tasks-stat-block.tile .tasks-stat-num { font-size: clamp(30px, 3.2vw, 44px); line-height: 1.05; color: var(--black); }
+  .tasks-stat-block.tile .tasks-stat-label { font-size: 11px; letter-spacing: 0.1em; }
+  /* Caret hints that the tile expands a breakdown. */
+  .tasks-stat-block.tile::after {
+    content: ''; position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%);
+    width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent;
+    border-top: 4px solid var(--slate); opacity: 0.5; transition: transform 140ms, opacity 140ms;
+  }
+  .tasks-stat-block.tile:hover::after { opacity: 1; }
+  .tasks-stat-block.tile.active {
+    border-color: var(--red); background: rgba(234,51,35,0.08);
+    box-shadow: inset 0 0 0 1px var(--red);
+  }
+  [data-theme="dark"] .tasks-stat-block.tile.active { background: rgba(234,51,35,0.14); }
   .tasks-stat-block.tile.active .tasks-stat-num { color: var(--red); }
+  .tasks-stat-block.tile.active::after {
+    transform: translateX(-50%) rotate(180deg); opacity: 1; border-top-color: var(--red);
+  }
   .tasks-stat-block.tile.tile-warn .tasks-stat-num { color: var(--amber); }
   .tasks-stat-block.tile.tile-warn.active .tasks-stat-num { color: var(--red); }
 
   /* Priority breakdown revealed by the active tile */
   .tile-breakdown { display: flex; justify-content: center; padding: 4px 0 16px; }
+  /* An author `display:flex` beats the UA stylesheet's [hidden]{display:none},
+     so the empty container kept reserving ~90px of padding under the tiles. */
+  .tile-breakdown[hidden] { display: none; }
   .tile-breakdown-inner {
     display: inline-flex; align-items: center; flex-wrap: wrap; gap: 8px;
     padding: 8px 14px; border: 1px solid var(--grey); border-radius: 999px;
   }
   [data-theme="dark"] .tile-breakdown-inner { border-color: #2a2a2a; }
   .tile-breakdown-title {
-    font-size: 10px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--slate); margin-right: 4px;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--slate); margin-right: 6px;
   }
   .tile-seg {
     display: inline-flex; align-items: center; gap: 6px;
-    min-height: 30px; padding: 0 12px; border-radius: 999px;
+    min-height: 34px; padding: 0 14px; border-radius: 999px;
     border: 1px solid var(--grey); background: var(--white); color: var(--carbon);
     font-family: inherit; font-size: 11px; font-weight: 600;
     text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer;
@@ -912,7 +951,7 @@
   }
   .tile-seg:hover { border-color: var(--slate); }
   .tile-seg:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
-  .tile-seg-n { font-size: 13px; font-weight: 800; }
+  .tile-seg-n { font-size: 14px; font-weight: 800; }
   .tile-seg.p-high .tile-seg-n { color: var(--red); }
   .tile-seg.p-med  .tile-seg-n { color: var(--amber); }
   .tile-seg.p-low  .tile-seg-n { color: var(--green); }
@@ -921,14 +960,47 @@
   .tile-seg.clear { color: var(--slate); border-style: dashed; }
   [data-theme="dark"] .tile-seg { background: #1a1a1a; border-color: #333; color: #ddd; }
 
+  /* Pager */
+  .task-pager {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 14px; padding: 16px 0 8px;
+    border-top: 1px solid var(--grey); margin-top: 4px;
+    font-size: 12px; color: var(--slate);
+  }
+  [data-theme="dark"] .task-pager { border-color: #222; }
+  .task-pager strong { color: var(--black); font-weight: 700; }
+  .pg-mid { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+  .pg-num, .pg-step {
+    min-width: 36px; min-height: 36px; padding: 0 10px;
+    border: 1px solid var(--grey); border-radius: 8px;
+    background: var(--white); color: var(--carbon);
+    font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;
+    transition: border-color 140ms, background 140ms;
+  }
+  .pg-num:hover:not(.active), .pg-step:hover:not(:disabled) { border-color: var(--slate); }
+  .pg-num.active { background: var(--red); border-color: var(--red); color: #fff; }
+  .pg-step:disabled { opacity: 0.35; cursor: not-allowed; }
+  .pg-num:focus-visible, .pg-step:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+  .pg-gap { padding: 0 4px; color: var(--slate); }
+  .pg-right { display: flex; align-items: center; gap: 8px; }
+  .pg-right label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .pg-right select {
+    min-height: 36px; padding: 0 10px; border: 1px solid var(--grey); border-radius: 8px;
+    background: var(--white); color: var(--carbon); font-family: inherit; font-size: 12px; cursor: pointer;
+  }
+  [data-theme="dark"] .pg-num, [data-theme="dark"] .pg-step, [data-theme="dark"] .pg-right select {
+    background: #1a1a1a; border-color: #333; color: #ddd;
+  }
+  [data-theme="dark"] .pg-num.active { background: var(--red); border-color: var(--red); color: #fff; }
+
   /* Quick filter chips */
   .quick-chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 0 10px; }
   .qchip {
     display: inline-flex; align-items: center; gap: 7px;
-    min-height: 32px; padding: 0 14px;
+    min-height: 36px; padding: 0 16px;
     border: 1px solid var(--grey); border-radius: 999px;
     background: var(--white); color: var(--carbon);
-    font-family: inherit; font-size: 11px; font-weight: 700;
+    font-family: inherit; font-size: 12px; font-weight: 700;
     text-transform: uppercase; letter-spacing: 0.06em;
     cursor: pointer; transition: border-color 140ms, color 140ms, background 140ms;
   }
@@ -1085,13 +1157,14 @@
   /* Search */
   .cf-search { position: relative; display: inline-flex; align-items: center; }
   .cf-search-icon {
-    position: absolute; left: 11px; width: 14px; height: 14px;
+    position: absolute; left: 13px; width: 15px; height: 15px;
     color: var(--slate); pointer-events: none;
   }
   .cf-search input {
     appearance: none; -webkit-appearance: none;
-    min-height: 32px; width: 230px;
-    padding: 6px 30px 6px 32px;
+    font-size: 13px;
+    min-height: 36px; width: 300px;
+    padding: 8px 32px 8px 36px;
     border: 1px solid var(--grey); border-radius: 999px;
     background: var(--white); color: var(--carbon);
     font-family: inherit; font-size: 12px;
@@ -1106,11 +1179,26 @@
   .cf-search-clear:hover { color: var(--red); }
   [data-theme="dark"] .cf-search input { background: #1a1a1a; border-color: #333; color: #eee; }
 
+  /* Two deliberate rows instead of one wrapping flex line: search and the
+     view toggles on top, the filter dropdowns beneath. Previously "Date added"
+     and "Show completed" wrapped to a second line at an arbitrary point. */
+  .cf-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .cf-row-1 { padding-bottom: 8px; }
+  .cf-row-2 { padding-bottom: 2px; }
+  /* Push the view toggles to the right, away from search. */
+  .cf-row-1 .cf-toggle { margin-left: auto; }
+  .cf-toggle {
+    display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+    min-height: 36px; white-space: nowrap;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--carbon);
+  }
+  .cf-toggle input { width: 16px; height: 16px; accent-color: var(--red); cursor: pointer; }
+  [data-theme="dark"] .cf-toggle { color: #ccc; }
+
   .col-filter-bar {
-    display: flex;
-    align-items: center;
+    display: block;
     gap: 8px;
-    flex-wrap: wrap;
     padding: 10px 0 14px;
     flex-wrap: wrap;
   }
@@ -1119,12 +1207,12 @@
     -webkit-appearance: none;
     /* Was 4px vertical: a ~22px control. Raised to a 32px target — the filter
        bar is not density-constrained the way the grid is. */
-    min-height: 32px;
-    padding: 6px 26px 6px 12px;
+    min-height: 36px;
+    padding: 8px 28px 8px 14px;
     border: 1px solid var(--grey);
     background: var(--white) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%233B3B3B' fill='none' stroke-width='1.4'/></svg>") no-repeat right 8px center;
     font-family: inherit;
-    font-size: 10.5px;
+    font-size: 11.5px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -1157,7 +1245,8 @@
     color: var(--slate);
   }
   .col-filter-clear {
-    font-size: 10px;
+    min-height: 36px;
+    font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -1614,13 +1703,20 @@
 <div class="body-wrap" id="tasks-body-wrap">
   <!-- Column filter bar -->
   <div class="col-filter-bar" id="col-filter-bar">
+   <div class="cf-row cf-row-1">
     <div class="cf-search">
       <svg class="cf-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
       <label for="cf-search" class="sr-only">Search tasks</label>
-      <input type="search" id="cf-search" placeholder="Search tasks…" autocomplete="off" oninput="applyColFilters()">
+      <input type="search" id="cf-search" placeholder="Search tasks…" autocomplete="off" oninput="onSearchInput()">
       <button type="button" class="cf-search-clear" id="cf-search-clear" aria-label="Clear search" onclick="clearSearch()" style="display:none">×</button>
     </div>
-    <span class="col-filter-label">Filter:</span>
+    <label class="cf-toggle" for="cf-showdone">
+      <input type="checkbox" id="cf-showdone" onchange="applyColFilters()"> Show completed
+    </label>
+    <button class="col-filter-clear" id="col-filter-clear" onclick="clearColFilters()" style="display:none">✕ Clear all</button>
+   </div>
+   <div class="cf-row cf-row-2">
+    <span class="col-filter-label">Filter</span>
     <select id="cf-quadrant" onchange="applyColFilters()">
       <option value="">Imp/Urg</option>
       <option value="__blank__">— Blank</option>
@@ -1678,10 +1774,7 @@
       <option value="month">This month</option>
       <option value="older">Older than 30 days</option>
     </select>
-    <label class="col-filter-label" style="display:inline-flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap">
-      <input type="checkbox" id="cf-showdone" onchange="applyColFilters()"> Show completed
-    </label>
-    <button class="col-filter-clear" id="col-filter-clear" onclick="clearColFilters()" style="display:none">✕ Clear filters</button>
+   </div>
   </div>
   <!-- Quick filters. Borrowed from Asana's "My Tasks" and Jira's quick filters:
        the three questions people actually open a task board to answer. Each
@@ -1730,6 +1823,7 @@
     <tbody id="task-rows"></tbody>
   </table>
   </div>
+  <div class="task-pager" id="task-pager"></div>
   <div id="task-empty" class="empty" style="display:none">No tasks yet.</div>
 </div>
 
@@ -2600,6 +2694,7 @@ function applyColFilters() {
     || (document.getElementById('cf-showdone') || {}).checked;
   const clearBtn = document.getElementById('col-filter-clear');
   if (clearBtn) clearBtn.style.display = anyActive ? '' : 'none';
+  window.__page = 1;
   syncUrlState();
   renderTaskCards(window.__allTasks);
 }
@@ -2689,6 +2784,62 @@ function clearColFilters() {
   const clearBtn = document.getElementById('col-filter-clear');
   if (clearBtn) clearBtn.style.display = 'none';
   renderTaskCards(window.__allTasks);
+}
+
+// ── Pagination ──────────────────────────────────────────────────────────────
+window.__page = 1;
+window.__perPage = 25;
+
+function goToPage(n) {
+  window.__page = Math.max(1, n);
+  renderTaskCards(window.__allTasks);
+  // Put the top of the list back in view — paging while scrolled halfway down
+  // otherwise lands you in the middle of the new page.
+  const bar = document.querySelector('.col-filter-bar');
+  if (bar) bar.scrollIntoView({ block: 'start', behavior: 'auto' });
+}
+
+function setPerPage(v) {
+  window.__perPage = parseInt(v, 10) || 25;
+  window.__page = 1;
+  renderTaskCards(window.__allTasks);
+}
+
+function renderPager(total, page, pages, start, shown) {
+  const el = document.getElementById('task-pager');
+  if (!el) return;
+  if (total === 0) { el.innerHTML = ''; return; }
+
+  // Windowed page numbers with ellipses — 5 pages of buttons is fine, 40 is not.
+  const nums = [];
+  const push = n => nums.push(
+    `<button type="button" class="pg-num ${n === page ? 'active' : ''}" ${n === page ? 'aria-current="page"' : ''} onclick="goToPage(${n})">${n}</button>`);
+  const gap = () => nums.push('<span class="pg-gap">…</span>');
+  if (pages <= 7) { for (let i = 1; i <= pages; i++) push(i); }
+  else {
+    push(1);
+    if (page > 3) gap();
+    for (let i = Math.max(2, page - 1); i <= Math.min(pages - 1, page + 1); i++) push(i);
+    if (page < pages - 2) gap();
+    push(pages);
+  }
+
+  const from = total ? start + 1 : 0;
+  const to = start + shown;
+  el.innerHTML = `
+    <div class="pg-left">Showing <strong>${from}–${to}</strong> of <strong>${total}</strong></div>
+    <div class="pg-mid">
+      <button type="button" class="pg-step" onclick="goToPage(${page - 1})" ${page === 1 ? 'disabled' : ''} aria-label="Previous page">‹ Prev</button>
+      ${nums.join('')}
+      <button type="button" class="pg-step" onclick="goToPage(${page + 1})" ${page >= pages ? 'disabled' : ''} aria-label="Next page">Next ›</button>
+    </div>
+    <div class="pg-right">
+      <label for="pg-per">Per page</label>
+      <select id="pg-per" onchange="setPerPage(this.value)">
+        ${[25, 50, 100].map(n => `<option value="${n}" ${n === window.__perPage ? 'selected' : ''}>${n}</option>`).join('')}
+        <option value="0" ${window.__perPage === 0 ? 'selected' : ''}>All</option>
+      </select>
+    </div>`;
 }
 
 // ── Status tiles ────────────────────────────────────────────────────────────
@@ -2835,6 +2986,14 @@ function taskMatchesSearch(t) {
   const hay = [t.title, t.overview, t.next_step, t.family, t.function, owner, co, t.status]
     .map(v => (v || '').toString().toLowerCase()).join(' ');
   return q.split(/\s+/).every(term => hay.includes(term));
+}
+
+// Debounced so each keystroke doesn't rebuild every row's nine <select>s;
+// 120ms is below the threshold where typing stops feeling live.
+let __searchTimer = null;
+function onSearchInput() {
+  clearTimeout(__searchTimer);
+  __searchTimer = setTimeout(applyColFilters, 120);
 }
 
 function clearSearch() {
@@ -3258,9 +3417,23 @@ function renderTaskCards(tasks) {
   }
   if (empty) empty.style.display = 'none';
   if (table) table.style.display = '';
+
+  // ── Pagination ────────────────────────────────────────────────────────────
+  // 109 open tasks is a long scroll and every row builds nine <select>s, so
+  // paging keeps both the scroll and the DOM manageable. Any change to the
+  // filters resets to page 1, or you'd land on an empty page.
+  const total = filtered.length;
+  const per = window.__perPage || 25;
+  const pages = per === 0 ? 1 : Math.max(1, Math.ceil(total / per));
+  if (window.__page > pages) window.__page = pages;
+  const page = window.__page || 1;
+  const start = per === 0 ? 0 : (page - 1) * per;
+  const pageRows = per === 0 ? filtered : filtered.slice(start, start + per);
+  renderPager(total, page, pages, start, pageRows.length);
+
   const priClass = { high:'priority-high', medium:'priority-medium', low:'priority-low', completed:'priority-completed', archived:'priority-archived' };
   const priOptions = ['high','medium','low','completed','archived'];
-  tbody.innerHTML = filtered.map(t => {
+  tbody.innerHTML = pageRows.map(t => {
     const pri = t.priority || 'medium';
     const desc = (t.overview || '').slice(0, 120) + ((t.overview || '').length > 120 ? '…' : '');
     return `<tr class="${t.quadrant ? 'row-q-' + esc(t.quadrant) : ''}" tabindex="0" role="button" aria-label="Open ${esc(t.title)}" onclick="openTaskDrawer('${esc(t.id)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openTaskDrawer('${esc(t.id)}')}">
