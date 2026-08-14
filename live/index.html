@@ -1026,7 +1026,14 @@
   #tasks-view .hero-overview { margin-bottom: 0; padding-bottom: 0; min-height: 0; }
   #tasks-view .hero-bar > * + * { margin-top: 0; }
   #tasks-view .hero-bar { padding-bottom: 8px; }
-  #tasks-view .quad-legend { padding: 6px 0; font-size: 12px; }
+  /* Below the table the legend is a footnote: separated by a rule, quieter
+     than the data it explains. */
+  #tasks-view .quad-legend {
+    padding: 14px 0 4px; font-size: 11.5px;
+    border-top: 1px solid var(--grey); margin-top: 2px;
+  }
+  [data-theme="dark"] #tasks-view .quad-legend { border-top-color: #222; }
+  #tasks-view .quad-legend b { color: var(--black); font-weight: 700; }
   #tasks-view .quick-chips { padding: 4px 0 10px; }
 
   /* Status tiles. These are the primary filter control, so they must read as
@@ -1376,11 +1383,13 @@
   /* Two deliberate rows instead of one wrapping flex line: search and the
      view toggles on top, the filter dropdowns beneath. Previously "Date added"
      and "Show completed" wrapped to a second line at an arbitrary point. */
-  .cf-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  /* Centred to sit under the centred hero, tiles and people strip — left-aligned
+     they were the only thing on the page breaking that axis. */
+  .cf-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .quick-chips { justify-content: center; }
   .cf-row-1 { padding-bottom: 8px; }
   .cf-row-2 { padding-bottom: 2px; }
-  /* Push the view toggles to the right, away from search. */
-  .cf-row-1 .cf-toggle { margin-left: auto; }
+
   .cf-toggle {
     display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
     min-height: 36px; white-space: nowrap;
@@ -1958,13 +1967,6 @@
     </label>
   </div>
 
-  <div class="quad-legend" aria-label="Focus legend">
-    <span class="lg"><span class="dot" style="background:var(--q-iu)"></span><b>Do first</b> — important &amp; urgent</span>
-    <span class="lg"><span class="dot" style="background:var(--q-inu)"></span><b>Schedule</b> — important, not urgent</span>
-    <span class="lg"><span class="dot" style="background:var(--q-uni)"></span><b>Delegate</b> — urgent, not important</span>
-    <span class="lg"><span class="dot" style="background:var(--q-nn)"></span><b>Later</b> — neither</span>
-    <span class="lg" id="hidden-done-note" style="margin-left:auto;color:var(--slate)"></span>
-  </div>
   <div class="tasks-filter-stats" id="tasks-filter-stats"></div>
   <!-- Search belongs to the table, not to the filter block: it acts on these
        rows, so it sits on the table's own toolbar, directly above the header. -->
@@ -2011,6 +2013,12 @@
   </table>
   </div>
   <div class="task-pager" id="task-pager"></div>
+  <div class="quad-legend" aria-label="Focus legend">
+    <span class="lg"><span class="dot" style="background:var(--q-iu)"></span><b>Do first</b> — important &amp; urgent</span>
+    <span class="lg"><span class="dot" style="background:var(--q-inu)"></span><b>Schedule</b> — important, not urgent</span>
+    <span class="lg"><span class="dot" style="background:var(--q-uni)"></span><b>Delegate</b> — urgent, not important</span>
+    <span class="lg"><span class="dot" style="background:var(--q-nn)"></span><b>Later</b> — neither</span>
+  </div>
   <div id="task-empty" class="empty" style="display:none">No tasks yet.</div>
 </div>
 
