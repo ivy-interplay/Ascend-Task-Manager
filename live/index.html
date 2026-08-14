@@ -915,8 +915,29 @@
     font-size: 10.5px; letter-spacing: 0.08em; color: var(--slate);
     font-variant-numeric: tabular-nums; white-space: nowrap;
   }
-  .topbar .brand-title { font-size: 12px; letter-spacing: 0.08em; }
-  .topbar .tab-link { font-size: 11px; }
+
+  .stamp-bar {
+    display: flex; align-items: center; justify-content: center;
+    padding: 5px 24px; background: var(--grey-2);
+    border-bottom: 1px solid var(--grey);
+    font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--slate); opacity: 0.75; font-variant-numeric: tabular-nums;
+  }
+  [data-theme="dark"] .stamp-bar { background: #101010; border-bottom-color: #222; }
+  /* The wordmark sat at 12px / 0.08em — the same optical weight as the nav
+     tabs, so "Task Manager" read as a third tab rather than the product name.
+     It gets the heaviest weight in the bar, tight tracking so it sets as one
+     unit, and a rule separating brand from navigation. The tabs stay small and
+     wide-tracked: secondary by construction, not by accident. */
+  .topbar .brand-title {
+    font-size: 21px; font-weight: 900; letter-spacing: -0.005em;
+    line-height: 1; white-space: nowrap;
+  }
+  .topbar .brand { gap: 12px; padding-right: 22px; margin-right: 22px; border-right: 1px solid #2f2f2f; }
+  [data-theme="light"] .topbar .brand { border-right-color: var(--grey); }
+  /* The mark grows with the wordmark so the lockup stays in proportion. */
+  .topbar .brand .delta { width: 17px; height: 35px; display: block; }
+  .topbar .tab-link { font-size: 11px; letter-spacing: 0.14em; font-weight: 700; }
 
 
   /* "Show completed" is a checkbox wearing the chip's clothes, so it sits with
@@ -1660,7 +1681,7 @@
   <div class="topbar-left">
     <div class="brand">
       <span class="delta"><svg width="29" height="59" viewBox="0 0 29 59" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8.55428 0L0 58.9228L7.62983 58.9806L8.81403 51.7935L14.1389 11.0761H14.3037L19.8105 49.8829H13.3138L7.62983 58.9806H8.18084H20.3444L29 59L20.6165 0H8.55428Z" fill="#d32f2f"/></svg></span>
-      <div class="brand-title">Task Manager</div>
+      <div class="brand-title">Ascend</div>
     </div>
     <nav class="tab-nav">
       <button class="tab-link active" data-tab="tasks" onclick="switchTab('tasks')">Tasks</button>
@@ -1669,10 +1690,12 @@
   </div>
   <div class="meta">
     <button class="identity-pill anon" id="identityPill" onclick="openIdentityModal()">Set identity</button>
-    <span id="generated_at" class="meta-stamp">Loading…</span>
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">Light mode</button>
   </div>
 </header>
+<!-- The freshness stamp is context, not navigation; it was crowding the nav
+     bar. Its own quiet strip, centred, out of the way. -->
+<div class="stamp-bar"><span id="generated_at">Loading…</span></div>
 
 <!-- Identity modal -->
 <div class="id-modal-overlay" id="idModalOverlay" onclick="handleOverlayClick(event)">
