@@ -959,6 +959,56 @@
   [data-theme="dark"] td.row-open { color: #3a3a3a; }
   table.tasks tbody tr.task-row:hover td.row-open { color: var(--red); transform: translateX(2px); }
   table.tasks thead th:last-child { width: 3%; }
+  /* Table toolbar — search is the primary control here, so it is the widest. */
+  .table-toolbar {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    padding: 12px 14px;
+    border: 1px solid var(--grey); border-bottom: 0;
+    border-radius: 12px 12px 0 0; background: var(--grey-2);
+  }
+  [data-theme="dark"] .table-toolbar { background: #121212; border-color: #262626; }
+  .table-toolbar .cf-search { flex: 1 1 340px; max-width: 520px; }
+  .table-toolbar .cf-search input { width: 100%; min-height: 40px; font-size: 14px; }
+  .toolbar-count {
+    margin-left: auto; font-size: 12px; color: var(--slate);
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .toolbar-add { min-height: 40px; padding: 0 18px; }
+  .tasks-table-scroll {
+    border: 1px solid var(--grey); border-top: 0; border-radius: 0 0 12px 12px;
+  }
+  [data-theme="dark"] .tasks-table-scroll { border-color: #262626; }
+
+  /* Sortable headers are real buttons — but they must not LOOK like default
+     UA buttons sitting in the header row. */
+  table.tasks thead th.sortable { padding: 0; }
+  table.tasks thead th .th-btn {
+    display: flex; align-items: center; gap: 5px; width: 100%;
+    min-height: 40px; padding: 0 8px;
+    background: none; border: 0; border-radius: 0; color: inherit;
+    font-family: inherit; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-align: left; cursor: pointer; appearance: none; -webkit-appearance: none;
+  }
+  table.tasks thead th .th-btn:hover { color: var(--red); }
+  table.tasks thead th .th-btn:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
+  table.tasks thead th.sort-asc  .th-btn::after { content: '↑'; color: var(--red); }
+  table.tasks thead th.sort-desc .th-btn::after { content: '↓'; color: var(--red); }
+  table.tasks thead th.sort-asc::after, table.tasks thead th.sort-desc::after { content: none; }
+
+  /* Title is the row's trigger — a real button, but it must read as the row's
+     title, not as a form control. */
+  .task-title-btn {
+    display: block; width: 100%; text-align: left;
+    background: none; border: 0; border-radius: 0; padding: 2px 0;
+    cursor: pointer; appearance: none; -webkit-appearance: none;
+    font-family: inherit; font-size: 13px; font-weight: 600;
+    color: var(--black); letter-spacing: -0.01em; line-height: 1.35;
+  }
+  .task-title-btn:hover { color: var(--red); }
+  .task-title-btn:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+  .add-task-btn { min-height: 36px; }
+
   /* Tasks presents its people strip exactly as Protocols does — full-size
      circles, names and counts, centred and uncramped. Scrolling to the table
      is an accepted trade for a scannable team row.
@@ -968,7 +1018,7 @@
      breaking into a scopes row and a people row. */
   #tasks-view .tasks-strip-groups,
   #tasks-view .tasks-strip-persons { display: contents; }
-  #tasks-view .hero { padding: 30px 28px 14px; }
+  #tasks-view .hero { padding: 56px 28px 18px; }
   #tasks-view .hero h1 { font-size: clamp(28px, 3.4vw, 40px); }
   #tasks-view .hero .sub { font-size: 14px; margin-top: 6px; }
   #tasks-view .tasks-stats-row { padding: 18px 0 4px; gap: 14px; }
@@ -1133,13 +1183,55 @@
   .tdrawer-note-meta { font-size: 11px; color: var(--slate); margin-top: 3px; }
   [data-theme="dark"] .tdrawer-sec { border-color: #2a2a2a; }
   [data-theme="dark"] .tdrawer-note { border-color: #222; }
-  .tdrawer-full {
-    display: inline-flex; align-items: center; min-height: 40px; margin: 16px 20px 28px;
-    padding: 0 18px; border-radius: 999px; background: var(--red); color: #fff;
-    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-    text-decoration: none; transition: opacity 140ms;
+  /* The drawer carries the whole record, so it needs form styling of its own. */
+  .drawer { width: min(560px, 94vw); }
+  .tdrawer-input {
+    width: 100%; background: var(--white); color: var(--black);
+    border: 1px solid var(--grey); border-radius: 8px;
+    padding: 9px 11px; font-family: inherit; font-size: 14px; line-height: 1.45;
   }
-  .tdrawer-full:hover { opacity: 0.88; }
+  [data-theme="dark"] .tdrawer-input { background: #141414; border-color: #2e2e2e; color: #eee; }
+  .tdrawer-input:focus-visible { outline: 2px solid var(--red); outline-offset: 1px; border-color: var(--red); }
+  .tdrawer-input.saving { opacity: 0.55; }
+  .tdrawer-area { resize: vertical; min-height: 62px; }
+  #dw-title { font-size: 15px; font-weight: 600; }
+  label.tdrawer-label { display: block; flex: none; margin-bottom: 5px; }
+
+  /* Two columns of label/value for the structured fields. */
+  .tdrawer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px 20px; }
+  .tdrawer-grid .tdrawer-row { flex-direction: column; align-items: stretch; gap: 4px; padding: 7px 0; }
+  .tdrawer-grid .tdrawer-label { flex: none; padding-top: 0; }
+  .tdrawer-grid .tdrawer-value select,
+  .tdrawer-grid .tdrawer-value input { width: 100%; max-width: none; min-height: 36px; }
+
+  .tdrawer-addnote { display: flex; gap: 8px; margin-top: 12px; }
+  .tdrawer-addnote input {
+    flex: 1; min-height: 38px; padding: 0 12px; font-family: inherit; font-size: 13px;
+    background: var(--white); color: var(--black);
+    border: 1px solid var(--grey); border-radius: 8px;
+  }
+  [data-theme="dark"] .tdrawer-addnote input { background: #141414; border-color: #2e2e2e; color: #eee; }
+  .tdrawer-note-btn {
+    min-height: 38px; padding: 0 16px; border-radius: 8px; cursor: pointer;
+    background: var(--red-strong); color: #fff; border: 0;
+    font-family: inherit; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .tdrawer-foot {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; padding: 18px 20px 30px;
+  }
+  .tdrawer-link {
+    font-size: 12px; font-weight: 600; color: var(--slate); text-decoration: none;
+  }
+  .tdrawer-link:hover { color: var(--red); text-decoration: underline; }
+  .tdrawer-delete {
+    background: none; border: 1px solid var(--grey); color: var(--slate);
+    min-height: 36px; padding: 0 14px; border-radius: 8px; cursor: pointer;
+    font-family: inherit; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .tdrawer-delete:hover { color: var(--red); border-color: var(--red); }
   /* Legend dot reused in the drawer subheading. */
   .q-dot { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; box-shadow: 0 0 0 1px rgba(0,0,0,.25); }
   .q-dot.q-iu { background: var(--q-iu); } .q-dot.q-inu { background: var(--q-inu); }
@@ -1842,10 +1934,6 @@
     <label for="cf-type" class="sr-only">Filter by type</label><select id="cf-type" onchange="applyColFilters()">
       <option value="">All types</option>
     </select>
-    <label for="cf-owner" class="sr-only">Filter by owner</label><select id="cf-owner" onchange="applyColFilters()">
-      <option value="">Owner</option>
-      <option value="__blank__">— Blank</option>
-    </select>
     <label for="cf-due" class="sr-only">Filter by due date</label><select id="cf-due" onchange="applyColFilters()">
       <option value="">Any due date</option>
       <option value="overdue">Overdue</option>
@@ -1853,13 +1941,6 @@
       <option value="month">Due this month</option>
       <option value="set">Has due date</option>
       <option value="none">No due date</option>
-    </select>
-    <label for="cf-date" class="sr-only">Filter by date added</label><select id="cf-date" onchange="applyColFilters()">
-      <option value="">Any date added</option>
-      <option value="today">Today</option>
-      <option value="week">This week</option>
-      <option value="month">This month</option>
-      <option value="older">Older than 30 days</option>
     </select>
     <button class="col-filter-clear" id="col-filter-clear" onclick="clearColFilters()" style="display:none">✕ Clear all</button>
    </div>
@@ -2786,6 +2867,8 @@ function populateColFilterOptions(tasks) {
   }
 
   // Owner
+  // cf-owner was removed (the avatar strip filters by person, with faces and
+  // counts) — this block is a no-op unless the control is reintroduced.
   const owners = sortOwnerSlugs([...new Set(tasks.map(t => t.assigned_to || '').filter(Boolean))]);
   const cfOwn = document.getElementById('cf-owner');
   if (cfOwn) {
@@ -2797,7 +2880,7 @@ function populateColFilterOptions(tasks) {
 }
 
 function applyColFilters() {
-  const ids = ['priority','quadrant','status','family','type','owner','due','date'];
+  const ids = ['priority','quadrant','status','family','type','due'];
   ids.forEach(id => {
     const el = document.getElementById('cf-' + id);
     if (el) {
@@ -2829,7 +2912,7 @@ function applyColFilters() {
 // filtered view can be pasted into Slack and open the same way for someone
 // else (Linear/Asana behaviour). replaceState keeps it out of history so the
 // back button still leaves the page rather than stepping through filter edits.
-const URL_FILTER_IDS = ['priority','quadrant','status','family','type','owner','due','date'];
+const URL_FILTER_IDS = ['priority','quadrant','status','family','type','due'];
 
 function syncUrlState() {
   if (window.__restoringState) return;
@@ -2883,7 +2966,7 @@ function restoreUrlState() {
 }
 
 function clearColFilters() {
-  ['priority','quadrant','status','family','type','owner','due','date'].forEach(id => {
+  ['priority','quadrant','status','family','type','due'].forEach(id => {
     colFilters[id] = '';
     const el = document.getElementById('cf-' + id);
     if (el) { el.value = ''; el.classList.remove('active'); }
@@ -2933,7 +3016,14 @@ function setPerPage(v) {
 function renderPager(total, page, pages, start, shown) {
   const el = document.getElementById('task-pager');
   if (!el) return;
-  if (total === 0) { el.innerHTML = ''; return; }
+  if (total === 0) {
+    // Clear the pager, but the count still has to speak — it is the aria-live
+    // region, and leaving the previous total over an empty table is a lie.
+    el.innerHTML = '';
+    const tc0 = document.getElementById('toolbar-count');
+    if (tc0) tc0.textContent = 'No matching tasks';
+    return;
+  }
 
   // Windowed page numbers with ellipses — 5 pages of buttons is fine, 40 is not.
   const nums = [];
@@ -3542,6 +3632,10 @@ function renderTaskCards(tasks) {
   if (!filtered.length) {
     if (table) table.style.display = 'none';
     if (empty) { empty.textContent = anyFilter ? 'No tasks match these filters.' : 'No tasks yet.'; empty.style.display = ''; }
+    // This early return used to skip the pager, so a filter that matched
+    // nothing left the previous "1–25 of 109" sitting above an empty table.
+    window.__page = 1;
+    renderPager(0, 1, 1, 0, 0);
     return;
   }
   if (empty) empty.style.display = 'none';
@@ -3710,30 +3804,105 @@ function openTaskDrawer(id) {
     ].filter(Boolean).join(' &nbsp;·&nbsp; ');
 
   const notes = Array.isArray(t.notes) ? t.notes : [];
+  const dash = '<span class="tdrawer-empty">—</span>';
+
+  // The drawer IS the detail view — every field editable, notes included — so
+  // there is no reason to bounce through it to a second page. task.html stays
+  // as the deep-linkable/shareable version, demoted to a quiet link.
   document.getElementById('taskDrawerBody').innerHTML = `
     <div class="tdrawer-sec">
-      ${drawerRow('Description', `<div class="tdrawer-text">${t.overview ? esc(t.overview) : '<span class="tdrawer-empty">None</span>'}</div>`)}
-      ${drawerRow('Next step',   `<div class="tdrawer-text">${t.next_step ? esc(t.next_step) : '<span class="tdrawer-empty">None</span>'}</div>`)}
+      <label class="tdrawer-label" for="dw-title">Title</label>
+      <input class="tdrawer-input" id="dw-title" value="${esc(t.title || '')}"
+             onchange="saveDrawerField('${esc(t.id)}','title',this)">
+      <label class="tdrawer-label" for="dw-overview" style="margin-top:14px">Description</label>
+      <textarea class="tdrawer-input tdrawer-area" id="dw-overview" rows="3" placeholder="What is this task?"
+                onchange="saveDrawerField('${esc(t.id)}','overview',this)">${esc(t.overview || '')}</textarea>
+      <label class="tdrawer-label" for="dw-next" style="margin-top:14px">Next step</label>
+      <textarea class="tdrawer-input tdrawer-area" id="dw-next" rows="2" placeholder="What happens next?"
+                onchange="saveDrawerField('${esc(t.id)}','next_step',this)">${esc(t.next_step || '')}</textarea>
     </div>
-    <div class="tdrawer-sec">
+
+    <div class="tdrawer-sec tdrawer-grid">
+      ${drawerRow('Status',   statusCellHTML(t))}
+      ${drawerRow('Priority', `<select class="priority-select" aria-label="Priority" data-task-id="${esc(t.id)}" onchange="updatePriority(this)">${['high','medium','low'].map(pv=>`<option value="${pv}" ${pv===(t.priority||'medium')?'selected':''}>${pv.charAt(0).toUpperCase()+pv.slice(1)}</option>`).join('')}</select>`)}
+      ${drawerRow('Focus',    quadrantCellHTML(t))}
+      ${drawerRow('Client / family', familyCellHTML(t))}
+      ${drawerRow('Type',     typeCellHTML(t))}
+      ${drawerRow('Owner',    ownerCellHTML2(t))}
       ${drawerRow('Co-owner / helper', coOwnerCellHTML(t))}
-      ${drawerRow('Repeats', recurrenceCellHTML(t))}
-      ${drawerRow('Created by', t.created_by_raw || t.created_by ? esc(t.created_by_raw || t.created_by) : '<span class="tdrawer-empty">—</span>')}
-      ${drawerRow('Date added', t.created_at ? esc(formatDueShort(t.created_at)) : '<span class="tdrawer-empty">—</span>')}
+      ${drawerRow('Due date', dueDateInputHTML(t))}
+      ${drawerRow('Repeats',  recurrenceCellHTML(t))}
+      ${drawerRow('Created by', t.created_by_raw || t.created_by ? esc(t.created_by_raw || t.created_by) : dash)}
+      ${drawerRow('Date added', t.created_at ? esc(formatDueShort(t.created_at)) : dash)}
     </div>
+
     <div class="tdrawer-sec">
-      <div class="tdrawer-label" style="margin-bottom:8px">Notes</div>
-      ${notes.length
-        ? notes.map(n => `<div class="tdrawer-note"><div class="tdrawer-note-text">${esc(n.text || '')}</div><div class="tdrawer-note-meta">${esc(n.author || '')}${n.author && n.ts ? ' · ' : ''}${esc(n.ts || '')}</div></div>`).join('')
-        : '<div class="tdrawer-empty">No notes yet.</div>'}
+      <div class="tdrawer-label" style="margin-bottom:10px">Notes</div>
+      <div id="dw-notes">${renderDrawerNotes(notes)}</div>
+      <div class="tdrawer-addnote">
+        <label for="dw-note" class="sr-only">Add a note</label>
+        <input id="dw-note" placeholder="Add a note…"
+               onkeydown="if(event.key==='Enter'){event.preventDefault();addDrawerNote('${esc(t.id)}')}">
+        <button type="button" class="tdrawer-note-btn" onclick="addDrawerNote('${esc(t.id)}')">Add</button>
+      </div>
     </div>
-    <a class="tdrawer-full" href="/protocols/task.html?id=${encodeURIComponent(t.id)}">Open full detail &rarr;</a>
+
+    <div class="tdrawer-foot">
+      <a class="tdrawer-link" href="/protocols/task.html?id=${encodeURIComponent(t.id)}">Open as a page</a>
+      <button type="button" class="tdrawer-delete" onclick="deleteTask(event, '${esc(t.id)}')">Delete task</button>
+    </div>
   `;
 
   document.getElementById('taskDrawer').classList.add('open');
   document.getElementById('taskDrawer').setAttribute('aria-hidden', 'false');
   document.getElementById('taskScrim').classList.add('open');
   document.getElementById('taskClose').focus();
+}
+
+function renderDrawerNotes(notes) {
+  if (!notes.length) return '<div class="tdrawer-empty">No notes yet.</div>';
+  return notes.map(n => `<div class="tdrawer-note">
+      <div class="tdrawer-note-text">${esc(n.text || '')}</div>
+      <div class="tdrawer-note-meta">${esc(n.author || '')}${n.author && n.ts ? ' · ' : ''}${esc(n.ts || '')}</div>
+    </div>`).join('');
+}
+
+// Free-text fields save on change and write straight back into the in-memory
+// task, so closing the drawer leaves the grid already correct.
+async function saveDrawerField(id, field, el) {
+  const value = el.value.trim();
+  el.classList.add('saving');
+  try {
+    await TM.saveField(id, field, value, getPageUser());
+    const task = (window.__allTasks || []).find(x => x.id === id);
+    if (task) task[field] = value;
+    if (field === 'title') document.getElementById('taskDrawerTitle').textContent = value || 'Untitled';
+    renderTaskCards(window.__allTasks);
+  } catch (e) {
+    alert('Could not save: ' + e.message);
+  }
+  el.classList.remove('saving');
+}
+
+async function addDrawerNote(id) {
+  const input = document.getElementById('dw-note');
+  const text = (input.value || '').trim();
+  if (!text) return;
+  const author = getPageUserSlug() || '';
+  input.disabled = true;
+  try {
+    const task = (window.__allTasks || []).find(x => x.id === id);
+    const notes = Array.isArray(task && task.notes) ? task.notes.slice() : [];
+    notes.push({ ts: todayISO(), text, author, type: 'note' });
+    await TM.saveField(id, 'notes', notes, author);
+    if (task) task.notes = notes;
+    document.getElementById('dw-notes').innerHTML = renderDrawerNotes(notes);
+    input.value = '';
+  } catch (e) {
+    alert('Could not add the note: ' + e.message);
+  }
+  input.disabled = false;
+  input.focus();
 }
 
 function closeTaskDrawer() {

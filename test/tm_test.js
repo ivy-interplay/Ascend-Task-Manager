@@ -120,7 +120,14 @@ console.log('\n── fields moved to the drawer are still reachable ──');
   ok(new RegExp('data-field="' + f + '"').test(files.index),
      'drawer still exposes ' + f + ' as editable'));
 ok(/function openTaskDrawer/.test(files.index), 'task drawer exists');
-ok(/Open full detail/.test(files.index), 'drawer links through to the full detail page');
+// The drawer IS the detail view now — every field editable plus notes — so it
+// no longer bounces to a second page; task.html is demoted to a quiet link.
+ok(/id="dw-title"/.test(files.index),   'drawer edits the title');
+ok(/id="dw-overview"/.test(files.index),'drawer edits the description');
+ok(/id="dw-next"/.test(files.index),    'drawer edits the next step');
+ok(/id="dw-note"/.test(files.index),    'drawer can add a note');
+ok(/function saveDrawerField/.test(files.index), 'drawer fields save back to the store');
+ok(/Open as a page/.test(files.index),  'the standalone page is still reachable');
 ok(/tdrawer-note/.test(files.index), 'drawer shows the note history');
 
 console.log('\n── filtering surfaces ──');
