@@ -959,6 +959,20 @@
   [data-theme="dark"] td.row-open { color: #3a3a3a; }
   table.tasks tbody tr.task-row:hover td.row-open { color: var(--red); transform: translateX(2px); }
   table.tasks thead th:last-child { width: 3%; }
+
+  /* Confirmation for edits whose result is that something leaves the view. */
+  #tm-toast {
+    position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 14px);
+    z-index: 200; max-width: min(520px, 92vw);
+    padding: 11px 18px; border-radius: 999px;
+    background: var(--black); color: var(--white);
+    border: 1px solid var(--rule, transparent);
+    font-size: 12.5px; font-weight: 600; letter-spacing: 0.01em;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.35);
+    opacity: 0; pointer-events: none; transition: opacity 160ms, transform 160ms;
+  }
+  #tm-toast.show { opacity: 1; transform: translate(-50%, 0); }
+  @media (prefers-reduced-motion: reduce) { #tm-toast { transition: none; } }
   /* Table toolbar — search is the primary control here, so it is the widest. */
   .table-toolbar {
     display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
@@ -3020,7 +3034,10 @@ function goToPage(n) {
 }
 
 function setPerPage(v) {
-  window.__perPage = parseInt(v, 10) || 25;
+  // 0 means "All". `parseInt(v) || 25` treated it as falsy and fell back to 25,
+  // so All never actually showed everything.
+  const n = parseInt(v, 10);
+  window.__perPage = Number.isFinite(n) && n >= 0 ? n : 25;
   window.__page = 1;
   renderTaskCards(window.__allTasks);
 }
@@ -3375,6 +3392,9 @@ async function updateDueDate(input) {
         else if (diff <= 7) input.classList.add('soon');
       }
     }
+    input.classList.remove('saving');
+    afterTaskChange(id, 'due_date');
+    return;
   } catch(e) {
     console.error('Due date update failed:', e);
     alert('Failed to save due date: ' + e.message);
@@ -3665,7 +3685,7 @@ function renderTaskCards(tasks) {
   // paging keeps both the scroll and the DOM manageable. Any change to the
   // filters resets to page 1, or you'd land on an empty page.
   const total = filtered.length;
-  const per = window.__perPage || 25;
+  const per = Number.isFinite(window.__perPage) ? window.__perPage : 25;
   const pages = per === 0 ? 1 : Math.max(1, Math.ceil(total / per));
   if (window.__page > pages) window.__page = pages;
   const page = window.__page || 1;
@@ -3892,7 +3912,7 @@ async function saveDrawerField(id, field, el) {
     const task = (window.__allTasks || []).find(x => x.id === id);
     if (task) task[field] = value;
     if (field === 'title') document.getElementById('taskDrawerTitle').textContent = value || 'Untitled';
-    renderTaskCards(window.__allTasks);
+    afterTaskChange(id, field);
   } catch (e) {
     alert('Could not save: ' + e.message);
   }
@@ -3913,6 +3933,7 @@ async function saveDrawerNumber(id, field, el) {
     await TM.saveField(id, field, value, getPageUser());
     const task = (window.__allTasks || []).find(x => x.id === id);
     if (task) task[field] = value;
+    afterTaskChange(id, field);
   } catch (e) {
     alert('Could not save: ' + e.message);
   }
@@ -4156,6 +4177,49 @@ function maybePromptIdentity() {
   }
 }
 
+// ── After any edit ──────────────────────────────────────────────────────────
+// Saving used to update the in-memory task and stop there, so the row stayed on
+// screen until a reload even when the edit had pushed it out of the current
+// view — remove yourself as co-owner while filtered to yourself and the task
+// lingered, looking like the change had not taken.
+//
+// Re-rendering is preferred over adding Save buttons: inline edits already
+// commit on change, and a button per cell would slow the common case down to
+// make the rare one legible. The cost of re-rendering is losing the caret, so
+// focus is restored to the same control afterwards, and a task that leaves the
+// view says so rather than silently vanishing.
+function afterTaskChange(id, field) {
+  const tasks = window.__allTasks || [];
+  renderTaskCards(tasks);
+  renderTasksHeaderCounts(tasks);
+
+  const stillVisible = !!document.querySelector(`#task-rows tr.task-row[onclick*="${id}"]`);
+  if (stillVisible && field) {
+    const again = document.querySelector(`#task-rows [data-task-id="${id}"][data-field="${field}"]`);
+    if (again) again.focus({ preventScroll: true });
+  } else if (!stillVisible && !document.getElementById('taskDrawer').classList.contains('open')) {
+    toast('Saved. That task no longer matches your filters.');
+  }
+}
+
+// Small, self-dismissing confirmation. Only used where something disappears as
+// a result of the edit, so it explains rather than decorates.
+let __toastTimer = null;
+function toast(msg) {
+  let el = document.getElementById('tm-toast');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'tm-toast';
+    el.setAttribute('role', 'status');
+    el.setAttribute('aria-live', 'polite');
+    document.body.appendChild(el);
+  }
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(__toastTimer);
+  __toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
+}
+
 async function updateTaskField(select) {
   const id    = select.dataset.taskId;
   const field = select.dataset.field;
@@ -4169,6 +4233,9 @@ async function updateTaskField(select) {
     if (task) task[field] = value;
     // Completing a repeating task queues its next occurrence.
     if (field === 'status' && task) await maybeSpawnRecurrence(task);
+    select.classList.remove('saving');
+    afterTaskChange(id, field);
+    return;
   } catch(e) {
     console.error('Field update failed:', e);
     alert('Failed to save: ' + e.message);
@@ -4192,6 +4259,7 @@ async function updatePriorityDirect(id, value) {
     await TM.saveField(id, 'priority', value, author);
     const task = (window.__allTasks || []).find(t => t.id === id);
     if (task) task.priority = value;
+    afterTaskChange(id, 'priority');
   } catch(e) {
     console.error('Priority update failed:', e);
     alert('Failed to save priority: ' + e.message);

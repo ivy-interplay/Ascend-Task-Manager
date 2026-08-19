@@ -174,6 +174,22 @@ ok(/function renderTileBreakdown/.test(files.index), 'tiles expand a priority br
 ok(/function syncUrlState/.test(files.index) && /function restoreUrlState/.test(files.index),
    'view state is shareable via the URL');
 
+console.log('\n── edits refresh the view ──');
+// Saving used to leave the row on screen until a reload, even when the edit
+// had pushed the task out of the current filter.
+ok(/function afterTaskChange/.test(files.index), 'a single post-save refresh path exists');
+['updateTaskField','updateDueDate','saveDrawerField','saveDrawerNumber'].forEach(fn => {
+  const body = new RegExp('function ' + fn + '\\b[\\s\\S]{0,1400}').exec(files.index);
+  ok(!!body && /afterTaskChange\(/.test(body[0]), fn + ' refreshes after saving');
+});
+ok(/function toast/.test(files.index), 'a task leaving the view says so');
+
+// 0 means "All". `parseInt(v) || 25` treats it as falsy, so All paged at 25.
+ok(!/window\.__perPage = parseInt\(v, 10\) \|\| 25/.test(files.index),
+   'per-page does not coerce 0 ("All") back to 25');
+ok(!/const per = window\.__perPage \|\| 25/.test(files.index),
+   'the render path does not coerce 0 ("All") back to 25');
+
 console.log('\n── default view hides completed work ──');
 ok(/id="cf-showdone"/.test(files.index), 'a "Show completed" toggle exists');
 ok(!/id="cf-showdone"[^>]*checked/.test(files.index), 'it is unchecked by default');
