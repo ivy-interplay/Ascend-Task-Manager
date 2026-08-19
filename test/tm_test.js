@@ -105,9 +105,12 @@ console.log('\n── (h) every GRID column is sortable ──');
 // scrolling; description, co-owner, repeats and created-at moved to the task
 // drawer. Sorting covers every column that is actually on screen.
 const sortable = arrayLiteral(files.index, 'SORTABLE_FIELDS') || [];
-['title','next_step','quadrant','priority','family','function',
+// The old high/medium/low priority column was deleted (Andrew, 2026-08-19);
+// the Eisenhower field took over the name.
+['title','next_step','quadrant','family','function',
  'due_date','assigned_to','status']
   .forEach(f => ok(sortable.includes(f), 'sortable: ' + f));
+ok(!sortable.includes('priority'), 'the retired high/medium/low column is gone');
 // Each sortable field needs a matching <th id="th-…"> or clicking does nothing.
 sortable.forEach(f => ok(new RegExp('id="th-' + f + '"').test(files.index),
   'header exists for sortable field ' + f));
@@ -129,6 +132,22 @@ ok(/id="dw-note"/.test(files.index),    'drawer can add a note');
 ok(/function saveDrawerField/.test(files.index), 'drawer fields save back to the store');
 ok(/Open as a page/.test(files.index),  'the standalone page is still reachable');
 ok(/tdrawer-note/.test(files.index), 'drawer shows the note history');
+
+console.log("\n── Andrew's 2026-08-19 feedback ──");
+// One vocabulary: the grid used to abbreviate what Add Task spelled out.
+['Important & urgent','Important, not urgent','Urgent, not important']
+  .forEach(l => ok(files.index.includes(l), 'quadrant label in full: ' + l));
+['Do first','Delegate'].forEach(l =>
+  ok(!files.index.includes("short: '" + l), 'abbreviation retired: ' + l));
+// Co-owned tasks must reach the co-owner's list.
+ok(/function isOnTask/.test(files.index), 'owner-or-co-owner helper exists');
+ok(!/tf\.includes\(t\.assigned_to\)/.test(files.index),
+   'no person filter counts assigned_to alone');
+// Drawer-only fields.
+ok(/data-field="value_add"/.test(files.index), 'drawer has Value-add');
+ok(/'hours_spent'/.test(files.index), 'drawer has Hours spent');
+ok(!/th-value_add|th-hours_spent/.test(files.index), 'neither is a grid column');
+ok(/function saveDrawerNumber/.test(files.index), 'numeric field saves null when blank');
 
 console.log('\n── filtering surfaces ──');
 ok(/id="cf-search"/.test(files.index), 'search box exists');

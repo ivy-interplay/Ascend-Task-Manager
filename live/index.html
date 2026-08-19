@@ -853,10 +853,9 @@
      Everything else (description, co-owner, repeats, created by/at, notes)
      moved into the task drawer — a wide grid that scrolls sideways hides the
      fields at the far right, which is how Status went missing. */
-  table.tasks col.col-title     { width: 16%; }
-  table.tasks col.col-nextstep  { width: 16%; }
-  table.tasks col.col-quad      { width: 10%; }
-  table.tasks col.col-pri       { width: 8%; }
+  table.tasks col.col-title     { width: 17%; }
+  table.tasks col.col-nextstep  { width: 17%; }
+  table.tasks col.col-quad      { width: 17%; }
   table.tasks col.col-family    { width: 10%; }
   table.tasks col.col-type      { width: 10%; }
   /* Due needs room for a full date input; owner/status for their longest label. */
@@ -873,7 +872,8 @@
   table.tasks input[type="date"] {
     max-width: 100%; width: 100%;
     min-height: 30px;
-    font-size: 11px;
+    font-size: 10.5px;
+    padding-left: 8px; padding-right: 20px;
   }
   table.tasks td { vertical-align: middle; padding: 8px; }
   table.tasks tbody tr { cursor: pointer; }
@@ -1104,9 +1104,14 @@
   .tile-seg:hover { border-color: var(--slate); }
   .tile-seg:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
   .tile-seg-n { font-size: 14px; font-weight: 800; }
-  .tile-seg.p-high .tile-seg-n { color: var(--red); }
-  .tile-seg.p-med  .tile-seg-n { color: var(--amber); }
-  .tile-seg.p-low  .tile-seg-n { color: var(--green); }
+  .tile-seg.p-iu  .tile-seg-n { color: var(--q-iu-text); }
+  .tile-seg.p-inu .tile-seg-n { color: var(--q-inu-text); }
+  .tile-seg.p-uni .tile-seg-n { color: var(--q-uni-text); }
+  .tile-seg.p-nn  .tile-seg-n { color: var(--q-nn-text); }
+  [data-theme="dark"] .tile-seg.p-iu  .tile-seg-n { color: #FF8A7E; }
+  [data-theme="dark"] .tile-seg.p-inu .tile-seg-n { color: #FBBF24; }
+  [data-theme="dark"] .tile-seg.p-uni .tile-seg-n { color: #93B8FF; }
+  [data-theme="dark"] .tile-seg.p-nn  .tile-seg-n { color: #B7C0CC; }
   .tile-seg.active { background: var(--red-strong); border-color: var(--red-strong); color: #fff; }
   .tile-seg.active .tile-seg-n { color: #fff; }
   .tile-seg.clear { color: var(--slate); border-style: dashed; }
@@ -1912,19 +1917,13 @@
   <!-- Column filter bar -->
   <div class="col-filter-bar" id="col-filter-bar">
    <div class="cf-row cf-row-2">
-    <label for="cf-quadrant" class="sr-only">Filter by importance and urgency</label><select id="cf-quadrant" onchange="applyColFilters()">
-      <option value="">Any focus</option>
-      <option value="iu">Do first — important &amp; urgent</option>
-      <option value="inu">Schedule — important, not urgent</option>
-      <option value="uni">Delegate — urgent, not important</option>
-      <option value="nn">Later — neither</option>
-      <option value="__blank__">Not set</option>
-    </select>
-    <label for="cf-priority" class="sr-only">Filter by priority</label><select id="cf-priority" onchange="applyColFilters()">
+    <label for="cf-quadrant" class="sr-only">Filter by priority</label><select id="cf-quadrant" onchange="applyColFilters()">
       <option value="">Any priority</option>
-      <option value="high">High</option>
-      <option value="medium">Medium</option>
-      <option value="low">Low</option>
+      <option value="iu">Important &amp; urgent</option>
+      <option value="inu">Important, not urgent</option>
+      <option value="uni">Urgent, not important</option>
+      <option value="nn">Neither</option>
+      <option value="__blank__">Not set</option>
     </select>
     <label for="cf-status" class="sr-only">Filter by status</label><select id="cf-status" onchange="applyColFilters()">
       <option value="">All statuses</option>
@@ -1987,7 +1986,6 @@
       <col class="col-title">
       <col class="col-nextstep">
       <col class="col-quad">
-      <col class="col-pri">
       <col class="col-family">
       <col class="col-type">
       <col class="col-due">
@@ -1999,8 +1997,7 @@
       <tr>
         <th class="sortable" id="th-title" scope="col"><button type="button" class="th-btn" onclick="toggleSort('title')">Title</button></th>
         <th class="sortable" id="th-next_step" scope="col"><button type="button" class="th-btn" onclick="toggleSort('next_step')">Next Step</button></th>
-        <th class="sortable" id="th-quadrant" scope="col"><button type="button" class="th-btn" onclick="toggleSort('quadrant')">Focus</button></th>
-        <th class="sortable" id="th-priority" scope="col"><button type="button" class="th-btn" onclick="toggleSort('priority')">Priority</button></th>
+        <th class="sortable" id="th-quadrant" scope="col"><button type="button" class="th-btn" onclick="toggleSort('quadrant')">Priority</button></th>
         <th class="sortable" id="th-family" scope="col"><button type="button" class="th-btn" onclick="toggleSort('family')">Family</button></th>
         <th class="sortable" id="th-function" scope="col"><button type="button" class="th-btn" onclick="toggleSort('function')">Type</button></th>
         <th class="sortable" id="th-due_date" scope="col"><button type="button" class="th-btn" onclick="toggleSort('due_date')">Due Date</button></th>
@@ -2014,10 +2011,10 @@
   </div>
   <div class="task-pager" id="task-pager"></div>
   <div class="quad-legend" aria-label="Focus legend">
-    <span class="lg"><span class="dot" style="background:var(--q-iu)"></span><b>Do first</b> — important &amp; urgent</span>
-    <span class="lg"><span class="dot" style="background:var(--q-inu)"></span><b>Schedule</b> — important, not urgent</span>
-    <span class="lg"><span class="dot" style="background:var(--q-uni)"></span><b>Delegate</b> — urgent, not important</span>
-    <span class="lg"><span class="dot" style="background:var(--q-nn)"></span><b>Later</b> — neither</span>
+    <span class="lg"><span class="dot" style="background:var(--q-iu)"></span>Important &amp; urgent</span>
+    <span class="lg"><span class="dot" style="background:var(--q-inu)"></span>Important, not urgent</span>
+    <span class="lg"><span class="dot" style="background:var(--q-uni)"></span>Urgent, not important</span>
+    <span class="lg"><span class="dot" style="background:var(--q-nn)"></span>Neither</span>
   </div>
   <div id="task-empty" class="empty" style="display:none">No tasks yet.</div>
 </div>
@@ -2293,11 +2290,15 @@ function slugId(title) {
 // These live up here, ahead of every use, because top-level `const` is not
 // hoisted: a derived constant further down the file (RECUR_ORDER, QUAD_ORDER)
 // that runs before this point throws and aborts the whole script.
+// One vocabulary everywhere (Andrew, 2026-08-19). The grid used to abbreviate
+// to Do first / Schedule / Delegate / Later while the Add Task dialog spelled
+// the quadrants out — clicking a task showed different words than creating one.
+// `short` is kept as a field so call sites need no change; it now matches label.
 const QUADRANTS = [
-  { v: 'iu',  label: 'Important & urgent',    short: 'Do first', rank: 1 },
-  { v: 'inu', label: 'Important, not urgent', short: 'Schedule', rank: 2 },
-  { v: 'uni', label: 'Urgent, not important', short: 'Delegate', rank: 3 },
-  { v: 'nn',  label: 'Neither',               short: 'Later',    rank: 4 },
+  { v: 'iu',  label: 'Important & urgent',    short: 'Important & urgent',    rank: 1 },
+  { v: 'inu', label: 'Important, not urgent', short: 'Important, not urgent', rank: 2 },
+  { v: 'uni', label: 'Urgent, not important', short: 'Urgent, not important', rank: 3 },
+  { v: 'nn',  label: 'Neither',               short: 'Neither',               rank: 4 },
 ];
 const QUAD_BY_V  = Object.fromEntries(QUADRANTS.map(q => [q.v, q]));
 const QUAD_ORDER = Object.fromEntries(QUADRANTS.map(q => [q.v, q.rank]));
@@ -2768,8 +2769,8 @@ function renderTasksHeaderCounts(tasks) {
   const pf = window.__tasksPersonFilter || 'all';
   const tf = window.__tasksTeamFilter || null;
   const filtered = pf === 'all' ? tasks
-    : tf ? tasks.filter(t => tf.includes(t.assigned_to))
-    : tasks.filter(t => t.assigned_to === pf);
+    : tf ? tasks.filter(t => tf.some(slug => isOnTask(t, slug)))
+    : tasks.filter(t => isOnTask(t, pf));
   // Tiles count within the selected person/team, so the avatar strip and the
   // tiles never disagree about the same population.
   refreshTileCounts(tasks);
@@ -2785,17 +2786,20 @@ function renderTasksHeaderCounts(tasks) {
   const strip = document.getElementById('tasks-filter-strip');
   if (!strip) return;
 
+  // Count a task for the owner AND the co-owner, so the avatar count matches
+  // what that person sees when they click their face.
   const tasksByOwner = {};
   for (const t of tasks) {
-    const slug = t.assigned_to || 'all';
-    tasksByOwner[slug] = (tasksByOwner[slug] || 0) + 1;
+    const seen = new Set([t.assigned_to, t.co_owner].filter(Boolean));
+    if (!seen.size) seen.add('all');
+    seen.forEach(slug => { tasksByOwner[slug] = (tasksByOwner[slug] || 0) + 1; });
   }
 
   const INVESTMENT_TEAM = ['ned','miho','eli','will'];
   const OPS_TEAM        = ['andrew','albert','mariz','eddie','rebecca'];
 
-  const invCount = tasks.filter(t => INVESTMENT_TEAM.includes(t.assigned_to)).length;
-  const opsCount = tasks.filter(t => OPS_TEAM.includes(t.assigned_to)).length;
+  const invCount = tasks.filter(t => INVESTMENT_TEAM.some(slug => isOnTask(t, slug))).length;
+  const opsCount = tasks.filter(t => OPS_TEAM.some(slug => isOnTask(t, slug))).length;
 
   const activePf = window.__tasksPersonFilter || 'all';
 
@@ -2888,7 +2892,7 @@ function populateColFilterOptions(tasks) {
 }
 
 function applyColFilters() {
-  const ids = ['priority','quadrant','status','family','type','due'];
+  const ids = ['quadrant','status','family','type','due'];
   ids.forEach(id => {
     const el = document.getElementById('cf-' + id);
     if (el) {
@@ -2920,7 +2924,7 @@ function applyColFilters() {
 // filtered view can be pasted into Slack and open the same way for someone
 // else (Linear/Asana behaviour). replaceState keeps it out of history so the
 // back button still leaves the page rather than stepping through filter edits.
-const URL_FILTER_IDS = ['priority','quadrant','status','family','type','due'];
+const URL_FILTER_IDS = ['quadrant','status','family','type','due'];
 
 function syncUrlState() {
   if (window.__restoringState) return;
@@ -2974,7 +2978,7 @@ function restoreUrlState() {
 }
 
 function clearColFilters() {
-  ['priority','quadrant','status','family','type','due'].forEach(id => {
+  ['quadrant','status','family','type','due'].forEach(id => {
     colFilters[id] = '';
     const el = document.getElementById('cf-' + id);
     if (el) { el.value = ''; el.classList.remove('active'); }
@@ -3088,7 +3092,7 @@ function toggleTile(name) {
   // the tile takes it with it — otherwise clearing "Closed" silently leaves you
   // filtered to High and the row count looks wrong.
   if (wasActive) {
-    const pri = document.getElementById('cf-priority');
+    const pri = document.getElementById('cf-quadrant');
     if (pri) pri.value = '';
   }
   // The tiles and the "Show completed" checkbox are the same decision; keep
@@ -3113,7 +3117,7 @@ function renderTileBreakdown() {
   if (!name) { el.hidden = true; el.innerHTML = ''; return; }
 
   const pool = scopeToPerson(window.__allTasks || []).filter(TILE_TESTS[name]);
-  const curPri = (document.getElementById('cf-priority') || {}).value || '';
+  const curPri = (document.getElementById('cf-quadrant') || {}).value || '';
   const seg = (label, value, n, cls) => `
     <button type="button" class="tile-seg ${cls || ''} ${curPri === value ? 'active' : ''}"
             onclick="setPriorityFilter('${value}')">
@@ -3123,16 +3127,15 @@ function renderTileBreakdown() {
   el.innerHTML = `
     <div class="tile-breakdown-inner">
       <span class="tile-breakdown-title">${esc(TILE_LABEL[name])} by priority</span>
-      ${seg('High',   'high',   pool.filter(t => (t.priority || 'medium') === 'high').length,   'p-high')}
-      ${seg('Medium', 'medium', pool.filter(t => (t.priority || 'medium') === 'medium').length, 'p-med')}
-      ${seg('Low',    'low',    pool.filter(t => (t.priority || 'medium') === 'low').length,    'p-low')}
+      ${QUADRANTS.map(q => seg(q.label, q.v, pool.filter(t => t.quadrant === q.v).length, 'p-' + q.v)).join('')}
+      ${seg('Not set', '__blank__', pool.filter(t => !t.quadrant).length, '')}
       ${curPri ? `<button type="button" class="tile-seg clear" onclick="setPriorityFilter('')">Clear</button>` : ''}
     </div>`;
   el.hidden = false;
 }
 
 function setPriorityFilter(value) {
-  const el = document.getElementById('cf-priority');
+  const el = document.getElementById('cf-quadrant');
   if (!el) return;
   el.value = (el.value === value) ? '' : value;
   applyColFilters();
@@ -3141,11 +3144,19 @@ function setPriorityFilter(value) {
 
 // The avatar strip filters by person; the tiles must count within whatever
 // person is selected, or the two controls contradict each other.
+// A task belongs to you if you own it OR you are the co-owner. Note this means
+// a co-owned task is counted for both people, so per-person counts sum to more
+// than the total — that is correct for "my work", which is what these answer.
+function isOnTask(t, slug) {
+  return !!slug && (t.assigned_to === slug || t.co_owner === slug);
+}
+
 function scopeToPerson(tasks) {
   const pf = window.__tasksPersonFilter || 'all';
   const tf = window.__tasksTeamFilter || null;
   if (pf === 'all') return tasks;
-  return tf ? tasks.filter(t => tf.includes(t.assigned_to)) : tasks.filter(t => t.assigned_to === pf);
+  return tf ? tasks.filter(t => tf.some(slug => isOnTask(t, slug)))
+            : tasks.filter(t => isOnTask(t, pf));
 }
 
 function refreshTileCounts(tasks) {
@@ -3172,7 +3183,7 @@ function parseLocalDate(iso) {
 // Chip predicates run against the OPEN tasks only — an overdue count that
 // includes finished work is noise, not a to-do list.
 const CHIP_TESTS = {
-  mine:       t => { const me = getPageUserSlug(); return !!me && (t.assigned_to === me || t.co_owner === me); },
+  mine:       t => isOnTask(t, getPageUserSlug()),
   overdue:    t => { const d = parseLocalDate(t.due_date); return !!d && d < startOfToday(); },
   week:       t => { const d = parseLocalDate(t.due_date); if (!d) return false;
                      const now = startOfToday(), wk = new Date(now); wk.setDate(wk.getDate() + 7);
@@ -3540,7 +3551,7 @@ function toggleSort(field) {
 
 // Only fields with a visible <th> belong here — a sort key with no header
 // is unreachable. The drawer-only fields are deliberately absent.
-const SORTABLE_FIELDS = ['title','next_step','quadrant','priority','family','function','due_date','assigned_to','status'];
+const SORTABLE_FIELDS = ['title','next_step','quadrant','family','function','due_date','assigned_to','status'];
 
 // Comparable key for one field. Ranked vocabularies (priority, quadrant,
 // status, type, recurrence) sort by meaning rather than alphabetically —
@@ -3606,8 +3617,8 @@ function renderTaskCards(tasks) {
   const pf = window.__tasksPersonFilter || 'all';
   const tf = window.__tasksTeamFilter || null;
   let filtered = pf === 'all' ? tasks
-    : tf ? tasks.filter(t => tf.includes(t.assigned_to))
-         : tasks.filter(t => t.assigned_to === pf);
+    : tf ? tasks.filter(t => tf.some(slug => isOnTask(t, slug)))
+         : tasks.filter(t => isOnTask(t, pf));
   // Apply column filters
   filtered = filtered.filter(taskMatchesColFilters);
 
@@ -3662,20 +3673,13 @@ function renderTaskCards(tasks) {
   const pageRows = per === 0 ? filtered : filtered.slice(start, start + per);
   renderPager(total, page, pages, start, pageRows.length);
 
-  const priClass = { high:'priority-high', medium:'priority-medium', low:'priority-low', completed:'priority-completed', archived:'priority-archived' };
-  const priOptions = ['high','medium','low','completed','archived'];
   tbody.innerHTML = pageRows.map(t => {
-    const pri = t.priority || 'medium';
-    const desc = (t.overview || '').slice(0, 120) + ((t.overview || '').length > 120 ? '…' : '');
     return `<tr class="task-row ${t.quadrant ? 'row-q-' + esc(t.quadrant) : ''}" onclick="openTaskDrawer('${esc(t.id)}')">
       <td class="task-title-cell">
         <button type="button" class="task-title-btn" onclick="openTaskDrawer('${esc(t.id)}')">${esc(t.title)}</button>
       </td>
       <td class="task-nextstep-cell">${esc((t.next_step || '').slice(0, 90) + ((t.next_step || '').length > 90 ? '\u2026' : ''))}</td>
       <td onclick="event.stopPropagation()">${quadrantCellHTML(t)}</td>
-      <td class="priority-cell" onclick="event.stopPropagation()">
-        <select class="priority-select" id="pri-pill-${esc(t.id)}" aria-label="Priority — ${esc(t.title)}" data-task-id="${esc(t.id)}" onchange="updatePriority(this)">${priOptions.map(p=>`<option value="${p}" ${p===pri?'selected':''}>${p.charAt(0).toUpperCase()+p.slice(1)}</option>`).join('')}</select>
-      </td>
       <td onclick="event.stopPropagation()">${familyCellHTML(t)}</td>
       <td onclick="event.stopPropagation()">${typeCellHTML(t)}</td>
       <td onclick="event.stopPropagation()">${dueDateInputHTML(t)}</td>
@@ -3832,14 +3836,15 @@ function openTaskDrawer(id) {
 
     <div class="tdrawer-sec tdrawer-grid">
       ${drawerRow('Status',   statusCellHTML(t))}
-      ${drawerRow('Priority', `<select class="priority-select" aria-label="Priority" data-task-id="${esc(t.id)}" onchange="updatePriority(this)">${['high','medium','low'].map(pv=>`<option value="${pv}" ${pv===(t.priority||'medium')?'selected':''}>${pv.charAt(0).toUpperCase()+pv.slice(1)}</option>`).join('')}</select>`)}
-      ${drawerRow('Focus',    quadrantCellHTML(t))}
+      ${drawerRow('Priority', quadrantCellHTML(t))}
       ${drawerRow('Client / family', familyCellHTML(t))}
       ${drawerRow('Type',     typeCellHTML(t))}
       ${drawerRow('Owner',    ownerCellHTML2(t))}
       ${drawerRow('Co-owner / helper', coOwnerCellHTML(t))}
       ${drawerRow('Due date', dueDateInputHTML(t))}
       ${drawerRow('Repeats',  recurrenceCellHTML(t))}
+      ${drawerRow('Value-add', `<select class="priority-select" aria-label="Value-add" data-task-id="${esc(t.id)}" data-field="value_add" onchange="updateTaskField(this)">${[['','—'],['yes','Yes'],['no','No']].map(([v,l])=>`<option value="${v}" ${v===(t.value_add||'')?'selected':''}>${l}</option>`).join('')}</select>`)}
+      ${drawerRow('Hours spent', `<input type="number" class="tdrawer-input" min="0" step="0.25" placeholder="0" aria-label="Hours spent" value="${t.hours_spent == null ? '' : esc(String(t.hours_spent))}" onchange="saveDrawerNumber('${esc(t.id)}','hours_spent',this)">`)}
       ${drawerRow('Created by', t.created_by_raw || t.created_by ? esc(t.created_by_raw || t.created_by) : dash)}
       ${drawerRow('Date added', t.created_at ? esc(formatDueShort(t.created_at)) : dash)}
     </div>
@@ -3886,6 +3891,26 @@ async function saveDrawerField(id, field, el) {
     if (task) task[field] = value;
     if (field === 'title') document.getElementById('taskDrawerTitle').textContent = value || 'Untitled';
     renderTaskCards(window.__allTasks);
+  } catch (e) {
+    alert('Could not save: ' + e.message);
+  }
+  el.classList.remove('saving');
+}
+
+// Numeric field: an empty box means "not recorded", which has to be null —
+// sending "" to a numeric column errors.
+async function saveDrawerNumber(id, field, el) {
+  const raw = el.value.trim();
+  const value = raw === '' ? null : Number(raw);
+  if (value !== null && (isNaN(value) || value < 0)) {
+    alert('Enter hours as a number, 0 or more.');
+    return;
+  }
+  el.classList.add('saving');
+  try {
+    await TM.saveField(id, field, value, getPageUser());
+    const task = (window.__allTasks || []).find(x => x.id === id);
+    if (task) task[field] = value;
   } catch (e) {
     alert('Could not save: ' + e.message);
   }
