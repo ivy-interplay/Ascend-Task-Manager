@@ -3830,12 +3830,7 @@ function openTaskDrawer(id) {
   __drawerTaskId = id;
   document.getElementById('taskDrawerTitle').textContent = t.title || 'Untitled';
 
-  const q = QUAD_BY_V[t.quadrant];
-  document.getElementById('taskDrawerMeta').innerHTML =
-    [ t.family ? esc(t.family) : null,
-      t.function ? esc(t.function) : null,
-      q ? `<span class="q-dot q-${q.v}"></span>${esc(q.label)}` : null,
-    ].filter(Boolean).join(' &nbsp;·&nbsp; ');
+  refreshDrawerMeta(id);
 
   const notes = Array.isArray(t.notes) ? t.notes : [];
   const dash = '<span class="tdrawer-empty">—</span>';
@@ -3892,6 +3887,20 @@ function openTaskDrawer(id) {
   document.getElementById('taskDrawer').setAttribute('aria-hidden', 'false');
   document.getElementById('taskScrim').classList.add('open');
   document.getElementById('taskClose').focus();
+}
+
+// Subheading under the drawer title: family · type · priority. Recomputed from
+// the task rather than baked in at open time, so edits inside the drawer show.
+function refreshDrawerMeta(id) {
+  const el = document.getElementById('taskDrawerMeta');
+  const t = (window.__allTasks || []).find(x => x.id === id);
+  if (!el || !t) return;
+  const q = QUAD_BY_V[t.quadrant];
+  el.innerHTML = [
+    t.family ? esc(t.family) : null,
+    t.function ? esc(t.function) : null,
+    q ? `<span class="q-dot q-${q.v}"></span>${esc(q.label)}` : null,
+  ].filter(Boolean).join(' &nbsp;·&nbsp; ');
 }
 
 function renderDrawerNotes(notes) {
@@ -4190,8 +4199,19 @@ function maybePromptIdentity() {
 // view says so rather than silently vanishing.
 function afterTaskChange(id, field) {
   const tasks = window.__allTasks || [];
+
+  // The Client and Owner filter lists are built FROM the data, so an edit that
+  // introduces a value nobody was using yet has to rebuild them — otherwise you
+  // can set a task to Bamboo Holdings and then not be able to filter for it.
+  populateColFilterOptions(tasks);
   renderTaskCards(tasks);
   renderTasksHeaderCounts(tasks);
+  // The breakdown is a second view of the same numbers; while it is open it has
+  // to recount too, or it contradicts the tile above it.
+  if (window.__tileFilter) renderTileBreakdown();
+  // The drawer's subheading restates family and priority, so it goes stale the
+  // moment either is edited from inside the drawer.
+  if (id === __drawerTaskId) refreshDrawerMeta(id);
 
   const stillVisible = !!document.querySelector(`#task-rows tr.task-row[onclick*="${id}"]`);
   if (stillVisible && field) {

@@ -184,6 +184,20 @@ ok(/function afterTaskChange/.test(files.index), 'a single post-save refresh pat
 });
 ok(/function toast/.test(files.index), 'a task leaving the view says so');
 
+// Staleness audit, 2026-08-19. afterTaskChange has to refresh EVERY surface
+// derived from the data, not just the grid:
+//  - the Client/Owner filter lists are built from the data, so an edit that
+//    introduces a value nobody was using yet must rebuild them;
+//  - the tile breakdown is a second view of the same counts and has to recount
+//    while open, or it contradicts the tile above it;
+//  - the drawer subheading restates family and priority and went stale the
+//    moment either was edited from inside the drawer.
+const afterBody = /function afterTaskChange[\s\S]{0,1200}/.exec(files.index)[0];
+ok(/populateColFilterOptions\(/.test(afterBody), 'refresh rebuilds the data-derived filter lists');
+ok(/renderTileBreakdown\(/.test(afterBody),      'refresh recounts the open tile breakdown');
+ok(/refreshDrawerMeta\(/.test(afterBody),        'refresh updates the drawer subheading');
+ok(/function refreshDrawerMeta/.test(files.index), 'drawer subheading is recomputed, not baked in at open');
+
 // 0 means "All". `parseInt(v) || 25` treats it as falsy, so All paged at 25.
 ok(!/window\.__perPage = parseInt\(v, 10\) \|\| 25/.test(files.index),
    'per-page does not coerce 0 ("All") back to 25');
