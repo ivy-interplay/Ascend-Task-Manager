@@ -80,9 +80,23 @@ Object.entries(types).forEach(([name, list]) => {
   ok(isSortedAZ(list.filter(Boolean)), name + ': sorted A to Z');
 });
 Object.entries(owners).forEach(([name, list]) => {
-  // 'alec' owns a live task; without a roster entry the owner dropdown had no
-  // matching option and a stray save would have silently blanked the owner.
-  ok(list.includes('alec'), name + ": includes 'alec' (owns a live task)");
+  // Alec was removed 2026-08-19 along with his one remaining task.
+  ok(!list.includes('alec'), name + ': Alec removed');
+});
+// The real invariant is not "alec is present" but "the two rosters agree and
+// nothing references a slug they don't define" — a task assigned to a missing
+// slug renders a blank owner dropdown that can silently wipe the owner on save.
+// The cross-file equality check above covers the first half; this covers the
+// display names, which are a separate object and drifted independently before.
+const nameMapKeys = src => {
+  const m = /const (?:OWNER_SLUG_TO_NAME|KV_OWNER_NAMES) = \{([^}]*)\}/.exec(src);
+  return m ? [...m[1].matchAll(/([a-z]+)\s*:/g)].map(x => x[1]) : [];
+};
+Object.entries({ index: files.index, task: files.task }).forEach(([f, src]) => {
+  const slugs = (f === 'index' ? owners['index OWNER_SLUGS'] : owners['task  KV_OWNER_SLUGS']).filter(Boolean);
+  const named = nameMapKeys(src);
+  const missing = slugs.filter(sl => !named.includes(sl));
+  ok(missing.length === 0, f + ': every owner slug has a display name (' + missing.join(',') + ')');
 });
 
 console.log('\n── new fields are wired end to end ──');

@@ -3720,10 +3720,12 @@ function sortOwnerSlugs(list) {
 const FAMILY_OPTIONS = ['', 'Davis', 'Escher Trust', 'Grojean', 'Guagenti', 'Hsu', 'Idriss', 'Katz', 'KT Ventures', 'Levine', 'Prosor', 'Shalev', 'Sukhatme', 'Tsenter', 'Zybin'];
 // Compliance and HR added per Andrew 2026-08-14.
 const TYPE_OPTIONS   = ['', 'Compliance', 'HR', 'Investment', 'Long Term', 'Member Success', 'Operations'];
-// 'alec' owns a live task but was absent from the roster, so opening that row's
-// owner dropdown showed no match and a stray save would have blanked the owner.
-const OWNER_SLUG_TO_NAME = { mpd:'Mark', kevin:'Kevin', will:'Will', andrew:'Andrew', ned:'Ned', miho:'Miho', eddie:'Eddie', eli:'Eli', albert:'Albert', mariz:'Mariz', rebecca:'Rebecca', cz:'Chris', ryan:'Ryan', alec:'Alec' };
-const OWNER_SLUGS = ['', 'mpd', 'kevin', 'will', 'andrew', 'ned', 'miho', 'eddie', 'eli', 'albert', 'mariz', 'rebecca', 'cz', 'ryan', 'alec'];
+// Keep this roster in step with the data. If a task is assigned to a slug that
+// is missing here, that row's owner dropdown has no matching option, renders
+// blank, and a stray save silently wipes the owner. (Alec removed 2026-08-19
+// with his one remaining task — that row is saved under backups/.)
+const OWNER_SLUG_TO_NAME = { mpd:'Mark', kevin:'Kevin', will:'Will', andrew:'Andrew', ned:'Ned', miho:'Miho', eddie:'Eddie', eli:'Eli', albert:'Albert', mariz:'Mariz', rebecca:'Rebecca', cz:'Chris', ryan:'Ryan' };
+const OWNER_SLUGS = ['', 'mpd', 'kevin', 'will', 'andrew', 'ned', 'miho', 'eddie', 'eli', 'albert', 'mariz', 'rebecca', 'cz', 'ryan'];
 
 // Advance an ISO date by one interval. Month-based steps clamp to the end of
 // the target month, so a 31 Jan monthly task lands on 28/29 Feb rather than
